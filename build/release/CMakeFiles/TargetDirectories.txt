@@ -1,0 +1,9 @@
+D:/Repositories/Spectr-Emulator/build/release/CMakeFiles/Spect_Device_Emulator.dir
+D:/Repositories/Spectr-Emulator/build/release/CMakeFiles/edit_cache.dir
+D:/Repositories/Spectr-Emulator/build/release/CMakeFiles/rebuild_cache.dir
+D:/Repositories/Spectr-Emulator/build/release/CMakeFiles/list_install_components.dir
+D:/Repositories/Spectr-Emulator/build/release/CMakeFiles/install.dir
+D:/Repositories/Spectr-Emulator/build/release/CMakeFiles/install/local.dir
+D:/Repositories/Spectr-Emulator/build/release/CMakeFiles/install/strip.dir
+D:/Repositories/Spectr-Emulator/build/release/CMakeFiles/Spect_Device_Emulator_autogen_timestamp_deps.dir
+D:/Repositories/Spectr-Emulator/build/release/CMakeFiles/Spect_Device_Emulator_autogen.dir

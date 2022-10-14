@@ -33,7 +33,7 @@ signals:
 public slots:
 
     void setId(const int id);
-    void setStatusCode(const CommandStatuses status);
+    void setStatus(const CommandStatuses status);
     void setErrorCode(const int errorCode);
 
 private:

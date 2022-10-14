@@ -50,11 +50,11 @@ void MainWindow::initCentralWidget()
     if (centralWidget()->layout()) { delete centralWidget()->layout(); }
     auto layout{ new QHBoxLayout(centralWidget()) };
 
-    initRequestGroupBox();
+    initLogGroupBox();
     initReplyGroupBox();
 
     // добавление ранее сгенерированных виджетов
-    layout->addWidget(mGroupBox_request);
+    layout->addWidget(mGroupBox_log);
     layout->addWidget(groupBox_reply);
 }
 
@@ -80,6 +80,7 @@ void MainWindow::initConnections()
         statusBar()->showMessage(message);
     });
     connect(m_master, &SpectrMaster::newMessage, this, &MainWindow::logWriteLine);
+    connect(m_master, &SpectrMaster::errorOccured, this, &MainWindow::logWriteLine);
 
     // отправка запроса
     connect(pushButton_sendRequest, &QPushButton::clicked, [this](){ m_master->sendRequest(createQuery()); });
@@ -113,14 +114,14 @@ void MainWindow::initMenuWidget()
 }
 
 // создание группы с запросом
-void MainWindow::initRequestGroupBox()
+void MainWindow::initLogGroupBox()
 {
-    qInfo() << "MainWindow::initRequestGroupBox";
+    qInfo() << "MainWindow::initLogGroupBox";
 
-    if (mGroupBox_request) { delete mGroupBox_request; }
-    mGroupBox_request = new QGroupBox(tr("Запрос:"), this);
+    if (mGroupBox_log) { delete mGroupBox_log; }
+    mGroupBox_log = new QGroupBox(tr("Лог:"), this);
 
-    auto layout{ new QGridLayout(mGroupBox_request) };
+    auto layout{ new QGridLayout(mGroupBox_log) };
 
     initRequestComboBox();
     initRequestStackedWidget();
@@ -198,7 +199,7 @@ void MainWindow::initRequestButtons()
 
     pushButton_sendRequest = new QPushButton("Отправить запрос", this);
 
-    pushButton_emulationSwitcher = new QPushButton(mGroupBox_request);
+    pushButton_emulationSwitcher = new QPushButton(mGroupBox_log);
     pushButton_emulationSwitcher->setText("Включить эмуляцию");
     pushButton_emulationSwitcher->setCheckable(true);
 }
@@ -257,13 +258,19 @@ const QUrlQuery MainWindow::createQuery()
     auto lineEdits{ stackedWidget_requestParameters->widget(requestIndex)->findChildren<QLineEdit *>() };
 
     QUrlQuery query;
-    query.addQueryItem(QStringLiteral("id"), QString::number(m_master->getIdInt()));
     for (int i{}; i < labels.count(); ++i) {
-        query.addQueryItem(labels.at(i)->text(), lineEdits.at(i)->text());
+        auto key{ labels.at(i)->text() }, value{ lineEdits.at(i)->text() };
+        query.addQueryItem(key, value);
+
+        // запись во внутреннюю структуру, для дальнейшего сохранения после выхода
+        if (mList_requestQueries[requestIndex].hasQueryItem(key)) {
+            mList_requestQueries[requestIndex].removeQueryItem(key);
+        }
+        mList_requestQueries[requestIndex].addQueryItem(key, value);
+
+        // помещение параметра id сразу после первого параметра (page)
+        if (!i) { query.addQueryItem(QStringLiteral("id"), QString::number(m_master->getIdInt())); }
     }
-    mList_requestQueries[requestIndex] = query;
-
-
     return query;
 }
 
@@ -318,5 +325,7 @@ void MainWindow::logWriteLine(const QString &line)
     qInfo() << "MainWindow::logWriteLine";
 
     textBrowser_log->moveCursor(QTextCursor::End);
-    textBrowser_log->insertPlainText(line + '\n');
+    textBrowser_log->insertPlainText(line + "\n");
+
+    qInfo() << line;
 }

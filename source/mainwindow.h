@@ -50,7 +50,7 @@ private:
     // UI initialization ===
     void initMenuWidget();
     void initCentralWidget();
-    void initRequestGroupBox();
+    void initLogGroupBox();
 
     void initReplyGroupBox();
     void initRequestComboBox();
@@ -83,7 +83,7 @@ private:
     // UI objects ===
     Ui::MainWindow *ui{ nullptr };
 
-    QGroupBox *mGroupBox_request{ nullptr };
+    QGroupBox *mGroupBox_log{ nullptr };
     QComboBox *comboBox_requestNames{ nullptr };
     QStackedWidget *stackedWidget_requestParameters{ nullptr };
     QPushButton *pushButton_sendRequest{ nullptr };

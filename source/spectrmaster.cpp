@@ -139,6 +139,10 @@ void SpectrMaster::sendRequest(QUrlQuery query)
     url.setPort(m_connectionSettings.port);
     if (query.isEmpty()) {
         query = createQuery();
+        // изменение параметра page, чтобы эмулятор понимал, на какую страницу передаётся запрос
+        m_currentRequestType =
+                static_cast<RequestTypes>(mList_pages.indexOf(query.queryItemValue(QStringLiteral("page"))));
+
     } // если query не передана, то она построится исходя из данных устройства
     url.setQuery(query);
 
@@ -165,14 +169,11 @@ void SpectrMaster::processReply(QNetworkReply *reply)
 
     // выбор действий на основе отправленного запроса
     if (m_currentRequestType == RequestTypes::getcmd) {
-        if (replyData.isEmpty()) {
-            emit newMessage("No reply");
-            return;
-        } else if (replyData.startsWith("no")) {
+        if (replyData.startsWith("no")) {
             // todo: обработка всего остального, что есть в строке
             // получаемой при отсутствии новых команд
             // ...
-            emit newMessage(tr("No new commands"));
+//            emit newMessage(tr("No new commands"));
         } else {
             // выборка id из строки
             m_cmd->setId(replyData
@@ -180,6 +181,12 @@ void SpectrMaster::processReply(QNetworkReply *reply)
                           .sliced(replyData.indexOf('=') + 1) // возвращает байты после знака '='
                           .toInt() // конвертирует строку в int
                          );
+
+            // измененние параметров устройства
+            m_currentRequestType = RequestTypes::stcmd;
+            m_cmd->setStatus(Command::CommandStatuses::Completed);
+            setStatus(DeviceStatus::Pending);
+
             // todo:
 //            auto cmd { replyData
 //                        .sliced(replyData.indexOf(' ') + 1) // возврат байт после пробела разделющего параметры
@@ -202,13 +209,13 @@ void SpectrMaster::processReply(QNetworkReply *reply)
 //            m_cmd->setStatusCode(Command::CommandStatuses::Completed);
 //            m_cmd->setErrorCode(0);
 
-            // сменнна типа запроса для следующей отправки
+            // смена типа запроса для следующей отправки
 //            m_currentRequestType = RequestTypes::stcmd;
         }
 
     } else if (m_currentRequestType == RequestTypes::stcmd) {
-        if (replyData.isEmpty()) {
-
+        if (replyData == "ok") {
+            m_currentRequestType = RequestTypes::getcmd;
         }
 
     } else if (m_currentRequestType == RequestTypes::slist) {
@@ -219,11 +226,12 @@ void SpectrMaster::processReply(QNetworkReply *reply)
 
     } else if (m_currentRequestType == RequestTypes::download) {
         // todo: закачка аудио файла
+
     } else {
         errorOccured(QStringLiteral("Can not process reply!!!!"));
         return;
     }
-
+    qInfo() << "Request Type:" << static_cast<int>(m_currentRequestType);
     if (m_emulationMode) {
         m_emulationTimer->start(2000);
     }
