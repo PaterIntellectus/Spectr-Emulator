@@ -4,73 +4,40 @@
 #include "spectrabstract.h"
 #include <QObject>
 
-#include "spectrdevice.h"
-#include "command.h"
-
 #include <QNetworkAccessManager>
 #include <QNetworkRequest>
 #include <QNetworkReply>
 #include <QUrlQuery>
 #include <QUrl>
 
-#include <QFile>
-
-#include <QTimer>
+#include "spectrdevice.h"
+#include "command.h"
 
 class SpectrMaster : public SpectrAbstract
 {
     Q_OBJECT
 public:
-    explicit SpectrMaster(const QString &connectionSettingsFilePath, const int id, QObject *parent = nullptr);
-    ~SpectrMaster();
+    SpectrMaster(const int id, const DeviceStatus status, QObject *parent = nullptr);
+    SpectrMaster(const SpectrMaster &spectrDevice);
+    explicit SpectrMaster(QObject *parent = nullptr);
 
-    enum class RequestTypes : unsigned int {
-        getcmd = 0, stcmd = 1,
-        slist = 2, flist = 3,
-        download = 4
-    };
-    struct ConnectionSettings {
-        QString host;
-        quint16 port;
-    };
+    ~SpectrMaster();
 
 private:
     virtual void initConnections();
 
-    void playAudio(int fileNum, int seconds, int milliseconds);
-
 public slots:
-    void updateConnectionSettings();
     virtual void setStatus(const DeviceStatus status);
 
-    void sendRequest(QUrlQuery query = QUrlQuery());
-
-    void toggleEmulationMode(bool onOff);
-
+    const QList<int> getSlaveIdList();
 
 private slots:
-    const QUrlQuery createQuery();
-    void processReply(QNetworkReply *reply);
 
-private:
-    QList<SpectrDevice> mList_slaves;
+
+protected:
+    QList<SpectrDevice> mList_slaveDevices;
     // параметры получаемой команды
     Command *m_cmd{ nullptr };
-
-    ConnectionSettings m_connectionSettings;
-    QFile mFile_connectionSettings;
-
-    QList<QString> mList_pages{
-        "getcmd", "stcmd", "slist", "flist", "download"
-    };
-    RequestTypes m_currentRequestType;
-
-
-    // объекты эмуляции
-    QTimer *m_emulationTimer{ nullptr };
-    bool m_emulationMode;
-
-    QNetworkAccessManager m_networkManager;
 
 };
 

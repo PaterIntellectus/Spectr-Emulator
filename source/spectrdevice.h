@@ -8,7 +8,9 @@ class SpectrDevice : public SpectrAbstract
 {
     Q_OBJECT
 public:
-    explicit SpectrDevice(const int devId = 0, QObject *parent = nullptr);
+    SpectrDevice(const int id, const DeviceStatus status, QObject *parent = nullptr);
+    SpectrDevice(const SpectrDevice &spectrDevice);
+    explicit SpectrDevice(QObject *parent = nullptr);
     ~SpectrDevice();
 
 private:

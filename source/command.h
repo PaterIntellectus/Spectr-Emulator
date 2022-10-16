@@ -37,8 +37,8 @@ public slots:
     void setErrorCode(const int errorCode);
 
 private:
-    int m_id;
 //    QString m_name;
+    int m_id;
     CommandStatuses m_statusCode;
     int m_errorCode;
 };

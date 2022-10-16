@@ -11,7 +11,7 @@ MainWindow::MainWindow(
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
     , m_settingsDialog{ new SettingsDialog(connectionSettingsFilePath, masterSettingsFilePath, this) }
-    , m_master{ new SpectrMaster(connectionSettingsFilePath, m_settingsDialog->masterId(), this)}
+    , m_emulator{ new SpectrEmulator(m_settingsDialog->masterId(), connectionSettingsFilePath, this) }
     , mFile_requestNames{ requestsNamesFilePath }
     , mFile_requestQueries{ requestsQueriesFilePath }
 {
@@ -54,8 +54,8 @@ void MainWindow::initCentralWidget()
     initReplyGroupBox();
 
     // добавление ранее сгенерированных виджетов
+    layout->addWidget(mGroupBox_request);
     layout->addWidget(mGroupBox_log);
-    layout->addWidget(groupBox_reply);
 }
 
 // связываение Сигналов и Слотов
@@ -67,38 +67,42 @@ void MainWindow::initConnections()
     connect(mAction_openSettings, &QAction::triggered, m_settingsDialog, &SettingsDialog::exec);
 
     // переключение запросов
-    connect(comboBox_requestNames, &QComboBox::currentIndexChanged,
-            stackedWidget_requestParameters, &QStackedWidget::setCurrentIndex);
+    connect(mComboBox_requestNames, &QComboBox::currentIndexChanged,
+            mStackedWidget_requestParameters, &QStackedWidget::setCurrentIndex);
 
     // изменение настроек
-    connect(m_settingsDialog, &SettingsDialog::masterSettingsChanged, m_master, &SpectrMaster::setId);
+    connect(m_settingsDialog, &SettingsDialog::masterSettingsChanged, m_emulator, &SpectrEmulator::setId);
     connect(m_settingsDialog, &SettingsDialog::connectionSettingsChanged,
-            m_master, &SpectrMaster::updateConnectionSettings);
+            m_emulator, &SpectrEmulator::updateConnectionSettings);
 
     // сигналы мастера
-    connect(m_master, &SpectrMaster::errorOccured, statusBar(), [this](const QString &message){
+    connect(m_emulator, &SpectrEmulator::errorOccured, statusBar(), [this](const QString &message){
         statusBar()->showMessage(message);
     });
-    connect(m_master, &SpectrMaster::newMessage, this, &MainWindow::logWriteLine);
-    connect(m_master, &SpectrMaster::errorOccured, this, &MainWindow::logWriteLine);
+    connect(m_emulator, &SpectrEmulator::newMessage, this, &MainWindow::logWriteLine);
+    connect(m_emulator, &SpectrEmulator::errorOccured, this, &MainWindow::logWriteLine);
 
     // отправка запроса
-    connect(pushButton_sendRequest, &QPushButton::clicked, [this](){ m_master->sendRequest(createQuery()); });
+    connect(mPushButton_sendRequest, &QPushButton::clicked, [this](){
+        m_emulator->sendRequest(
+                    static_cast<SpectrEmulator::RequestType>(mComboBox_requestNames->currentIndex())
+                    , createQuery());
+    });
 
     // включение и отключение режима эмуляции
-    connect(pushButton_emulationSwitcher, &QPushButton::toggled, [this](bool checked) {
+    connect(mPushButton_emulationSwitcher, &QPushButton::toggled, [this](bool checked) {
         // смена стиля кнопки
         QString buttonText = checked ? "Прекратить эмуляцию" : "Начать эмуляцию";
-        pushButton_emulationSwitcher->setText(buttonText);
+        mPushButton_emulationSwitcher->setText(buttonText);
 
         // отключение виджетов
         mAction_openSettings->setDisabled(checked);
-        comboBox_requestNames->setDisabled(checked);
-        stackedWidget_requestParameters->setDisabled(checked);
-        pushButton_sendRequest->setDisabled(checked);
+        mComboBox_requestNames->setDisabled(checked);
+        mStackedWidget_requestParameters->setDisabled(checked);
+        mPushButton_sendRequest->setDisabled(checked);
 
         // переключение эмуляции
-        m_master->toggleEmulationMode(checked);
+        m_emulator->toggleEmulationMode(checked);
     });
 }
 
@@ -118,19 +122,19 @@ void MainWindow::initLogGroupBox()
 {
     qInfo() << "MainWindow::initLogGroupBox";
 
-    if (mGroupBox_log) { delete mGroupBox_log; }
-    mGroupBox_log = new QGroupBox(tr("Лог:"), this);
+    if (mGroupBox_request) { delete mGroupBox_request; }
+    mGroupBox_request = new QGroupBox(tr("Лог:"), this);
 
-    auto layout{ new QGridLayout(mGroupBox_log) };
+    auto layout{ new QGridLayout(mGroupBox_request) };
 
     initRequestComboBox();
     initRequestStackedWidget();
     initRequestButtons();
 
-    layout->addWidget(comboBox_requestNames);
-    layout->addWidget(stackedWidget_requestParameters);
-    layout->addWidget(pushButton_emulationSwitcher);
-    layout->addWidget(pushButton_sendRequest);
+    layout->addWidget(mComboBox_requestNames);
+    layout->addWidget(mStackedWidget_requestParameters);
+    layout->addWidget(mPushButton_emulationSwitcher);
+    layout->addWidget(mPushButton_sendRequest);
 }
 
 // создание группы с ответом от сервера
@@ -138,15 +142,15 @@ void MainWindow::initReplyGroupBox()
 {
     qInfo() << "MainWindow::initReplyGroupBox";
 
-    if (groupBox_reply) { delete groupBox_reply; }
-    groupBox_reply = new QGroupBox(tr("Ответ:"), this);
+    if (mGroupBox_log) { delete mGroupBox_log; }
+    mGroupBox_log = new QGroupBox(tr("Ответ:"), this);
 
-    auto layout{ new QVBoxLayout(groupBox_reply) };
+    auto layout{ new QVBoxLayout(mGroupBox_log) };
 
-    textBrowser_log = new QTextBrowser(groupBox_reply);
-    textBrowser_log->setMinimumWidth(500);
+    mTextBrowser_log = new QTextBrowser(mGroupBox_log);
+    mTextBrowser_log->setMinimumWidth(500);
 
-    layout->addWidget(textBrowser_log);
+    layout->addWidget(mTextBrowser_log);
 }
 
 // создание группы со списками запросов
@@ -154,11 +158,11 @@ void MainWindow::initRequestComboBox()
 {
     qInfo() << "MainWindow::initRequestComboBox";
 
-    if (comboBox_requestNames) { delete comboBox_requestNames; }
-    comboBox_requestNames = new QComboBox(this);
+    if (mComboBox_requestNames) { delete mComboBox_requestNames; }
+    mComboBox_requestNames = new QComboBox(this);
 
     for (auto &requestName : mList_requestNames) {
-        comboBox_requestNames->addItem(requestName);
+        mComboBox_requestNames->addItem(requestName);
     }
 }
 
@@ -168,28 +172,28 @@ void MainWindow::initRequestStackedWidget()
 {
     qInfo() << "MainWindow::initRequestStackedWidget";
 
-    if (stackedWidget_requestParameters) { delete stackedWidget_requestParameters; }
-    stackedWidget_requestParameters = new QStackedWidget(this);
+    if (mStackedWidget_requestParameters) { delete mStackedWidget_requestParameters; }
+    mStackedWidget_requestParameters = new QStackedWidget(this);
 
     auto request_count{ mList_requestNames.count() };
     auto queries_count{ mList_requestQueries.count() };
 
     // заполнение списка виджетов, и их инициализация, по количеству запросов
     for (int i{}; i < request_count; ++i) {
-        auto *newWidget{ new QWidget(stackedWidget_requestParameters) };
+        auto *newWidget{ new QWidget(mStackedWidget_requestParameters) };
         auto *newLayout{ new QFormLayout(newWidget) };
 
         if (i < queries_count) {
-            listListPair_requestRows.append(QList<PairLabelLineedit>());
+            mListListPair_requestRows.append(QList<PairLabelLineedit>());
             for (auto &pair_parameter : mList_requestQueries.at(i).queryItems()) {
                 auto newLabel{ new QLabel(pair_parameter.first, newWidget) };
                 auto newLineEdit{ new QLineEdit(pair_parameter.second, newWidget) };
 
-                listListPair_requestRows[i].append(PairLabelLineedit(newLabel, newLineEdit));
+                mListListPair_requestRows[i].append(PairLabelLineedit(newLabel, newLineEdit));
                 newLayout->addRow(newLabel, newLineEdit);
             }
         }
-        stackedWidget_requestParameters->addWidget(newWidget);
+        mStackedWidget_requestParameters->addWidget(newWidget);
     }
 }
 
@@ -197,11 +201,11 @@ void MainWindow::initRequestButtons()
 {
     qInfo() << "MainWindow::initRequestButtons";
 
-    pushButton_sendRequest = new QPushButton("Отправить запрос", this);
+    mPushButton_sendRequest = new QPushButton("Отправить запрос", this);
 
-    pushButton_emulationSwitcher = new QPushButton(mGroupBox_log);
-    pushButton_emulationSwitcher->setText("Включить эмуляцию");
-    pushButton_emulationSwitcher->setCheckable(true);
+    mPushButton_emulationSwitcher = new QPushButton(mGroupBox_request);
+    mPushButton_emulationSwitcher->setText("Включить эмуляцию");
+    mPushButton_emulationSwitcher->setCheckable(true);
 }
 
 // обновление списка имён запросов
@@ -252,10 +256,10 @@ void MainWindow::updateQueriesFile()
 const QUrlQuery MainWindow::createQuery()
 {
     qInfo() << "SpectrMaster::createQuery";
-    auto requestIndex{ stackedWidget_requestParameters->currentIndex() };
+    auto requestIndex{ mStackedWidget_requestParameters->currentIndex() };
 
-    auto labels{ stackedWidget_requestParameters->widget(requestIndex)->findChildren<QLabel *>() };
-    auto lineEdits{ stackedWidget_requestParameters->widget(requestIndex)->findChildren<QLineEdit *>() };
+    auto labels{ mStackedWidget_requestParameters->widget(requestIndex)->findChildren<QLabel *>() };
+    auto lineEdits{ mStackedWidget_requestParameters->widget(requestIndex)->findChildren<QLineEdit *>() };
 
     QUrlQuery query;
     for (int i{}; i < labels.count(); ++i) {
@@ -268,8 +272,8 @@ const QUrlQuery MainWindow::createQuery()
         }
         mList_requestQueries[requestIndex].addQueryItem(key, value);
 
-        // помещение параметра id сразу после первого параметра (page)
-        if (!i) { query.addQueryItem(QStringLiteral("id"), QString::number(m_master->getIdInt())); }
+        // помещение параметра id сразу после первого параметра(page)
+        if (!i) { query.addQueryItem(QStringLiteral("id"), QString::number(m_emulator->getId())); }
     }
     return query;
 }
@@ -324,8 +328,8 @@ void MainWindow::logWriteLine(const QString &line)
 {
     qInfo() << "MainWindow::logWriteLine";
 
-    textBrowser_log->moveCursor(QTextCursor::End);
-    textBrowser_log->insertPlainText(line + "\n");
+    mTextBrowser_log->moveCursor(QTextCursor::End);
+    mTextBrowser_log->insertPlainText(line + "\n");
 
     qInfo() << line;
 }

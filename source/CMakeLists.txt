@@ -11,8 +11,8 @@ set(CMAKE_AUTORCC ON)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Widgets Network Gui)
-find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets Network Gui)
+find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Widgets Network Gui Multimedia)
+find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets Network Gui Multimedia)
 
 set(PROJECT_SOURCES
         main.cpp
@@ -25,6 +25,9 @@ set(PROJECT_SOURCES
         settingsdialog.h
         settingsdialog.cpp
         settingsdialog.ui
+
+        spectremulator.h
+        spectremulator.cpp
 
         spectrabstract.h
         spectrabstract.cpp
@@ -62,8 +65,12 @@ else()
     endif()
 endif()
 
-target_link_libraries(Spect_Device_Emulator PRIVATE Qt${QT_VERSION_MAJOR}::Widgets
-    Qt${QT_VERSION_MAJOR}::Network Qt${QT_VERSION_MAJOR}::Gui)
+target_link_libraries(Spect_Device_Emulator PRIVATE
+    Qt${QT_VERSION_MAJOR}::Widgets
+    Qt${QT_VERSION_MAJOR}::Network
+    Qt${QT_VERSION_MAJOR}::Gui
+    Qt${QT_VERSION_MAJOR}::Multimedia
+)
 
 set_target_properties(Spect_Device_Emulator PROPERTIES
     MACOSX_BUNDLE_GUI_IDENTIFIER my.example.com

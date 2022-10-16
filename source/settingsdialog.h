@@ -21,9 +21,10 @@ class SettingsDialog : public QDialog
     Q_OBJECT
 
 public:
-    explicit SettingsDialog(const QString &connectionSettingsFileName
-                            , const QString &masterSettingsFileName
-                            , QWidget *parent = nullptr
+    explicit SettingsDialog(
+            const QString &connectionSettingsFileName,
+            const QString &masterSettingsFileName,
+            QWidget *parent = nullptr
             );
     ~SettingsDialog();
 

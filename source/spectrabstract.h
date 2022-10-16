@@ -3,6 +3,11 @@
 
 #include <QObject>
 
+#include <QFile>
+#include <QDir>
+#include <QMediaPlayer>
+#include <QAudioOutput>
+
 #include <QDebug>
 
 static const int inputsMax{ 8 };
@@ -11,8 +16,6 @@ class SpectrAbstract : public QObject
 {
     Q_OBJECT
 public:
-    explicit SpectrAbstract(const int id, QObject *parent = nullptr);
-
     enum class DeviceStatus{
         // общие статусы
         Pending = 0, PlayingAudio = 1, AccidentOccured = 3,
@@ -23,6 +26,16 @@ public:
         DownloadingFile = 2, SpottingDifferences = 5, UploadingFile = 6,
         Verification = 7, Paused = 8, Sinchronization = 9
     };
+
+    SpectrAbstract(const int id, const DeviceStatus status, QObject *parent = nullptr);
+    SpectrAbstract(const SpectrAbstract &spectrDevice);
+    explicit SpectrAbstract(QObject *parent = nullptr);
+
+    const int getId() const { return m_id; }
+    const DeviceStatus getStatus() const { return m_statusCode; }
+    const int getInputsValInt() const;
+
+    const int getStatusInt() const { return static_cast<int>(m_statusCode); };
 
 private:
     virtual void initConnections() = 0;
@@ -35,10 +48,10 @@ signals:
     void statusChanged(const int status);
     void inputValChanged(const int inputsVal);
 
+private slots:
+
 public slots:
-    const int getIdInt() { return m_id; }
-    const int getStatusInt() { return static_cast<int>(m_statusCode); };
-    const int getInputsValInt();
+    bool playFile(const QString &fileNum, QStringView seconds, QStringView miliseconds);
 
     virtual void setId(const int id);
     virtual void setStatus(const DeviceStatus status);
@@ -48,6 +61,10 @@ private:
     int m_id;
     bool mArr_inputs[inputsMax]; // массив входов устройства
     DeviceStatus m_statusCode;
+
+    // аудио проигрыватели
+    QMediaPlayer *mMediaPlayer{ nullptr };
+    QAudioOutput *mAudioOutput{ nullptr };
 };
 
 #endif // SPECTRABSTRACT_H

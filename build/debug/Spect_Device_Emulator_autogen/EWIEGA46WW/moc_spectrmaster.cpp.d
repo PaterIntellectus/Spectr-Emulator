@@ -1,6 +1,7 @@
 D:/Repositories/Spectr-Emulator/build/debug/Spect_Device_Emulator_autogen/EWIEGA46WW/moc_spectrmaster.cpp: D:/Repositories/Spectr-Emulator/source/spectrmaster.h \
   D:/Repositories/Spectr-Emulator/build/debug/Spect_Device_Emulator_autogen/moc_predefs.h \
   D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtCore/QDebug \
+  D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtCore/QDir \
   D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtCore/QFile \
   D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtCore/QFlags \
   D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtCore/QIODevice \
@@ -9,7 +10,6 @@ D:/Repositories/Spectr-Emulator/build/debug/Spect_Device_Emulator_autogen/EWIEGA
   D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtCore/QObject \
   D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtCore/QSharedDataPointer \
   D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtCore/QString \
-  D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtCore/QTimer \
   D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtCore/QUrl \
   D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtCore/QUrlQuery \
   D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtCore/QVariant \
@@ -21,7 +21,6 @@ D:/Repositories/Spectr-Emulator/build/debug/Spect_Device_Emulator_autogen/EWIEGA
   D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtCore/qatomic.h \
   D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtCore/qatomic_cxx11.h \
   D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtCore/qbasicatomic.h \
-  D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtCore/qbasictimer.h \
   D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtCore/qbindingstorage.h \
   D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtCore/qbytearray.h \
   D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtCore/qbytearrayalgorithms.h \
@@ -41,8 +40,10 @@ D:/Repositories/Spectr-Emulator/build/debug/Spect_Device_Emulator_autogen/EWIEGA
   D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtCore/qdatastream.h \
   D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtCore/qdatetime.h \
   D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtCore/qdebug.h \
+  D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtCore/qdir.h \
   D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtCore/qfile.h \
   D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtCore/qfiledevice.h \
+  D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtCore/qfileinfo.h \
   D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtCore/qflags.h \
   D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtCore/qgenericatomic.h \
   D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtCore/qglobal.h \
@@ -59,6 +60,7 @@ D:/Repositories/Spectr-Emulator/build/debug/Spect_Device_Emulator_autogen/EWIEGA
   D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtCore/qmap.h \
   D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtCore/qmath.h \
   D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtCore/qmetacontainer.h \
+  D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtCore/qmetaobject.h \
   D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtCore/qmetatype.h \
   D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtCore/qnamespace.h \
   D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtCore/qnumeric.h \
@@ -90,7 +92,6 @@ D:/Repositories/Spectr-Emulator/build/debug/Spect_Device_Emulator_autogen/EWIEGA
   D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtCore/qtcore-config.h \
   D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtCore/qtcoreexports.h \
   D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtCore/qtextstream.h \
-  D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtCore/qtimer.h \
   D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtCore/qtmetamacros.h \
   D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtCore/qtypeinfo.h \
   D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtCore/qurl.h \
@@ -99,6 +100,18 @@ D:/Repositories/Spectr-Emulator/build/debug/Spect_Device_Emulator_autogen/EWIEGA
   D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtCore/qvariant.h \
   D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtCore/qvarlengtharray.h \
   D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtCore/qversiontagging.h \
+  D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtGui/qtgui-config.h \
+  D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtGui/qtguiexports.h \
+  D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtGui/qtguiglobal.h \
+  D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtMultimedia/QAudioOutput \
+  D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtMultimedia/QMediaPlayer \
+  D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtMultimedia/qaudio.h \
+  D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtMultimedia/qaudiooutput.h \
+  D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtMultimedia/qmediaenumdebug.h \
+  D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtMultimedia/qmediaplayer.h \
+  D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtMultimedia/qtmultimedia-config.h \
+  D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtMultimedia/qtmultimediaexports.h \
+  D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtMultimedia/qtmultimediaglobal.h \
   D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtNetwork/QNetworkAccessManager \
   D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtNetwork/QNetworkReply \
   D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtNetwork/QNetworkRequest \

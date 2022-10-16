@@ -23,7 +23,7 @@
 #include <QDir>
 
 #include "settingsdialog.h"
-#include "spectrmaster.h"
+#include "spectremulator.h"
 
 
 QT_BEGIN_NAMESPACE
@@ -83,23 +83,23 @@ private:
     // UI objects ===
     Ui::MainWindow *ui{ nullptr };
 
+    QGroupBox *mGroupBox_request{ nullptr };
+    QComboBox *mComboBox_requestNames{ nullptr };
+    QStackedWidget *mStackedWidget_requestParameters{ nullptr };
+    QPushButton *mPushButton_sendRequest{ nullptr };
+    QPushButton *mPushButton_emulationSwitcher{ nullptr };
+
+    QList<QList<PairLabelLineedit>> mListListPair_requestRows;
+
     QGroupBox *mGroupBox_log{ nullptr };
-    QComboBox *comboBox_requestNames{ nullptr };
-    QStackedWidget *stackedWidget_requestParameters{ nullptr };
-    QPushButton *pushButton_sendRequest{ nullptr };
-    QPushButton *pushButton_emulationSwitcher{ nullptr };
-
-    QList<QList<PairLabelLineedit>> listListPair_requestRows;
-
-    QGroupBox *groupBox_reply{ nullptr };
-    QTextBrowser *textBrowser_log{ nullptr };
+    QTextBrowser *mTextBrowser_log{ nullptr };
 
     QAction *mAction_openSettings{ nullptr };
 
     SettingsDialog *m_settingsDialog{ nullptr };
     // ===
 
-    SpectrMaster *m_master{ nullptr };
+    SpectrEmulator *m_emulator{ nullptr };
 
     QFile mFile_requestNames;
     QList<QString> mList_requestNames;

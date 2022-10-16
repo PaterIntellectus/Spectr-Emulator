@@ -43,7 +43,7 @@
 				}
 			],
 			"type" : "STRING",
-			"value" : "Release"
+			"value" : "Debug"
 		},
 		{
 			"name" : "CMAKE_CACHEFILE_DIR",
@@ -55,7 +55,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "d:/Repositories/Spectr-Emulator/build/release"
+			"value" : "d:/Repositories/Spectr-Emulator/build/debug"
 		},
 		{
 			"name" : "CMAKE_CACHE_MAJOR_VERSION",
@@ -191,7 +191,7 @@
 				}
 			],
 			"type" : "STRING",
-			"value" : ""
+			"value" : "-DQT_QML_DEBUG"
 		},
 		{
 			"name" : "CMAKE_CXX_FLAGS_DEBUG",
@@ -219,7 +219,7 @@
 				}
 			],
 			"type" : "STRING",
-			"value" : ""
+			"value" : "-DQT_QML_DEBUG"
 		},
 		{
 			"name" : "CMAKE_CXX_FLAGS_MINSIZEREL",
@@ -1670,6 +1670,18 @@
 			"value" : "ON"
 		},
 		{
+			"name" : "QT_FEATURE_alsa",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : "Qt feature: alsa (from target Qt6::Multimedia)"
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : "OFF"
+		},
+		{
 			"name" : "QT_FEATURE_android_style_assets",
 			"properties" : 
 			[
@@ -1724,6 +1736,18 @@
 				{
 					"name" : "HELPSTRING",
 					"value" : "Qt feature: arm_crypto (from target Qt6::Core)"
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : "OFF"
+		},
+		{
+			"name" : "QT_FEATURE_avfoundation",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : "Qt feature: avfoundation (from target Qt6::Multimedia)"
 				}
 			],
 			"type" : "INTERNAL",
@@ -2822,6 +2846,18 @@
 			"value" : "OFF"
 		},
 		{
+			"name" : "QT_FEATURE_evr",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : "Qt feature: evr (from target Qt6::Multimedia)"
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : "ON"
+		},
+		{
 			"name" : "QT_FEATURE_f16c",
 			"properties" : 
 			[
@@ -3134,6 +3170,18 @@
 			"value" : "OFF"
 		},
 		{
+			"name" : "QT_FEATURE_gpu_vivante",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : "Qt feature: gpu_vivante (from target Qt6::Multimedia)"
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : "OFF"
+		},
+		{
 			"name" : "QT_FEATURE_graphicseffect",
 			"properties" : 
 			[
@@ -3176,6 +3224,66 @@
 				{
 					"name" : "HELPSTRING",
 					"value" : "Qt feature: gssapi (from target Qt6::Network)"
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : "OFF"
+		},
+		{
+			"name" : "QT_FEATURE_gstreamer",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : "Qt feature: gstreamer (from target Qt6::Multimedia)"
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : "OFF"
+		},
+		{
+			"name" : "QT_FEATURE_gstreamer_1_0",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : "Qt feature: gstreamer_1_0 (from target Qt6::Multimedia)"
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : "OFF"
+		},
+		{
+			"name" : "QT_FEATURE_gstreamer_app",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : "Qt feature: gstreamer_app (from target Qt6::Multimedia)"
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : "OFF"
+		},
+		{
+			"name" : "QT_FEATURE_gstreamer_gl",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : "Qt feature: gstreamer_gl (from target Qt6::Multimedia)"
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : "OFF"
+		},
+		{
+			"name" : "QT_FEATURE_gstreamer_photography",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : "Qt feature: gstreamer_photography (from target Qt6::Multimedia)"
 				}
 			],
 			"type" : "INTERNAL",
@@ -3734,12 +3842,36 @@
 			"value" : "OFF"
 		},
 		{
+			"name" : "QT_FEATURE_linux_dmabuf",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : "Qt feature: linux_dmabuf (from target Qt6::Multimedia)"
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : "OFF"
+		},
+		{
 			"name" : "QT_FEATURE_linux_netlink",
 			"properties" : 
 			[
 				{
 					"name" : "HELPSTRING",
 					"value" : "Qt feature: linux_netlink (from target Qt6::Network)"
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : "OFF"
+		},
+		{
+			"name" : "QT_FEATURE_linux_v4l",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : "Qt feature: linux_v4l (from target Qt6::Multimedia)"
 				}
 			],
 			"type" : "INTERNAL",
@@ -3908,6 +4040,18 @@
 				{
 					"name" : "HELPSTRING",
 					"value" : "Qt feature: mips_dspr2 (from target Qt6::Core)"
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : "OFF"
+		},
+		{
+			"name" : "QT_FEATURE_mmrenderer",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : "Qt feature: mmrenderer (from target Qt6::Multimedia)"
 				}
 			],
 			"type" : "INTERNAL",
@@ -4404,6 +4548,18 @@
 			],
 			"type" : "INTERNAL",
 			"value" : "ON"
+		},
+		{
+			"name" : "QT_FEATURE_pulseaudio",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : "Qt feature: pulseaudio (from target Qt6::Multimedia)"
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : "OFF"
 		},
 		{
 			"name" : "QT_FEATURE_pushbutton",
@@ -5930,6 +6086,30 @@
 			"value" : "ON"
 		},
 		{
+			"name" : "QT_FEATURE_wmf",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : "Qt feature: wmf (from target Qt6::Multimedia)"
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : "ON"
+		},
+		{
+			"name" : "QT_FEATURE_wmsdk",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : "Qt feature: wmsdk (from target Qt6::Multimedia)"
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : "ON"
+		},
+		{
 			"name" : "QT_FEATURE_xcb",
 			"properties" : 
 			[
@@ -6194,6 +6374,18 @@
 			"value" : "D:/Programs/Programming/Qt/6.3.1/mingw_64/lib/cmake/Qt6Gui"
 		},
 		{
+			"name" : "Qt6Multimedia_DIR",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : "The directory containing a CMake configuration file for Qt6Multimedia."
+				}
+			],
+			"type" : "PATH",
+			"value" : "D:/Programs/Programming/Qt/6.3.1/mingw_64/lib/cmake/Qt6Multimedia"
+		},
+		{
 			"name" : "Qt6Network_DIR",
 			"properties" : 
 			[
@@ -6263,7 +6455,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "D:/Repositories/Spectr-Emulator/build/release"
+			"value" : "D:/Repositories/Spectr-Emulator/build/debug"
 		},
 		{
 			"name" : "Spect_Device_Emulator_IS_TOP_LEVEL",

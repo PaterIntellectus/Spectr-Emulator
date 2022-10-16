@@ -1,6 +1,8 @@
 D:/Repositories/Spectr-Emulator/build/release/Spect_Device_Emulator_autogen/EWIEGA46WW/moc_spectrabstract.cpp: D:/Repositories/Spectr-Emulator/source/spectrabstract.h \
   D:/Repositories/Spectr-Emulator/build/release/Spect_Device_Emulator_autogen/moc_predefs.h \
   D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtCore/QDebug \
+  D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtCore/QDir \
+  D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtCore/QFile \
   D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtCore/QObject \
   D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtCore/qalgorithms.h \
   D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtCore/qanystringview.h \
@@ -15,6 +17,7 @@ D:/Repositories/Spectr-Emulator/build/release/Spect_Device_Emulator_autogen/EWIE
   D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtCore/qbytearrayalgorithms.h \
   D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtCore/qbytearraylist.h \
   D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtCore/qbytearrayview.h \
+  D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtCore/qcalendar.h \
   D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtCore/qchar.h \
   D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtCore/qcompare.h \
   D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtCore/qcompare_impl.h \
@@ -25,21 +28,29 @@ D:/Repositories/Spectr-Emulator/build/release/Spect_Device_Emulator_autogen/EWIE
   D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtCore/qcontainertools_impl.h \
   D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtCore/qcontiguouscache.h \
   D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtCore/qdatastream.h \
+  D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtCore/qdatetime.h \
   D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtCore/qdebug.h \
+  D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtCore/qdir.h \
+  D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtCore/qfile.h \
+  D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtCore/qfiledevice.h \
+  D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtCore/qfileinfo.h \
   D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtCore/qflags.h \
   D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtCore/qgenericatomic.h \
   D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtCore/qglobal.h \
   D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtCore/qglobalstatic.h \
   D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtCore/qhash.h \
   D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtCore/qhashfunctions.h \
+  D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtCore/qiodevice.h \
   D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtCore/qiodevicebase.h \
   D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtCore/qiterable.h \
   D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtCore/qiterator.h \
   D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtCore/qlist.h \
+  D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtCore/qlocale.h \
   D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtCore/qlogging.h \
   D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtCore/qmap.h \
   D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtCore/qmath.h \
   D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtCore/qmetacontainer.h \
+  D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtCore/qmetaobject.h \
   D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtCore/qmetatype.h \
   D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtCore/qnamespace.h \
   D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtCore/qnumeric.h \
@@ -73,9 +84,23 @@ D:/Repositories/Spectr-Emulator/build/release/Spect_Device_Emulator_autogen/EWIE
   D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtCore/qtextstream.h \
   D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtCore/qtmetamacros.h \
   D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtCore/qtypeinfo.h \
+  D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtCore/qurl.h \
   D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtCore/qutf8stringview.h \
+  D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtCore/qvariant.h \
   D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtCore/qvarlengtharray.h \
   D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtCore/qversiontagging.h \
+  D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtGui/qtgui-config.h \
+  D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtGui/qtguiexports.h \
+  D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtGui/qtguiglobal.h \
+  D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtMultimedia/QAudioOutput \
+  D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtMultimedia/QMediaPlayer \
+  D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtMultimedia/qaudio.h \
+  D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtMultimedia/qaudiooutput.h \
+  D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtMultimedia/qmediaenumdebug.h \
+  D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtMultimedia/qmediaplayer.h \
+  D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtMultimedia/qtmultimedia-config.h \
+  D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtMultimedia/qtmultimediaexports.h \
+  D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtMultimedia/qtmultimediaglobal.h \
   D:/Programs/Programming/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include-fixed/limits.h \
   D:/Programs/Programming/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include-fixed/syslimits.h \
   D:/Programs/Programming/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/algorithm \
@@ -99,6 +124,7 @@ D:/Repositories/Spectr-Emulator/build/release/Spect_Device_Emulator_autogen/EWIE
   D:/Programs/Programming/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/c++0x_warning.h \
   D:/Programs/Programming/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/char_traits.h \
   D:/Programs/Programming/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/charconv.h \
+  D:/Programs/Programming/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/codecvt.h \
   D:/Programs/Programming/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/concept_check.h \
   D:/Programs/Programming/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/cpp_type_traits.h \
   D:/Programs/Programming/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/cxxabi_forced.h \
@@ -108,6 +134,10 @@ D:/Repositories/Spectr-Emulator/build/release/Spect_Device_Emulator_autogen/EWIE
   D:/Programs/Programming/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/exception.h \
   D:/Programs/Programming/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/exception_defines.h \
   D:/Programs/Programming/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/exception_ptr.h \
+  D:/Programs/Programming/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/fs_dir.h \
+  D:/Programs/Programming/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/fs_fwd.h \
+  D:/Programs/Programming/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/fs_ops.h \
+  D:/Programs/Programming/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/fs_path.h \
   D:/Programs/Programming/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/functexcept.h \
   D:/Programs/Programming/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/functional_hash.h \
   D:/Programs/Programming/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/hash_bytes.h \
@@ -117,8 +147,11 @@ D:/Repositories/Spectr-Emulator/build/release/Spect_Device_Emulator_autogen/EWIE
   D:/Programs/Programming/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/list.tcc \
   D:/Programs/Programming/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/locale_classes.h \
   D:/Programs/Programming/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/locale_classes.tcc \
+  D:/Programs/Programming/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/locale_conv.h \
   D:/Programs/Programming/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/locale_facets.h \
   D:/Programs/Programming/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/locale_facets.tcc \
+  D:/Programs/Programming/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/locale_facets_nonio.h \
+  D:/Programs/Programming/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/locale_facets_nonio.tcc \
   D:/Programs/Programming/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/localefwd.h \
   D:/Programs/Programming/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/max_size_type.h \
   D:/Programs/Programming/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/memoryfwd.h \
@@ -131,6 +164,7 @@ D:/Repositories/Spectr-Emulator/build/release/Spect_Device_Emulator_autogen/EWIE
   D:/Programs/Programming/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/postypes.h \
   D:/Programs/Programming/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/predefined_ops.h \
   D:/Programs/Programming/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/ptr_traits.h \
+  D:/Programs/Programming/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/quoted_string.h \
   D:/Programs/Programming/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/range_access.h \
   D:/Programs/Programming/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/ranges_algo.h \
   D:/Programs/Programming/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/ranges_algobase.h \
@@ -177,14 +211,17 @@ D:/Repositories/Spectr-Emulator/build/release/Spect_Device_Emulator_autogen/EWIE
   D:/Programs/Programming/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/uses_allocator_args.h \
   D:/Programs/Programming/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/vector.tcc \
   D:/Programs/Programming/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/cctype \
+  D:/Programs/Programming/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/chrono \
   D:/Programs/Programming/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/clocale \
   D:/Programs/Programming/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/cmath \
+  D:/Programs/Programming/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/codecvt \
   D:/Programs/Programming/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/compare \
   D:/Programs/Programming/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/concepts \
   D:/Programs/Programming/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/cstddef \
   D:/Programs/Programming/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/cstdint \
   D:/Programs/Programming/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/cstdlib \
   D:/Programs/Programming/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/cstring \
+  D:/Programs/Programming/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/ctime \
   D:/Programs/Programming/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/cwchar \
   D:/Programs/Programming/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/cwctype \
   D:/Programs/Programming/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/debug/assertions.h \
@@ -198,13 +235,16 @@ D:/Repositories/Spectr-Emulator/build/release/Spect_Device_Emulator_autogen/EWIE
   D:/Programs/Programming/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/ext/numeric_traits.h \
   D:/Programs/Programming/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/ext/string_conversions.h \
   D:/Programs/Programming/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/ext/type_traits.h \
+  D:/Programs/Programming/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/filesystem \
   D:/Programs/Programming/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/functional \
   D:/Programs/Programming/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/initializer_list \
+  D:/Programs/Programming/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/iomanip \
   D:/Programs/Programming/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/ios \
   D:/Programs/Programming/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/iosfwd \
   D:/Programs/Programming/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/iterator \
   D:/Programs/Programming/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/limits \
   D:/Programs/Programming/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/list \
+  D:/Programs/Programming/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/locale \
   D:/Programs/Programming/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/map \
   D:/Programs/Programming/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/memory \
   D:/Programs/Programming/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/new \
@@ -221,6 +261,7 @@ D:/Repositories/Spectr-Emulator/build/release/Spect_Device_Emulator_autogen/EWIE
   D:/Programs/Programming/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/streambuf \
   D:/Programs/Programming/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/string \
   D:/Programs/Programming/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/string_view \
+  D:/Programs/Programming/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/system_error \
   D:/Programs/Programming/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/tr1/bessel_function.tcc \
   D:/Programs/Programming/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/tr1/beta_function.tcc \
   D:/Programs/Programming/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/tr1/ell_integral.tcc \
@@ -249,7 +290,9 @@ D:/Repositories/Spectr-Emulator/build/release/Spect_Device_Emulator_autogen/EWIE
   D:/Programs/Programming/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/x86_64-w64-mingw32/bits/ctype_inline.h \
   D:/Programs/Programming/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/x86_64-w64-mingw32/bits/gthr-default.h \
   D:/Programs/Programming/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/x86_64-w64-mingw32/bits/gthr.h \
+  D:/Programs/Programming/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/x86_64-w64-mingw32/bits/messages_members.h \
   D:/Programs/Programming/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/x86_64-w64-mingw32/bits/os_defines.h \
+  D:/Programs/Programming/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/x86_64-w64-mingw32/bits/time_members.h \
   D:/Programs/Programming/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/stdarg.h \
   D:/Programs/Programming/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/stddef.h \
   D:/Programs/Programming/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/stdint.h \

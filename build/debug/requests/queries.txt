@@ -1,5 +1,5 @@
 page=getcmd&val=1&st=1
-page=stcmd&idcmd=2049&st=3&err=0
+page=stcmd&idcmd=2117&st=3&err=0
 page=slist
 page=flist
 page=download&num=1

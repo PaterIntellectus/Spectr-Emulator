@@ -15,8 +15,7 @@ SettingsDialog::SettingsDialog(const QString &connectionSettingsFilePath, const 
     initConnections();
 
     setWindowTitle(tr("Настройки эмулятора"));
-    // корректировка размера окна
-    adjustSize();
+    adjustSize(); // корректировка размера окна
 
     qInfo() << "/SettingsDialog constructed";
 }

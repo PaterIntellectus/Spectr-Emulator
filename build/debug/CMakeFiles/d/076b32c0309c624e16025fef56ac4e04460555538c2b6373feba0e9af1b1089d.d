@@ -64,6 +64,7 @@ Spect_Device_Emulator_autogen/timestamp: \
   D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtCore/qmargins.h \
   D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtCore/qmath.h \
   D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtCore/qmetacontainer.h \
+  D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtCore/qmetaobject.h \
   D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtCore/qmetatype.h \
   D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtCore/qnamespace.h \
   D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtCore/qnumeric.h \
@@ -141,6 +142,15 @@ Spect_Device_Emulator_autogen/timestamp: \
   D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtGui/qvalidator.h \
   D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtGui/qwindowdefs.h \
   D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtGui/qwindowdefs_win.h \
+  D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtMultimedia/QAudioOutput \
+  D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtMultimedia/QMediaPlayer \
+  D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtMultimedia/qaudio.h \
+  D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtMultimedia/qaudiooutput.h \
+  D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtMultimedia/qmediaenumdebug.h \
+  D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtMultimedia/qmediaplayer.h \
+  D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtMultimedia/qtmultimedia-config.h \
+  D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtMultimedia/qtmultimediaexports.h \
+  D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtMultimedia/qtmultimediaglobal.h \
   D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtNetwork/QNetworkAccessManager \
   D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtNetwork/QNetworkReply \
   D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtNetwork/QNetworkRequest \
@@ -272,6 +282,14 @@ Spect_Device_Emulator_autogen/timestamp: \
   D:/Programs/Programming/Qt/6.3.1/mingw_64/lib/cmake/Qt6GuiTools/Qt6GuiToolsTargets-relwithdebinfo.cmake \
   D:/Programs/Programming/Qt/6.3.1/mingw_64/lib/cmake/Qt6GuiTools/Qt6GuiToolsTargets.cmake \
   D:/Programs/Programming/Qt/6.3.1/mingw_64/lib/cmake/Qt6GuiTools/Qt6GuiToolsVersionlessTargets.cmake \
+  D:/Programs/Programming/Qt/6.3.1/mingw_64/lib/cmake/Qt6Multimedia/Qt6MultimediaAdditionalTargetInfo.cmake \
+  D:/Programs/Programming/Qt/6.3.1/mingw_64/lib/cmake/Qt6Multimedia/Qt6MultimediaConfig.cmake \
+  D:/Programs/Programming/Qt/6.3.1/mingw_64/lib/cmake/Qt6Multimedia/Qt6MultimediaConfigVersion.cmake \
+  D:/Programs/Programming/Qt/6.3.1/mingw_64/lib/cmake/Qt6Multimedia/Qt6MultimediaConfigVersionImpl.cmake \
+  D:/Programs/Programming/Qt/6.3.1/mingw_64/lib/cmake/Qt6Multimedia/Qt6MultimediaDependencies.cmake \
+  D:/Programs/Programming/Qt/6.3.1/mingw_64/lib/cmake/Qt6Multimedia/Qt6MultimediaTargets-relwithdebinfo.cmake \
+  D:/Programs/Programming/Qt/6.3.1/mingw_64/lib/cmake/Qt6Multimedia/Qt6MultimediaTargets.cmake \
+  D:/Programs/Programming/Qt/6.3.1/mingw_64/lib/cmake/Qt6Multimedia/Qt6MultimediaVersionlessTargets.cmake \
   D:/Programs/Programming/Qt/6.3.1/mingw_64/lib/cmake/Qt6Network/Qt6NetworkAdditionalTargetInfo.cmake \
   D:/Programs/Programming/Qt/6.3.1/mingw_64/lib/cmake/Qt6Network/Qt6NetworkConfig.cmake \
   D:/Programs/Programming/Qt/6.3.1/mingw_64/lib/cmake/Qt6Network/Qt6NetworkConfigVersion.cmake \
@@ -303,82 +321,24 @@ Spect_Device_Emulator_autogen/timestamp: \
   D:/Programs/Programming/Qt/6.3.1/mingw_64/lib/cmake/Qt6ZlibPrivate/Qt6ZlibPrivateConfigVersionImpl.cmake \
   D:/Programs/Programming/Qt/6.3.1/mingw_64/lib/cmake/Qt6ZlibPrivate/Qt6ZlibPrivateTargets.cmake \
   D:/Programs/Programming/Qt/6.3.1/mingw_64/lib/cmake/Qt6ZlibPrivate/Qt6ZlibPrivateVersionlessTargets.cmake \
-  D:/Programs/Programming/Qt/Tools/CMake_64/share/cmake-3.23/Modules/CMakeCXXCompiler.cmake.in \
-  D:/Programs/Programming/Qt/Tools/CMake_64/share/cmake-3.23/Modules/CMakeCXXCompilerABI.cpp \
   D:/Programs/Programming/Qt/Tools/CMake_64/share/cmake-3.23/Modules/CMakeCXXInformation.cmake \
   D:/Programs/Programming/Qt/Tools/CMake_64/share/cmake-3.23/Modules/CMakeCheckCompilerFlagCommonPatterns.cmake \
   D:/Programs/Programming/Qt/Tools/CMake_64/share/cmake-3.23/Modules/CMakeCommonLanguageInclude.cmake \
-  D:/Programs/Programming/Qt/Tools/CMake_64/share/cmake-3.23/Modules/CMakeCompilerIdDetection.cmake \
-  D:/Programs/Programming/Qt/Tools/CMake_64/share/cmake-3.23/Modules/CMakeDetermineCXXCompiler.cmake \
-  D:/Programs/Programming/Qt/Tools/CMake_64/share/cmake-3.23/Modules/CMakeDetermineCompileFeatures.cmake \
-  D:/Programs/Programming/Qt/Tools/CMake_64/share/cmake-3.23/Modules/CMakeDetermineCompiler.cmake \
-  D:/Programs/Programming/Qt/Tools/CMake_64/share/cmake-3.23/Modules/CMakeDetermineCompilerABI.cmake \
-  D:/Programs/Programming/Qt/Tools/CMake_64/share/cmake-3.23/Modules/CMakeDetermineCompilerId.cmake \
-  D:/Programs/Programming/Qt/Tools/CMake_64/share/cmake-3.23/Modules/CMakeDetermineRCCompiler.cmake \
-  D:/Programs/Programming/Qt/Tools/CMake_64/share/cmake-3.23/Modules/CMakeDetermineSystem.cmake \
-  D:/Programs/Programming/Qt/Tools/CMake_64/share/cmake-3.23/Modules/CMakeFindBinUtils.cmake \
   D:/Programs/Programming/Qt/Tools/CMake_64/share/cmake-3.23/Modules/CMakeFindDependencyMacro.cmake \
   D:/Programs/Programming/Qt/Tools/CMake_64/share/cmake-3.23/Modules/CMakeGenericSystem.cmake \
   D:/Programs/Programming/Qt/Tools/CMake_64/share/cmake-3.23/Modules/CMakeInitializeConfigs.cmake \
   D:/Programs/Programming/Qt/Tools/CMake_64/share/cmake-3.23/Modules/CMakeLanguageInformation.cmake \
-  D:/Programs/Programming/Qt/Tools/CMake_64/share/cmake-3.23/Modules/CMakeNinjaFindMake.cmake \
   D:/Programs/Programming/Qt/Tools/CMake_64/share/cmake-3.23/Modules/CMakeParseArguments.cmake \
-  D:/Programs/Programming/Qt/Tools/CMake_64/share/cmake-3.23/Modules/CMakeParseImplicitIncludeInfo.cmake \
-  D:/Programs/Programming/Qt/Tools/CMake_64/share/cmake-3.23/Modules/CMakeParseImplicitLinkInfo.cmake \
-  D:/Programs/Programming/Qt/Tools/CMake_64/share/cmake-3.23/Modules/CMakeParseLibraryArchitecture.cmake \
-  D:/Programs/Programming/Qt/Tools/CMake_64/share/cmake-3.23/Modules/CMakeRCCompiler.cmake.in \
   D:/Programs/Programming/Qt/Tools/CMake_64/share/cmake-3.23/Modules/CMakeRCInformation.cmake \
-  D:/Programs/Programming/Qt/Tools/CMake_64/share/cmake-3.23/Modules/CMakeSystem.cmake.in \
   D:/Programs/Programming/Qt/Tools/CMake_64/share/cmake-3.23/Modules/CMakeSystemSpecificInformation.cmake \
   D:/Programs/Programming/Qt/Tools/CMake_64/share/cmake-3.23/Modules/CMakeSystemSpecificInitialize.cmake \
-  D:/Programs/Programming/Qt/Tools/CMake_64/share/cmake-3.23/Modules/CMakeTestCXXCompiler.cmake \
-  D:/Programs/Programming/Qt/Tools/CMake_64/share/cmake-3.23/Modules/CMakeTestCompilerCommon.cmake \
-  D:/Programs/Programming/Qt/Tools/CMake_64/share/cmake-3.23/Modules/CMakeTestRCCompiler.cmake \
   D:/Programs/Programming/Qt/Tools/CMake_64/share/cmake-3.23/Modules/CheckCXXCompilerFlag.cmake \
   D:/Programs/Programming/Qt/Tools/CMake_64/share/cmake-3.23/Modules/CheckCXXSourceCompiles.cmake \
-  D:/Programs/Programming/Qt/Tools/CMake_64/share/cmake-3.23/Modules/CheckIncludeFile.cxx.in \
   D:/Programs/Programming/Qt/Tools/CMake_64/share/cmake-3.23/Modules/CheckIncludeFileCXX.cmake \
   D:/Programs/Programming/Qt/Tools/CMake_64/share/cmake-3.23/Modules/CheckLibraryExists.cmake \
-  D:/Programs/Programming/Qt/Tools/CMake_64/share/cmake-3.23/Modules/Compiler/ADSP-DetermineCompiler.cmake \
-  D:/Programs/Programming/Qt/Tools/CMake_64/share/cmake-3.23/Modules/Compiler/ARMCC-DetermineCompiler.cmake \
-  D:/Programs/Programming/Qt/Tools/CMake_64/share/cmake-3.23/Modules/Compiler/ARMClang-DetermineCompiler.cmake \
-  D:/Programs/Programming/Qt/Tools/CMake_64/share/cmake-3.23/Modules/Compiler/AppleClang-DetermineCompiler.cmake \
-  D:/Programs/Programming/Qt/Tools/CMake_64/share/cmake-3.23/Modules/Compiler/Borland-DetermineCompiler.cmake \
   D:/Programs/Programming/Qt/Tools/CMake_64/share/cmake-3.23/Modules/Compiler/CMakeCommonCompilerMacros.cmake \
-  D:/Programs/Programming/Qt/Tools/CMake_64/share/cmake-3.23/Modules/Compiler/Clang-DetermineCompiler.cmake \
-  D:/Programs/Programming/Qt/Tools/CMake_64/share/cmake-3.23/Modules/Compiler/Clang-DetermineCompilerInternal.cmake \
-  D:/Programs/Programming/Qt/Tools/CMake_64/share/cmake-3.23/Modules/Compiler/Comeau-CXX-DetermineCompiler.cmake \
-  D:/Programs/Programming/Qt/Tools/CMake_64/share/cmake-3.23/Modules/Compiler/Compaq-CXX-DetermineCompiler.cmake \
-  D:/Programs/Programming/Qt/Tools/CMake_64/share/cmake-3.23/Modules/Compiler/Cray-DetermineCompiler.cmake \
-  D:/Programs/Programming/Qt/Tools/CMake_64/share/cmake-3.23/Modules/Compiler/Embarcadero-DetermineCompiler.cmake \
-  D:/Programs/Programming/Qt/Tools/CMake_64/share/cmake-3.23/Modules/Compiler/Fujitsu-DetermineCompiler.cmake \
-  D:/Programs/Programming/Qt/Tools/CMake_64/share/cmake-3.23/Modules/Compiler/FujitsuClang-DetermineCompiler.cmake \
-  D:/Programs/Programming/Qt/Tools/CMake_64/share/cmake-3.23/Modules/Compiler/GHS-DetermineCompiler.cmake \
-  D:/Programs/Programming/Qt/Tools/CMake_64/share/cmake-3.23/Modules/Compiler/GNU-CXX-DetermineCompiler.cmake \
   D:/Programs/Programming/Qt/Tools/CMake_64/share/cmake-3.23/Modules/Compiler/GNU-CXX.cmake \
-  D:/Programs/Programming/Qt/Tools/CMake_64/share/cmake-3.23/Modules/Compiler/GNU-FindBinUtils.cmake \
   D:/Programs/Programming/Qt/Tools/CMake_64/share/cmake-3.23/Modules/Compiler/GNU.cmake \
-  D:/Programs/Programming/Qt/Tools/CMake_64/share/cmake-3.23/Modules/Compiler/HP-CXX-DetermineCompiler.cmake \
-  D:/Programs/Programming/Qt/Tools/CMake_64/share/cmake-3.23/Modules/Compiler/IAR-DetermineCompiler.cmake \
-  D:/Programs/Programming/Qt/Tools/CMake_64/share/cmake-3.23/Modules/Compiler/IBMCPP-CXX-DetermineVersionInternal.cmake \
-  D:/Programs/Programming/Qt/Tools/CMake_64/share/cmake-3.23/Modules/Compiler/IBMClang-CXX-DetermineCompiler.cmake \
-  D:/Programs/Programming/Qt/Tools/CMake_64/share/cmake-3.23/Modules/Compiler/Intel-DetermineCompiler.cmake \
-  D:/Programs/Programming/Qt/Tools/CMake_64/share/cmake-3.23/Modules/Compiler/IntelLLVM-DetermineCompiler.cmake \
-  D:/Programs/Programming/Qt/Tools/CMake_64/share/cmake-3.23/Modules/Compiler/LCC-CXX-DetermineCompiler.cmake \
-  D:/Programs/Programming/Qt/Tools/CMake_64/share/cmake-3.23/Modules/Compiler/MSVC-DetermineCompiler.cmake \
-  D:/Programs/Programming/Qt/Tools/CMake_64/share/cmake-3.23/Modules/Compiler/NVHPC-DetermineCompiler.cmake \
-  D:/Programs/Programming/Qt/Tools/CMake_64/share/cmake-3.23/Modules/Compiler/NVIDIA-DetermineCompiler.cmake \
-  D:/Programs/Programming/Qt/Tools/CMake_64/share/cmake-3.23/Modules/Compiler/OpenWatcom-DetermineCompiler.cmake \
-  D:/Programs/Programming/Qt/Tools/CMake_64/share/cmake-3.23/Modules/Compiler/PGI-DetermineCompiler.cmake \
-  D:/Programs/Programming/Qt/Tools/CMake_64/share/cmake-3.23/Modules/Compiler/PathScale-DetermineCompiler.cmake \
-  D:/Programs/Programming/Qt/Tools/CMake_64/share/cmake-3.23/Modules/Compiler/SCO-DetermineCompiler.cmake \
-  D:/Programs/Programming/Qt/Tools/CMake_64/share/cmake-3.23/Modules/Compiler/SunPro-CXX-DetermineCompiler.cmake \
-  D:/Programs/Programming/Qt/Tools/CMake_64/share/cmake-3.23/Modules/Compiler/TI-DetermineCompiler.cmake \
-  D:/Programs/Programming/Qt/Tools/CMake_64/share/cmake-3.23/Modules/Compiler/VisualAge-CXX-DetermineCompiler.cmake \
-  D:/Programs/Programming/Qt/Tools/CMake_64/share/cmake-3.23/Modules/Compiler/Watcom-DetermineCompiler.cmake \
-  D:/Programs/Programming/Qt/Tools/CMake_64/share/cmake-3.23/Modules/Compiler/XL-CXX-DetermineCompiler.cmake \
-  D:/Programs/Programming/Qt/Tools/CMake_64/share/cmake-3.23/Modules/Compiler/XLClang-CXX-DetermineCompiler.cmake \
-  D:/Programs/Programming/Qt/Tools/CMake_64/share/cmake-3.23/Modules/Compiler/zOS-CXX-DetermineCompiler.cmake \
   D:/Programs/Programming/Qt/Tools/CMake_64/share/cmake-3.23/Modules/FindPackageHandleStandardArgs.cmake \
   D:/Programs/Programming/Qt/Tools/CMake_64/share/cmake-3.23/Modules/FindPackageMessage.cmake \
   D:/Programs/Programming/Qt/Tools/CMake_64/share/cmake-3.23/Modules/FindThreads.cmake \
@@ -387,8 +347,6 @@ Spect_Device_Emulator_autogen/timestamp: \
   D:/Programs/Programming/Qt/Tools/CMake_64/share/cmake-3.23/Modules/Internal/CheckCompilerFlag.cmake \
   D:/Programs/Programming/Qt/Tools/CMake_64/share/cmake-3.23/Modules/Internal/CheckFlagCommonConfig.cmake \
   D:/Programs/Programming/Qt/Tools/CMake_64/share/cmake-3.23/Modules/Internal/CheckSourceCompiles.cmake \
-  D:/Programs/Programming/Qt/Tools/CMake_64/share/cmake-3.23/Modules/Internal/FeatureTesting.cmake \
-  D:/Programs/Programming/Qt/Tools/CMake_64/share/cmake-3.23/Modules/Platform/Windows-Determine-CXX.cmake \
   D:/Programs/Programming/Qt/Tools/CMake_64/share/cmake-3.23/Modules/Platform/Windows-GNU-CXX-ABI.cmake \
   D:/Programs/Programming/Qt/Tools/CMake_64/share/cmake-3.23/Modules/Platform/Windows-GNU-CXX.cmake \
   D:/Programs/Programming/Qt/Tools/CMake_64/share/cmake-3.23/Modules/Platform/Windows-GNU.cmake \
@@ -643,6 +601,8 @@ Spect_Device_Emulator_autogen/timestamp: \
   D:/Repositories/Spectr-Emulator/source/spectrabstract.h \
   D:/Repositories/Spectr-Emulator/source/spectrdevice.cpp \
   D:/Repositories/Spectr-Emulator/source/spectrdevice.h \
+  D:/Repositories/Spectr-Emulator/source/spectremulator.cpp \
+  D:/Repositories/Spectr-Emulator/source/spectremulator.h \
   D:/Repositories/Spectr-Emulator/source/spectrmaster.cpp \
   D:/Repositories/Spectr-Emulator/source/spectrmaster.h \
   D:/Repositories/Spectr-Emulator/source/mainwindow.ui \

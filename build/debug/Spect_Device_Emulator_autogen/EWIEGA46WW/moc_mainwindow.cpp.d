@@ -65,6 +65,7 @@ D:/Repositories/Spectr-Emulator/build/debug/Spect_Device_Emulator_autogen/EWIEGA
   D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtCore/qmargins.h \
   D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtCore/qmath.h \
   D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtCore/qmetacontainer.h \
+  D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtCore/qmetaobject.h \
   D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtCore/qmetatype.h \
   D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtCore/qnamespace.h \
   D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtCore/qnumeric.h \
@@ -142,6 +143,15 @@ D:/Repositories/Spectr-Emulator/build/debug/Spect_Device_Emulator_autogen/EWIEGA
   D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtGui/qvalidator.h \
   D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtGui/qwindowdefs.h \
   D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtGui/qwindowdefs_win.h \
+  D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtMultimedia/QAudioOutput \
+  D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtMultimedia/QMediaPlayer \
+  D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtMultimedia/qaudio.h \
+  D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtMultimedia/qaudiooutput.h \
+  D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtMultimedia/qmediaenumdebug.h \
+  D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtMultimedia/qmediaplayer.h \
+  D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtMultimedia/qtmultimedia-config.h \
+  D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtMultimedia/qtmultimediaexports.h \
+  D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtMultimedia/qtmultimediaglobal.h \
   D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtNetwork/QNetworkAccessManager \
   D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtNetwork/QNetworkReply \
   D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtNetwork/QNetworkRequest \
@@ -447,4 +457,5 @@ D:/Repositories/Spectr-Emulator/build/debug/Spect_Device_Emulator_autogen/EWIEGA
   D:/Repositories/Spectr-Emulator/source/settingsdialog.h \
   D:/Repositories/Spectr-Emulator/source/spectrabstract.h \
   D:/Repositories/Spectr-Emulator/source/spectrdevice.h \
+  D:/Repositories/Spectr-Emulator/source/spectremulator.h \
   D:/Repositories/Spectr-Emulator/source/spectrmaster.h

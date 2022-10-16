@@ -1,19 +1,30 @@
 #include "spectrabstract.h"
 
-SpectrAbstract::SpectrAbstract(const int id, QObject *parent)
-    : QObject{parent}
-    , mArr_inputs{ 0, 0, 0, 0, 0, 0, 0, 0 }
+SpectrAbstract::SpectrAbstract(const int id, const DeviceStatus status, QObject *parent)
+    : QObject{ parent }
+    , mMediaPlayer{ new QMediaPlayer(this) }
+    , mAudioOutput{ new QAudioOutput(mMediaPlayer) }
 {
     qInfo() << "SpectrAbstract construction...";
 
     setId(id);
-    setStatus(DeviceStatus::FirstRequest);
-
+    setStatus(status);
+    for (int i{}; i < sizeof(mArr_inputs); ++i) {
+        mArr_inputs[i] = false;
+    }
 
     qInfo() << "/SpectrAbstract constructed";
 }
 
-const int SpectrAbstract::getInputsValInt()
+SpectrAbstract::SpectrAbstract(const SpectrAbstract &spectrObject)
+    : SpectrAbstract{ spectrObject.getId(), spectrObject.getStatus(), spectrObject.parent() }
+{}
+
+SpectrAbstract::SpectrAbstract(QObject *parent)
+    : SpectrAbstract{ 0, DeviceStatus::FirstRequest, parent }
+{}
+
+const int SpectrAbstract::getInputsValInt() const
 {
     qInfo() << "SpectrDevice::getInputsValInt";
 
@@ -31,14 +42,14 @@ void SpectrAbstract::setId(const int id)
     qInfo() << "SpectrDevice::setId";
 
     if (0 > id || id > 255) {
-        emit errorOccured(QStringLiteral("Wrong device id:") + QString::number(id));
+        emit errorOccured(tr("Не верное id устройства:") + QString::number(id));
         return;
     }
 
     if (m_id != id) {
         m_id = id;
-        qInfo() << "device id:" << getIdInt();
-        emit idChanged(getIdInt());
+        qInfo() << "device id:" << getId();
+        emit idChanged(getId());
     }
 }
 
@@ -61,7 +72,7 @@ void SpectrAbstract::toggleInput(const int inputNum)
         mArr_inputs[inputNum] = !mArr_inputs[inputNum];
         emit inputValChanged(getInputsValInt());
     } else {
-        emit errorOccured(QStringLiteral(
+        emit errorOccured(tr(
                               "Попытка получить доступ ко входу, за диапазоном\n"
                               "%1 << %2 << %3\n"
                               ).arg(0).arg(inputNum).arg(inputsMax)
@@ -69,3 +80,24 @@ void SpectrAbstract::toggleInput(const int inputNum)
     }
 }
 
+bool SpectrAbstract::playFile(const QString &fileNum, QStringView seconds, QStringView miliseconds)
+{
+    qInfo() << "SpectrAbstractr::playFile";
+
+    QFile audio{ "audio/track" + fileNum.rightJustified(2, '0') + ".mp3" };
+    qInfo() << audio.fileName();
+
+    if (!audio.exists()) {
+        emit errorOccured(tr("Не найден файл для воспроизведения!"));
+        return false;
+    }
+    mMediaPlayer->setAudioOutput(mAudioOutput);
+    mAudioOutput->setVolume(50);
+
+    mMediaPlayer->setSource(audio.fileName());
+    mMediaPlayer->play();
+
+    emit newMessage(tr("Проигрывается трек 'track %1'").arg(fileNum.rightJustified(2, '0') + ".mp3"));
+
+    return true;
+}
