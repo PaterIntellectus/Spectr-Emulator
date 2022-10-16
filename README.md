@@ -2,8 +2,8 @@
 
 Quesries can be extended:
 1) Close Application
-2) In the aaplications folder, find the "request" folder, there is two files:
-  I) "names.txt" with requests names
+2) In the aaplications folder, find the "request" folder, there are two files:
+  I)  "names.txt" with requests names
   II) "queries.txt" with queries in standard syntax of HTML
   Each row of the "names.txt" with the same row of "queries.txt" and fills the application's UI
   You can change queries or it's names, or create a new ones
