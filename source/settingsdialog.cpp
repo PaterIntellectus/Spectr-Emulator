@@ -131,16 +131,18 @@ void SettingsDialog::acceptSettings()
     qInfo() << "SettingsDialog::acceptSettings";
 
     auto newDeviceId{ mLineEdit_masterId->text().trimmed() };
-    auto newServerAddress{ mLineEdit_serverAddress->text().trimmed() };
+    auto newServerHost{ mLineEdit_serverAddress->text().trimmed() };
     auto newServerPort{ mLineEdit_serverPort->text().trimmed() };
 
-    if (m_settings.serverAddress != newServerAddress || m_settings.serverPort != newServerPort) {
-        m_settings.serverAddress = newServerAddress;
+    if (m_settings.serverHost != newServerHost
+            || m_settings.serverPort != newServerPort)
+    {
+        m_settings.serverHost = newServerHost;
         m_settings.serverPort = newServerPort;
 
         mFile_connectionSettings.open(QIODevice::WriteOnly);
         QTextStream stream{ &mFile_connectionSettings };
-        stream << m_settings.serverAddress << '\n' << m_settings.serverPort;
+        stream << m_settings.serverHost << '\n' << m_settings.serverPort;
         mFile_connectionSettings.close();
 
         emit connectionSettingsChanged();
@@ -167,7 +169,7 @@ void SettingsDialog::rejectSettings()
 
     mFile_connectionSettings.open(QIODevice::ReadOnly);
     stream.setDevice(&mFile_connectionSettings);
-    stream >> m_settings.serverAddress >> m_settings.serverPort;
+    stream >> m_settings.serverHost >> m_settings.serverPort;
     mFile_connectionSettings.close();
 
     mFile_masterSettings.open(QIODevice::ReadOnly);
@@ -177,6 +179,6 @@ void SettingsDialog::rejectSettings()
 
     // обновление полей ввода
     mLineEdit_masterId->setText(m_settings.masterId);
-    mLineEdit_serverAddress->setText(m_settings.serverAddress);
+    mLineEdit_serverAddress->setText(m_settings.serverHost);
     mLineEdit_serverPort->setText(m_settings.serverPort);
 }

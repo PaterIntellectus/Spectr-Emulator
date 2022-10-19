@@ -22,8 +22,8 @@ QT_BEGIN_MOC_NAMESPACE
 QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_Command_t {
-    const uint offsetsAndSize[28];
-    char stringdata0[134];
+    const uint offsetsAndSize[30];
+    char stringdata0[144];
 };
 #define QT_MOC_LITERAL(ofs, len) \
     uint(offsetof(qt_meta_stringdata_Command_t, stringdata0) + ofs), len 
@@ -42,13 +42,14 @@ QT_MOC_LITERAL(83, 5), // "error"
 QT_MOC_LITERAL(89, 5), // "setId"
 QT_MOC_LITERAL(95, 9), // "setStatus"
 QT_MOC_LITERAL(105, 15), // "CommandStatuses"
-QT_MOC_LITERAL(121, 12) // "setErrorCode"
+QT_MOC_LITERAL(121, 12), // "setErrorCode"
+QT_MOC_LITERAL(134, 9) // "ErrorCode"
 
     },
     "Command\0idChanged\0\0id\0statusChanged\0"
     "status\0errorCodeChanged\0errorCode\0"
     "errorOccured\0error\0setId\0setStatus\0"
-    "CommandStatuses\0setErrorCode"
+    "CommandStatuses\0setErrorCode\0ErrorCode"
 };
 #undef QT_MOC_LITERAL
 
@@ -85,7 +86,7 @@ static const uint qt_meta_data_Command[] = {
  // slots: parameters
     QMetaType::Void, QMetaType::Int,    3,
     QMetaType::Void, 0x80000000 | 12,    5,
-    QMetaType::Void, QMetaType::Int,    7,
+    QMetaType::Void, 0x80000000 | 14,    7,
 
        0        // eod
 };
@@ -102,7 +103,7 @@ void Command::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, voi
         case 3: _t->errorOccured((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1]))); break;
         case 4: _t->setId((*reinterpret_cast< std::add_pointer_t<int>>(_a[1]))); break;
         case 5: _t->setStatus((*reinterpret_cast< std::add_pointer_t<CommandStatuses>>(_a[1]))); break;
-        case 6: _t->setErrorCode((*reinterpret_cast< std::add_pointer_t<int>>(_a[1]))); break;
+        case 6: _t->setErrorCode((*reinterpret_cast< std::add_pointer_t<ErrorCode>>(_a[1]))); break;
         default: ;
         }
     } else if (_c == QMetaObject::IndexOfMethod) {
@@ -146,7 +147,7 @@ const QMetaObject Command::staticMetaObject = { {
     nullptr,
 qt_incomplete_metaTypeArray<qt_meta_stringdata_Command_t
 , QtPrivate::TypeAndForceComplete<Command, std::true_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<int, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<int, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<int, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<const QString &, std::false_type>
-, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<const int, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<const CommandStatuses, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<const int, std::false_type>
+, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<const int, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<const CommandStatuses, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<const ErrorCode, std::false_type>
 
 
 >,

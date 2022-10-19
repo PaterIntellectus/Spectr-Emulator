@@ -11,6 +11,7 @@
 #include <QDebug>
 
 static const int inputsMax{ 8 };
+static const QString tracksDir{ "tracks/" };
 
 class SpectrAbstract : public QObject
 {
@@ -29,7 +30,10 @@ public:
 
     SpectrAbstract(const int id, const DeviceStatus status, QObject *parent = nullptr);
     SpectrAbstract(const SpectrAbstract &spectrDevice);
+    SpectrAbstract(const SpectrAbstract &&spectrDevice);
     explicit SpectrAbstract(QObject *parent = nullptr);
+
+    const SpectrAbstract &operator=(const SpectrAbstract& anotherDevice);
 
     const int getId() const { return m_id; }
     const DeviceStatus getStatus() const { return m_statusCode; }
@@ -51,18 +55,22 @@ signals:
 private slots:
 
 public slots:
-    bool playFile(const QString &fileNum, QStringView seconds, QStringView miliseconds);
+    bool playAudioFile(const int fileNum, const int seconds, const int miliseconds);
 
     virtual void setId(const int id);
     virtual void setStatus(const DeviceStatus status);
-    virtual void toggleInput(const int inputNum);
+    virtual void toggleInput(const int inputNum, bool onOff);
+
+    const QString getTrackName(const int trackNum) const {
+        return QString("track" + QString::number(trackNum).rightJustified(2, '0') + ".mp3");
+    }
 
 private:
     int m_id;
-    bool mArr_inputs[inputsMax]; // массив входов устройства
     DeviceStatus m_statusCode;
+    bool mArr_inputs[inputsMax]; // массив входов устройства
 
-    // аудио проигрыватели
+    // playing audio
     QMediaPlayer *mMediaPlayer{ nullptr };
     QAudioOutput *mAudioOutput{ nullptr };
 };

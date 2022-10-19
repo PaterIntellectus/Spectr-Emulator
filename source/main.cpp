@@ -20,7 +20,6 @@ int main(int argc, char *argv[])
         }
     }
 
-    QDir::current().mkdir("audio");
     QDir::current().mkdir("requests");
     QDir::current().mkdir("settings");
 

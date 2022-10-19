@@ -278,58 +278,10 @@ const QUrlQuery MainWindow::createQuery()
     return query;
 }
 
-
-//void MainWindow::processReply(QNetworkReply *reply)
-//{
-//    qInfo() << "SpectrMaster::processReply";
-//    reply->deleteLater();
-
-//    auto bArr_replyData{ reply->readAll() };
-//    auto page{ m_lastQuery.queryItemValue(QStringLiteral("page")) };
-//    if (page == QStringLiteral("getcmd")) {
-//        if (bArr_replyData.contains("id=")) {
-//            QMap<QString, QString> map_cmdData;
-//            for (auto &bArr_parameter : bArr_replyData.split(';')) {
-//                if (bArr_parameter.isEmpty()) { continue; }
-//                auto keyVal{ bArr_parameter.split('=') };
-//                map_cmdData.insert(keyVal[0].trimmed(), keyVal[1].trimmed());
-//            }
-//            processCommand(map_cmdData);
-//        } else {
-//            qInfo() << "no new command";
-//        }
-//    } else if (page == QStringLiteral("download")) {
-//        auto str_dispositionHeader{ reply->header(QNetworkRequest::ContentDispositionHeader).toString() };
-//        QString filename{ "track_file.mp3" };
-//        for (auto &str : str_dispositionHeader.split(';')) {
-//            if (str.isEmpty()) { continue; }
-//            if (str.contains(QStringLiteral("filename="))) {
-//                filename = str.split('=').at(1);
-//            }
-//        }
-//        // создание директории и аудио файла
-//        QDir::current().mkdir(QStringLiteral("audio"));
-//        QFile file_audio{ QStringLiteral("audio/") + filename };
-
-//        // запись полученных данных в файл
-//        file_audio.open(QIODevice::WriteOnly);
-//        file_audio.write(bArr_replyData);
-//        file_audio.close();
-
-//        qInfo() << "audio file downloaded:" << filename;
-//    }
-
-//    qInfo() << bArr_replyData;
-//    logWriteLine(QStringLiteral("Reply: %1").arg(bArr_replyData));
-//    pushButton_sendRequest->setDisabled(false);
-//}
-
 void MainWindow::logWriteLine(const QString &line)
 {
-    qInfo() << "MainWindow::logWriteLine";
+    qInfo() << "Log:" << line;
 
     mTextBrowser_log->moveCursor(QTextCursor::End);
     mTextBrowser_log->insertPlainText(line + "\n");
-
-    qInfo() << line;
 }

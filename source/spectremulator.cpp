@@ -113,10 +113,11 @@ const QUrlQuery SpectrEmulator::createQuery()
         break;
     case RequestType::slist:
     case RequestType::flist:
+        break;
     case RequestType::download:
         break;
     default:
-        emit errorOccured(QStringLiteral("Can not prepare query: wrong request num"));
+        emit errorOccured(tr("Невозможно создать запрос такого типа!!!"));
         break;
     }
     return query;
@@ -134,40 +135,38 @@ void SpectrEmulator::processReply(QNetworkReply *reply)
     }
 
     auto replyData{ reply->readAll() };
-    if (replyData.isEmpty()) {
-        emit newMessage(tr("Получен пустой ответ!"));
-        return;
-    }
+    if (!replyData.isEmpty()) {
+        // showing server's reply, ONLY if it's not a file's download request
+        if (m_requestType != RequestType::download) {
+            emit newMessage(tr("Ответ: ") + replyData);
+        }
 
-    // showing server's reply, ONLY if it's not a file
-    if (m_requestType != RequestType::download) {
-        emit newMessage(tr("Ответ: ") + replyData);
-    }
+        // выбор обработчика на основе отправленного запроса
+        switch (m_requestType) {
+        case RequestType::getcmd:
+            processGetcmdReply(replyData);
+            break;
+        case RequestType::stcmd:
+            processStcmdReply(replyData);
+            break;
+        case RequestType::slist:
+            processSlistReply(replyData);
+            break;
+        case RequestType::flist:
+            processFlistReply(replyData);
+            break;
+        case RequestType::download:
+            processDownloadReply(reply, replyData);
+            break;
+        default:
+            emit errorOccured(tr("Не существует такого типа запроса"));
+            return;
+        }
+        qInfo() << "Request Type:" << static_cast<int>(m_requestType);
 
-    // выбор обработчика на основе отправленного запроса
-    switch (m_requestType) {
-    case RequestType::getcmd:
-        processGetcmdReply(replyData);
-        break;
-    case RequestType::stcmd:
-        processStcmdReply(replyData);
-        break;
-    case RequestType::slist:
-        // todo: при получении списка id устройств, создавать новые устройства и удалять отключенные
-        processFlistReply(replyData);
-        break;
-    case RequestType::flist:
-        // todo: при получении списка фудио файлов, проверять их и скачивать все нужные
-        processSlistReply(replyData);
-        break;
-    case RequestType::download:
-        processDownloadReply(reply, replyData);
-        break;
-    default:
-        emit errorOccured(tr("Не существует такого типа запроса"));
-        return;
+    } else {
+        emit errorOccured(tr("Нет ответа от сервера!"));
     }
-    qInfo() << "Request Type:" << static_cast<int>(m_requestType);
 
     if (m_emulationMode) {
         m_emulationTimer->start(2000);
@@ -181,11 +180,11 @@ void SpectrEmulator::processGetcmdReply(const QString &replyData) {
         // todo: обработка всего остального, что есть в строке
         // получаемой при отсутствии новых команд
         // ...
-        auto list_{ replyData.split(',') };
+        auto list_masterData{ replyData.split(',') };
 
     } else if (replyData.startsWith("id")) {
 
-        auto list_cmdData = replyData.split("; ", Qt::SkipEmptyParts);
+        auto list_cmdData{ replyData.split("; ", Qt::SkipEmptyParts) };
 //        for (QStringView line : list_cmdData) { qInfo() << line; }
 
         // выборка и сохранение id полученной команды
@@ -210,13 +209,18 @@ void SpectrEmulator::processGetcmdReply(const QString &replyData) {
 
         if (cmdName == "play") {
             // список параметров команды
-            auto cmdParameters{ cmdText.split(',', Qt::SkipEmptyParts) };
+            auto list_cmdParameters{ cmdText.split(',', Qt::SkipEmptyParts) };
+
             // воспроизведение файла
-            if (playFile(cmdParameters.at(0), cmdParameters.at(1), cmdParameters.at(2))) {
+            if (playAudioFile(list_cmdParameters.at(0).toInt(), list_cmdParameters.at(1).toInt(), list_cmdParameters.at(2).toInt())) {
                 setStatus(DeviceStatus::PlayingAudio);
+                m_cmd->setStatus(Command::CommandStatuses::Completed);
+                m_cmd->setErrorCode(Command::ErrorCode::NoError);
                 m_requestType = RequestType::stcmd;
             } else {
                 setStatus(DeviceStatus::AccidentOccured);
+                m_cmd->setStatus(Command::CommandStatuses::ErrorOccured);
+                m_cmd->setErrorCode(Command::ErrorCode::CannotOpenAudioFile);
                 m_requestType = RequestType::download;
             }
 
@@ -224,8 +228,6 @@ void SpectrEmulator::processGetcmdReply(const QString &replyData) {
             setStatus(DeviceStatus::Pending);
         }
 
-        // измененние параметров устройства
-        m_cmd->setStatus(Command::CommandStatuses::Completed);
 
         // выставление статуса устройства
 //        auto cmdName {
@@ -265,29 +267,59 @@ void SpectrEmulator::processStcmdReply(const QString &replyData)
 {
     qInfo() << "SpectrEmulator::processStcmdReply";
 
-    if (replyData == "ok") {
-        setStatus(DeviceStatus::Pending);
-        m_requestType = RequestType::getcmd;
-    } else {
-        setStatus(DeviceStatus::AccidentOccured);
-        m_requestType = RequestType::stcmd;
-
-        emit errorOccured(tr("Не получилось подтвердить команду"));
-        return;
+    if (replyData != "ok") {
+        emit errorOccured(tr("Команда НЕ подтверждена!!!"));
     }
-
+    setStatus(DeviceStatus::Pending);
+    m_requestType = RequestType::getcmd;
 }
 
 void SpectrEmulator::processFlistReply(const QString &replyData)
 {
     qInfo() << "SpectrEmulator::processFlistReply";
 
+    emit newMessage("Поиск файлов...");
+    for (const auto &trackData : replyData.split(';', Qt::SkipEmptyParts)) {
+        auto delimeterIndex{ trackData.indexOf(',') };
+        auto trackName{ getTrackName(trackData.first(delimeterIndex).toInt()) };
+        QFile trackFile{ tracksDir + trackName };
+
+        if (!trackFile.open(QIODevice::ReadOnly)) {
+            emit newMessage(QStringLiteral("%1: НЕ найден").arg(trackName));
+        } else {
+            emit newMessage(QStringLiteral("%1: найден").arg(trackName));
+        }
+    }
 }
 
 void SpectrEmulator::processSlistReply(const QString &replyData)
 {
     qInfo() << "SpectrEmulator::processSlistReply";
 
+    // проходит по всему полученному списку id,
+    for (const auto &str_devId : replyData.split(';', Qt::SkipEmptyParts)) {
+        auto devId{ str_devId.toInt() };
+        emit newMessage("devId: " + str_devId);
+
+        bool slaveExists{ false };
+        for (const auto &slave : mList_slaves) {
+            if (slave->getId() == devId) {
+                slaveExists = true;
+                break;
+            }
+        }
+        if (slaveExists) { continue; }
+
+        // добавление нового устройства в список
+        mList_slaves.append(new SpectrDevice(devId, DeviceStatus::FirstRequest, this));
+        emit newMessage(QStringLiteral("Добавлено новое утройство с id=%1").arg(devId));
+    }
+
+    // testing
+    emit newMessage(QStringLiteral("Список всех устройств(%1): ").arg(mList_slaves.count()));
+    for (const auto &slave : mList_slaves) {
+        emit newMessage(QString::number(slave->getId()));
+    }
 }
 
 void SpectrEmulator::processDownloadReply(const QNetworkReply *reply, const QByteArray &replyData)
@@ -301,10 +333,8 @@ void SpectrEmulator::processDownloadReply(const QNetworkReply *reply, const QByt
             filename = str.sliced(str.indexOf('=') + 1);
         }
     }
-    qInfo() << "filename:" << filename;
     // создание директории и аудио файла
-    QDir::current().mkdir(QStringLiteral("audio"));
-    QFile file_audio{ QStringLiteral("audio/") + filename };
+    QFile file_audio{ tracksDir + filename };
 
     // сохранение файла
     if (!file_audio.open(QIODevice::WriteOnly)) {

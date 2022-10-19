@@ -22,6 +22,10 @@ SpectrMaster::SpectrMaster(QObject *parent)
 SpectrMaster::~SpectrMaster()
 {
     qInfo() << "~SpectrMaster";
+
+    if (!mList_slaves.empty()){
+        for (auto &slave : mList_slaves) { delete slave; }
+    }
 }
 
 void SpectrMaster::initConnections()
@@ -57,8 +61,8 @@ void SpectrMaster::setStatus(const DeviceStatus status)
 const QList<int> SpectrMaster::getSlaveIdList()
 {
     QList<int> list_slaveId;
-    for (const auto &slave : mList_slaveDevices) {
-        list_slaveId.append(slave.getId());
+    for (const auto &slave : mList_slaves) {
+        list_slaveId.append(slave->getId());
     }
     return list_slaveId;
 }

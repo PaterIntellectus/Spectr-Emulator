@@ -63,7 +63,7 @@ private:
     QFile mFile_masterSettings;
     struct Settings {
         QString masterId;
-        QString serverAddress;
+        QString serverHost;
         QString serverPort;
     } m_settings;
 

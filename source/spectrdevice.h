@@ -10,8 +10,11 @@ class SpectrDevice : public SpectrAbstract
 public:
     SpectrDevice(const int id, const DeviceStatus status, QObject *parent = nullptr);
     SpectrDevice(const SpectrDevice &spectrDevice);
+    SpectrDevice(const SpectrDevice &&spectrDevice);
     explicit SpectrDevice(QObject *parent = nullptr);
     ~SpectrDevice();
+
+    SpectrDevice &operator=(const SpectrDevice &spectrDevice);
 
 private:
     virtual void initConnections();

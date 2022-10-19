@@ -17,6 +17,7 @@
 
 #include <QTimer>
 
+
 class SpectrEmulator : public SpectrMaster
 {
     Q_OBJECT
@@ -70,6 +71,7 @@ private:
     // объекты эмуляции
     QTimer *m_emulationTimer{ nullptr };
     bool m_emulationMode;
+
 
 
     QList<QString> mList_pages{

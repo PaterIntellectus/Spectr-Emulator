@@ -5,6 +5,8 @@ SpectrDevice::SpectrDevice(const int id, const DeviceStatus status, QObject *par
 {
     qInfo() << "SpectrDevice construction...";
 
+    qInfo() << "SpectrDevice id:" << id;
+
     initConnections();
 
     qInfo() << "/SpectrDevice constructed";
@@ -16,14 +18,30 @@ SpectrDevice::SpectrDevice(const SpectrDevice &spectrDevice)
 
 }
 
+SpectrDevice::SpectrDevice(const SpectrDevice &&spectrDevice)
+    : SpectrAbstract(std::move(spectrDevice))
+{
+
+}
+
 SpectrDevice::SpectrDevice(QObject *parent)
     : SpectrDevice{ 0, DeviceStatus::FirstRequest, parent }
 {
+
 }
 
 SpectrDevice::~SpectrDevice()
 {
     qInfo() << "~SpectrDevice";
+}
+
+SpectrDevice &SpectrDevice::operator=(const SpectrDevice &spectrDevice)
+{
+    qInfo() << "anotherDevice id:" << spectrDevice.getId();
+    if (this != &spectrDevice) {
+        SpectrAbstract::operator=(spectrDevice);
+    }
+    return *this;
 }
 
 void SpectrDevice::initConnections()

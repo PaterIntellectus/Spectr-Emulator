@@ -4,7 +4,7 @@ Command::Command(QObject *parent)
     : QObject{parent}
 {
     setStatus(CommandStatuses::NoCommand);
-    setErrorCode(0);
+    setErrorCode(ErrorCode::NoError);
     setId(0);
 }
 
@@ -23,7 +23,7 @@ void Command::setStatus(const CommandStatuses status)
     }
 }
 
-void Command::setErrorCode(const int errorCode)
+void Command::setErrorCode(const ErrorCode errorCode)
 {
     if (m_errorCode != errorCode) {
         m_errorCode = errorCode;

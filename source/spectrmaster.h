@@ -35,9 +35,14 @@ private slots:
 
 
 protected:
-    QList<SpectrDevice> mList_slaveDevices;
     // параметры получаемой команды
     Command *m_cmd{ nullptr };
+
+    QFile mFile_slaves{ "slist.txt" };
+    QList<SpectrDevice*> mList_slaves;
+
+    QFile mFile_files{ "flist.txt" };
+    QList<QFile> mList_tracks;
 
 };
 
