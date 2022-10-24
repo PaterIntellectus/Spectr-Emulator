@@ -53,7 +53,7 @@ void SpectrMaster::setStatus(const DeviceStatus status)
         SpectrAbstract::setStatus(status);
         break;
     default:
-        errorOccured(tr("Не верный статус мастера!!!"));
+        errorMessage(tr("Не верный статус мастера!!!"));
         break;
     }
 }

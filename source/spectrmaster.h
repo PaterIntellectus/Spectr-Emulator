@@ -31,6 +31,8 @@ public slots:
 
     const QList<int> getSlaveIdList();
 
+//    void saveSlaveList();
+
 private slots:
 
 
@@ -40,9 +42,6 @@ protected:
 
     QFile mFile_slaves{ "slist.txt" };
     QList<SpectrDevice*> mList_slaves;
-
-    QFile mFile_files{ "flist.txt" };
-    QList<QFile> mList_tracks;
 
 };
 

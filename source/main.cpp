@@ -24,8 +24,6 @@ int main(int argc, char *argv[])
     QDir::current().mkdir("settings");
 
     MainWindow w {
-        QStringLiteral("settings/connectionSettings.txt"),
-        QStringLiteral("settings/masterSettings.txt"),
         QStringLiteral("requests/names.txt"),
         QStringLiteral("requests/queries.txt")
     };

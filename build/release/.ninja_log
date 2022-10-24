@@ -1,0 +1,17 @@
+# ninja log v5
+3	18021	6883200243823464	Spect_Device_Emulator_autogen/timestamp	ba8b70d3904cb42c
+3	18021	6883200243823464	Spect_Device_Emulator_autogen/mocs_compilation.cpp	ba8b70d3904cb42c
+3	18021	6883200243823464	D:/Repositories/Spectr-Emulator/build/release/Spect_Device_Emulator_autogen/timestamp	ba8b70d3904cb42c
+3	18021	6883200243823464	D:/Repositories/Spectr-Emulator/build/release/Spect_Device_Emulator_autogen/mocs_compilation.cpp	ba8b70d3904cb42c
+18180	41630	6883200488924225	CMakeFiles/Spect_Device_Emulator.dir/main.cpp.obj	6272ebf911e5064
+18182	41677	6883200489874867	CMakeFiles/Spect_Device_Emulator.dir/spectrabstract.cpp.obj	26548784241e647a
+18178	41797	6883200491686077	CMakeFiles/Spect_Device_Emulator.dir/settingsdialog.cpp.obj	dcb01d5ebd42244c
+18179	42768	6883200501552662	CMakeFiles/Spect_Device_Emulator.dir/spectremulator.cpp.obj	4d3ec2b7a898c396
+18174	43037	6883200504564673	CMakeFiles/Spect_Device_Emulator.dir/Spect_Device_Emulator_autogen/mocs_compilation.cpp.obj	fcf330d4a8673a5f
+18176	43197	6883200505795491	CMakeFiles/Spect_Device_Emulator.dir/mainwindow.cpp.obj	7f326d4252b1af36
+42769	46764	6883200541799541	CMakeFiles/Spect_Device_Emulator.dir/command.cpp.obj	fd75051619419af6
+41798	46925	6883200543880927	CMakeFiles/Spect_Device_Emulator.dir/track.cpp.obj	6929fb84a5e49f7b
+41678	47179	6883200546382597	CMakeFiles/Spect_Device_Emulator.dir/spectrdevice.cpp.obj	2d666e59dd61628e
+41675	47757	6883200552166463	CMakeFiles/Spect_Device_Emulator.dir/spectrmaster.cpp.obj	1123c362e4b53abe
+43038	48854	6883200563133787	CMakeFiles/Spect_Device_Emulator.dir/trackmanager.cpp.obj	1b8c8a227b8fb32c
+48854	50229	6883200576782898	Spect_Device_Emulator.exe	bf7d9503080c3802

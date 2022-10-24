@@ -22,9 +22,9 @@
 #include <QFile>
 #include <QDir>
 
-#include "settingsdialog.h"
 #include "spectremulator.h"
 
+#include "settingsdialog.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -38,8 +38,6 @@ class MainWindow : public QMainWindow
 
 public:
     MainWindow(
-            const QString &connectionSettingsFilePath,
-            const QString &masterSettingsFilePath,
             const QString &requestsNamesFilePath,
             const QString &requestsQueriesFilePath,
             QWidget *parent = nullptr
@@ -76,7 +74,7 @@ private slots:
 
 //    void processCommand(const QMap<QString, QString> &map_cmdData);
 
-    void logWriteLine(const QString& line);
+    void logWriteLine(const QString &line);
 
 
 private:
@@ -96,8 +94,8 @@ private:
 
     QAction *mAction_openSettings{ nullptr };
 
-    SettingsDialog *m_settingsDialog{ nullptr };
     // ===
+    SettingsDialog *m_settingsDialog{ nullptr };
 
     SpectrEmulator *m_emulator{ nullptr };
 

@@ -10,8 +10,9 @@
 
 #include <QDebug>
 
+#include "trackmanager.h"
+
 static const int inputsMax{ 8 };
-static const QString tracksDir{ "tracks/" };
 
 class SpectrAbstract : public QObject
 {
@@ -44,8 +45,10 @@ public:
 private:
     virtual void initConnections() = 0;
 
+    unsigned int countCrc32(const QString &fileName);
+
 signals:
-    void errorOccured(const QString& str_error);
+    void errorMessage(const QString& str_error);
     void newMessage(const QString& message);
 
     void idChanged(const int id);
@@ -55,24 +58,20 @@ signals:
 private slots:
 
 public slots:
-    bool playAudioFile(const int fileNum, const int seconds, const int miliseconds);
-
     virtual void setId(const int id);
     virtual void setStatus(const DeviceStatus status);
     virtual void toggleInput(const int inputNum, bool onOff);
 
-    const QString getTrackName(const int trackNum) const {
-        return QString("track" + QString::number(trackNum).rightJustified(2, '0') + ".mp3");
-    }
+//    bool playTrack(const int fileNum, const int seconds, const int miliseconds);
+
+protected:
+    TrackManager *mTrackManager{ nullptr };
 
 private:
     int m_id;
     DeviceStatus m_statusCode;
     bool mArr_inputs[inputsMax]; // массив входов устройства
 
-    // playing audio
-    QMediaPlayer *mMediaPlayer{ nullptr };
-    QAudioOutput *mAudioOutput{ nullptr };
 };
 
 #endif // SPECTRABSTRACT_H

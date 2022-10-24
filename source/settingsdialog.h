@@ -12,6 +12,10 @@
 
 #include <QFile>
 
+static const QString settingsFolder{ "settings/" };
+static const QString connectionSettingsPath{ settingsFolder + "connectionSettings.txt" };
+static const QString masterSettingsPath{ settingsFolder + "masterSettings.txt" };
+
 namespace Ui {
 class SettingsDialog;
 }
@@ -21,18 +25,17 @@ class SettingsDialog : public QDialog
     Q_OBJECT
 
 public:
-    explicit SettingsDialog(
-            const QString &connectionSettingsFileName,
-            const QString &masterSettingsFileName,
-            QWidget *parent = nullptr
-            );
+    explicit SettingsDialog(QWidget *parent = nullptr);
     ~SettingsDialog();
 
-    const int masterId() { return m_settings.masterId.toInt(); }
+    const int masterId() { return mSettings.masterId.toInt(); }
+    const auto connectionSettings() {
+        return QPair<QString, quint16>(mSettings.serverHost, mSettings.serverPort.toShort());
+    }
 
 signals:
     void masterSettingsChanged(const int newId);
-    void connectionSettingsChanged();
+    void connectionSettingsChanged(const QPair<QString, quint16> pair_hostPort);
 
 private slots:
     // принятие / отмена изменений
@@ -55,7 +58,6 @@ private:
     // связываение сигналов и слотов
     void initConnections();
 
-
     Ui::SettingsDialog *ui{ nullptr };
 
     // настройки
@@ -65,7 +67,7 @@ private:
         QString masterId;
         QString serverHost;
         QString serverPort;
-    } m_settings;
+    } mSettings;
 
     // группы настроек
     QGroupBox *mGroupBox_master{ nullptr };

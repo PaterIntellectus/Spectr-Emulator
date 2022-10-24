@@ -2,16 +2,14 @@
 #include "./ui_mainwindow.h"
 
 MainWindow::MainWindow(
-        const QString &connectionSettingsFilePath,
-        const QString &masterSettingsFilePath,
         const QString &requestsNamesFilePath,
         const QString &requestsQueriesFilePath,
         QWidget *parent
         )
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
-    , m_settingsDialog{ new SettingsDialog(connectionSettingsFilePath, masterSettingsFilePath, this) }
-    , m_emulator{ new SpectrEmulator(m_settingsDialog->masterId(), connectionSettingsFilePath, this) }
+    , m_settingsDialog{ new SettingsDialog(this) }
+    , m_emulator{ new SpectrEmulator(m_settingsDialog->masterId(), m_settingsDialog->connectionSettings(), this) }
     , mFile_requestNames{ requestsNamesFilePath }
     , mFile_requestQueries{ requestsQueriesFilePath }
 {
@@ -73,14 +71,14 @@ void MainWindow::initConnections()
     // изменение настроек
     connect(m_settingsDialog, &SettingsDialog::masterSettingsChanged, m_emulator, &SpectrEmulator::setId);
     connect(m_settingsDialog, &SettingsDialog::connectionSettingsChanged,
-            m_emulator, &SpectrEmulator::updateConnectionSettings);
+            m_emulator, &SpectrEmulator::setConnectionSettings);
 
     // сигналы мастера
-    connect(m_emulator, &SpectrEmulator::errorOccured, statusBar(), [this](const QString &message){
+    connect(m_emulator, &SpectrEmulator::errorMessage, statusBar(), [this](const QString &message){
         statusBar()->showMessage(message);
     });
     connect(m_emulator, &SpectrEmulator::newMessage, this, &MainWindow::logWriteLine);
-    connect(m_emulator, &SpectrEmulator::errorOccured, this, &MainWindow::logWriteLine);
+    connect(m_emulator, &SpectrEmulator::errorMessage, this, &MainWindow::logWriteLine);
 
     // отправка запроса
     connect(mPushButton_sendRequest, &QPushButton::clicked, [this](){
@@ -283,5 +281,5 @@ void MainWindow::logWriteLine(const QString &line)
     qInfo() << "Log:" << line;
 
     mTextBrowser_log->moveCursor(QTextCursor::End);
-    mTextBrowser_log->insertPlainText(line + "\n");
+    mTextBrowser_log->insertPlainText(line + '\n');
 }

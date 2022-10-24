@@ -8,7 +8,8 @@ Command::Command(QObject *parent)
     setId(0);
 }
 
-void Command::setId(const int id) {
+void Command::setId(const int id)
+{
     if (m_id != id) {
         m_id = id;
         emit idChanged(getIdInt());

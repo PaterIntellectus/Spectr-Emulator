@@ -40,6 +40,12 @@ set(PROJECT_SOURCES
 
         command.h
         command.cpp
+
+        trackmanager.h
+        trackmanager.cpp
+
+        track.h
+        track.cpp
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)

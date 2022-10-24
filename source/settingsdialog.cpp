@@ -1,11 +1,11 @@
 #include "settingsdialog.h"
 #include "ui_settingsdialog.h"
 
-SettingsDialog::SettingsDialog(const QString &connectionSettingsFilePath, const QString &masterSettingsFileName, QWidget *parent)
+SettingsDialog::SettingsDialog(QWidget *parent)
     : QDialog(parent)
     , ui(new Ui::SettingsDialog)
-    , mFile_connectionSettings{ connectionSettingsFilePath }
-    , mFile_masterSettings{ masterSettingsFileName }
+    , mFile_connectionSettings{ connectionSettingsPath }
+    , mFile_masterSettings{ masterSettingsPath }
 {
     qInfo() << "SettingsDialog construction...";
 
@@ -134,29 +134,29 @@ void SettingsDialog::acceptSettings()
     auto newServerHost{ mLineEdit_serverAddress->text().trimmed() };
     auto newServerPort{ mLineEdit_serverPort->text().trimmed() };
 
-    if (m_settings.serverHost != newServerHost
-            || m_settings.serverPort != newServerPort)
+    if (mSettings.serverHost != newServerHost
+            || mSettings.serverPort != newServerPort)
     {
-        m_settings.serverHost = newServerHost;
-        m_settings.serverPort = newServerPort;
+        mSettings.serverHost = newServerHost;
+        mSettings.serverPort = newServerPort;
 
         mFile_connectionSettings.open(QIODevice::WriteOnly);
         QTextStream stream{ &mFile_connectionSettings };
-        stream << m_settings.serverHost << '\n' << m_settings.serverPort;
+        stream << mSettings.serverHost << '\n' << mSettings.serverPort;
         mFile_connectionSettings.close();
 
-        emit connectionSettingsChanged();
+        emit connectionSettingsChanged(connectionSettings());
     }
 
-    if (m_settings.masterId != newDeviceId) {
-        m_settings.masterId = newDeviceId;
+    if (mSettings.masterId != newDeviceId) {
+        mSettings.masterId = newDeviceId;
 
         mFile_masterSettings.open(QIODevice::WriteOnly);
         QTextStream stream{ &mFile_masterSettings };
-        stream << m_settings.masterId;
+        stream << mSettings.masterId;
         mFile_connectionSettings.close();
 
-        emit masterSettingsChanged(m_settings.masterId.toInt());
+        emit masterSettingsChanged(mSettings.masterId.toInt());
     }
 }
 
@@ -169,16 +169,16 @@ void SettingsDialog::rejectSettings()
 
     mFile_connectionSettings.open(QIODevice::ReadOnly);
     stream.setDevice(&mFile_connectionSettings);
-    stream >> m_settings.serverHost >> m_settings.serverPort;
+    stream >> mSettings.serverHost >> mSettings.serverPort;
     mFile_connectionSettings.close();
 
     mFile_masterSettings.open(QIODevice::ReadOnly);
     stream.setDevice(&mFile_masterSettings);
-    stream >> m_settings.masterId;
+    stream >> mSettings.masterId;
     mFile_masterSettings.close();
 
     // обновление полей ввода
-    mLineEdit_masterId->setText(m_settings.masterId);
-    mLineEdit_serverAddress->setText(m_settings.serverHost);
-    mLineEdit_serverPort->setText(m_settings.serverPort);
+    mLineEdit_masterId->setText(mSettings.masterId);
+    mLineEdit_serverAddress->setText(mSettings.serverHost);
+    mLineEdit_serverPort->setText(mSettings.serverPort);
 }

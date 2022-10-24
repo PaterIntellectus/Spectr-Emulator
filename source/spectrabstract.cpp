@@ -2,8 +2,7 @@
 
 SpectrAbstract::SpectrAbstract(const int id, const DeviceStatus status, QObject *parent)
     : QObject{ parent }
-    , mMediaPlayer{ new QMediaPlayer(this) }
-    , mAudioOutput{ new QAudioOutput(mMediaPlayer) }
+    , mTrackManager{ new TrackManager(this) }
 {
     qInfo() << "SpectrAbstract construction...";
 
@@ -13,11 +12,8 @@ SpectrAbstract::SpectrAbstract(const int id, const DeviceStatus status, QObject 
         mArr_inputs[i] = false;
     }
 
-    mMediaPlayer->setAudioOutput(mAudioOutput);
-    mAudioOutput->setVolume(50);
-
-    // создание директории с треками
-    QDir::current().mkdir(tracksDir);
+    connect(mTrackManager, &TrackManager::newMessage, this, &SpectrAbstract::newMessage);
+    connect(mTrackManager, &TrackManager::errorMessage, this, &SpectrAbstract::errorMessage);
 
     qInfo() << "/SpectrAbstract constructed";
 }
@@ -68,12 +64,13 @@ const int SpectrAbstract::getInputsValInt() const
     return val;
 }
 
+
 void SpectrAbstract::setId(const int id)
 {
     qInfo() << "SpectrAbstract::setId";
 
     if (id < 0 || 255 < id) {
-        emit errorOccured(tr("Не верное id устройства:") + QString::number(id));
+        emit errorMessage(tr("Не верное id устройства:") + QString::number(id));
         return;
     }
 
@@ -103,35 +100,21 @@ void SpectrAbstract::toggleInput(const int inputNum, bool onOff)
         if (mArr_inputs[inputNum] != onOff) {
             mArr_inputs[inputNum] = onOff;
             emit inputValChanged(getInputsValInt());
-            emit newMessage(QStringLiteral("Вход под номером '%1' был переключен в состояние '%2'")
-                            .arg(inputNum).arg(onOff ? "Включено" : "Выключено"));
+            emit newMessage(tr(
+                                "Вход под номером '%1' был переключен в состояние '%2'"
+                                ).arg(inputNum).arg(onOff ? "Включено" : "Выключено")
+                            );
         } else {
-            emit newMessage(QStringLiteral("Вход под номером '%1' уже находится в состоянии '%2'")
-                            .arg(inputNum).arg(onOff ? "Включено" : "Выключено"));
+            emit newMessage(tr(
+                                "Вход под номером '%1' уже находится в состоянии '%2'"
+                                ).arg(inputNum).arg(onOff ? "Включено" : "Выключено")
+                            );
         }
     } else {
-        emit errorOccured(tr(
+        emit errorMessage(tr(
                               "Попытка получить доступ ко входу, за диапазоном\n"
                               "%1 << %2 << %3\n"
                               ).arg(0).arg(inputNum).arg(inputsMax)
                           );
     }
-}
-
-bool SpectrAbstract::playAudioFile(const int fileNum, const int seconds, const int miliseconds)
-{
-    qInfo() << "SpectrAbstractr::playFile";
-
-    const QFile audio{ tracksDir + getTrackName(fileNum) };
-    qInfo() << audio.fileName();
-
-    if (!audio.exists()) {
-        emit errorOccured(tr("Не найден файл для воспроизведения!"));
-        return false;
-    }
-    mMediaPlayer->setSource(audio.fileName());
-    mMediaPlayer->play();
-
-    emit newMessage(tr("Проигрывается трек: '%1'").arg(getTrackName(fileNum)));
-    return true;
 }

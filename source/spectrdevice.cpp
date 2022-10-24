@@ -5,8 +5,6 @@ SpectrDevice::SpectrDevice(const int id, const DeviceStatus status, QObject *par
 {
     qInfo() << "SpectrDevice construction...";
 
-    qInfo() << "SpectrDevice id:" << id;
-
     initConnections();
 
     qInfo() << "/SpectrDevice constructed";
@@ -14,21 +12,15 @@ SpectrDevice::SpectrDevice(const int id, const DeviceStatus status, QObject *par
 
 SpectrDevice::SpectrDevice(const SpectrDevice &spectrDevice)
     : SpectrDevice{ spectrDevice.getId(), spectrDevice.getStatus(), spectrDevice.parent() }
-{
-
-}
+{}
 
 SpectrDevice::SpectrDevice(const SpectrDevice &&spectrDevice)
     : SpectrAbstract(std::move(spectrDevice))
-{
-
-}
+{}
 
 SpectrDevice::SpectrDevice(QObject *parent)
     : SpectrDevice{ 0, DeviceStatus::FirstRequest, parent }
-{
-
-}
+{}
 
 SpectrDevice::~SpectrDevice()
 {
@@ -64,7 +56,7 @@ void SpectrDevice::setStatus(const DeviceStatus status)
         SpectrAbstract::setStatus(status);
         break;
     default:
-        emit errorOccured("Wrong device status!!!");
+        emit errorMessage("Wrong device status!!!");
         break;
     }
 }

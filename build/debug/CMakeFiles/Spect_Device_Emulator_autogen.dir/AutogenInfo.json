@@ -423,6 +423,18 @@
 			"MU",
 			"EWIEGA46WW/moc_spectrmaster.cpp",
 			null
+		],
+		[
+			"D:/Repositories/Spectr-Emulator/source/track.h",
+			"MU",
+			"EWIEGA46WW/moc_track.cpp",
+			null
+		],
+		[
+			"D:/Repositories/Spectr-Emulator/source/trackmanager.h",
+			"MU",
+			"EWIEGA46WW/moc_trackmanager.cpp",
+			null
 		]
 	],
 	"HEADER_EXTENSIONS" : [ "h", "hh", "h++", "hm", "hpp", "hxx", "in", "txx" ],
@@ -519,7 +531,9 @@
 			"MU",
 			null
 		],
-		[ "D:/Repositories/Spectr-Emulator/source/spectrmaster.cpp", "MU", null ]
+		[ "D:/Repositories/Spectr-Emulator/source/spectrmaster.cpp", "MU", null ],
+		[ "D:/Repositories/Spectr-Emulator/source/track.cpp", "MU", null ],
+		[ "D:/Repositories/Spectr-Emulator/source/trackmanager.cpp", "MU", null ]
 	],
 	"UIC_OPTIONS" : [],
 	"UIC_SEARCH_PATHS" : [],
