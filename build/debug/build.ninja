@@ -81,17 +81,17 @@ build CMakeFiles/Spect_Device_Emulator.dir/settingsdialog.cpp.obj: CXX_COMPILER_
   OBJECT_DIR = CMakeFiles\Spect_Device_Emulator.dir
   OBJECT_FILE_DIR = CMakeFiles\Spect_Device_Emulator.dir
 
-build CMakeFiles/Spect_Device_Emulator.dir/spectremulator.cpp.obj: CXX_COMPILER__Spect_Device_Emulator_Debug D$:/Repositories/Spectr-Emulator/source/spectremulator.cpp || cmake_object_order_depends_target_Spect_Device_Emulator
+build CMakeFiles/Spect_Device_Emulator.dir/spectrabstract.cpp.obj: CXX_COMPILER__Spect_Device_Emulator_Debug D$:/Repositories/Spectr-Emulator/source/spectrabstract.cpp || cmake_object_order_depends_target_Spect_Device_Emulator
   DEFINES = -DMINGW_HAS_SECURE_API=1 -DQT_CORE_LIB -DQT_GUI_LIB -DQT_MULTIMEDIA_LIB -DQT_NEEDS_QMAIN -DQT_NETWORK_LIB -DQT_WIDGETS_LIB -DUNICODE -DWIN32 -DWIN64 -D_ENABLE_EXTENDED_ALIGNED_STORAGE -D_UNICODE -D_WIN64
-  DEP_FILE = CMakeFiles\Spect_Device_Emulator.dir\spectremulator.cpp.obj.d
+  DEP_FILE = CMakeFiles\Spect_Device_Emulator.dir\spectrabstract.cpp.obj.d
   FLAGS = -g -std=gnu++17
   INCLUDES = -ID:/Repositories/Spectr-Emulator/build/debug -ID:/Repositories/Spectr-Emulator/source -ID:/Repositories/Spectr-Emulator/build/debug/Spect_Device_Emulator_autogen/include -isystem D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtCore -isystem D:/Programs/Programming/Qt/6.3.1/mingw_64/include -isystem D:/Programs/Programming/Qt/6.3.1/mingw_64/mkspecs/win32-g++ -isystem D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtWidgets -isystem D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtGui -isystem D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtNetwork -isystem D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtMultimedia
   OBJECT_DIR = CMakeFiles\Spect_Device_Emulator.dir
   OBJECT_FILE_DIR = CMakeFiles\Spect_Device_Emulator.dir
 
-build CMakeFiles/Spect_Device_Emulator.dir/spectrabstract.cpp.obj: CXX_COMPILER__Spect_Device_Emulator_Debug D$:/Repositories/Spectr-Emulator/source/spectrabstract.cpp || cmake_object_order_depends_target_Spect_Device_Emulator
+build CMakeFiles/Spect_Device_Emulator.dir/spectrslave.cpp.obj: CXX_COMPILER__Spect_Device_Emulator_Debug D$:/Repositories/Spectr-Emulator/source/spectrslave.cpp || cmake_object_order_depends_target_Spect_Device_Emulator
   DEFINES = -DMINGW_HAS_SECURE_API=1 -DQT_CORE_LIB -DQT_GUI_LIB -DQT_MULTIMEDIA_LIB -DQT_NEEDS_QMAIN -DQT_NETWORK_LIB -DQT_WIDGETS_LIB -DUNICODE -DWIN32 -DWIN64 -D_ENABLE_EXTENDED_ALIGNED_STORAGE -D_UNICODE -D_WIN64
-  DEP_FILE = CMakeFiles\Spect_Device_Emulator.dir\spectrabstract.cpp.obj.d
+  DEP_FILE = CMakeFiles\Spect_Device_Emulator.dir\spectrslave.cpp.obj.d
   FLAGS = -g -std=gnu++17
   INCLUDES = -ID:/Repositories/Spectr-Emulator/build/debug -ID:/Repositories/Spectr-Emulator/source -ID:/Repositories/Spectr-Emulator/build/debug/Spect_Device_Emulator_autogen/include -isystem D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtCore -isystem D:/Programs/Programming/Qt/6.3.1/mingw_64/include -isystem D:/Programs/Programming/Qt/6.3.1/mingw_64/mkspecs/win32-g++ -isystem D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtWidgets -isystem D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtGui -isystem D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtNetwork -isystem D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtMultimedia
   OBJECT_DIR = CMakeFiles\Spect_Device_Emulator.dir
@@ -105,9 +105,17 @@ build CMakeFiles/Spect_Device_Emulator.dir/spectrmaster.cpp.obj: CXX_COMPILER__S
   OBJECT_DIR = CMakeFiles\Spect_Device_Emulator.dir
   OBJECT_FILE_DIR = CMakeFiles\Spect_Device_Emulator.dir
 
-build CMakeFiles/Spect_Device_Emulator.dir/spectrdevice.cpp.obj: CXX_COMPILER__Spect_Device_Emulator_Debug D$:/Repositories/Spectr-Emulator/source/spectrdevice.cpp || cmake_object_order_depends_target_Spect_Device_Emulator
+build CMakeFiles/Spect_Device_Emulator.dir/spectremulator.cpp.obj: CXX_COMPILER__Spect_Device_Emulator_Debug D$:/Repositories/Spectr-Emulator/source/spectremulator.cpp || cmake_object_order_depends_target_Spect_Device_Emulator
   DEFINES = -DMINGW_HAS_SECURE_API=1 -DQT_CORE_LIB -DQT_GUI_LIB -DQT_MULTIMEDIA_LIB -DQT_NEEDS_QMAIN -DQT_NETWORK_LIB -DQT_WIDGETS_LIB -DUNICODE -DWIN32 -DWIN64 -D_ENABLE_EXTENDED_ALIGNED_STORAGE -D_UNICODE -D_WIN64
-  DEP_FILE = CMakeFiles\Spect_Device_Emulator.dir\spectrdevice.cpp.obj.d
+  DEP_FILE = CMakeFiles\Spect_Device_Emulator.dir\spectremulator.cpp.obj.d
+  FLAGS = -g -std=gnu++17
+  INCLUDES = -ID:/Repositories/Spectr-Emulator/build/debug -ID:/Repositories/Spectr-Emulator/source -ID:/Repositories/Spectr-Emulator/build/debug/Spect_Device_Emulator_autogen/include -isystem D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtCore -isystem D:/Programs/Programming/Qt/6.3.1/mingw_64/include -isystem D:/Programs/Programming/Qt/6.3.1/mingw_64/mkspecs/win32-g++ -isystem D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtWidgets -isystem D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtGui -isystem D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtNetwork -isystem D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtMultimedia
+  OBJECT_DIR = CMakeFiles\Spect_Device_Emulator.dir
+  OBJECT_FILE_DIR = CMakeFiles\Spect_Device_Emulator.dir
+
+build CMakeFiles/Spect_Device_Emulator.dir/spectrnetworkmanager.cpp.obj: CXX_COMPILER__Spect_Device_Emulator_Debug D$:/Repositories/Spectr-Emulator/source/spectrnetworkmanager.cpp || cmake_object_order_depends_target_Spect_Device_Emulator
+  DEFINES = -DMINGW_HAS_SECURE_API=1 -DQT_CORE_LIB -DQT_GUI_LIB -DQT_MULTIMEDIA_LIB -DQT_NEEDS_QMAIN -DQT_NETWORK_LIB -DQT_WIDGETS_LIB -DUNICODE -DWIN32 -DWIN64 -D_ENABLE_EXTENDED_ALIGNED_STORAGE -D_UNICODE -D_WIN64
+  DEP_FILE = CMakeFiles\Spect_Device_Emulator.dir\spectrnetworkmanager.cpp.obj.d
   FLAGS = -g -std=gnu++17
   INCLUDES = -ID:/Repositories/Spectr-Emulator/build/debug -ID:/Repositories/Spectr-Emulator/source -ID:/Repositories/Spectr-Emulator/build/debug/Spect_Device_Emulator_autogen/include -isystem D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtCore -isystem D:/Programs/Programming/Qt/6.3.1/mingw_64/include -isystem D:/Programs/Programming/Qt/6.3.1/mingw_64/mkspecs/win32-g++ -isystem D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtWidgets -isystem D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtGui -isystem D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtNetwork -isystem D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtMultimedia
   OBJECT_DIR = CMakeFiles\Spect_Device_Emulator.dir
@@ -145,7 +153,7 @@ build CMakeFiles/Spect_Device_Emulator.dir/track.cpp.obj: CXX_COMPILER__Spect_De
 #############################################
 # Link the executable Spect_Device_Emulator.exe
 
-build Spect_Device_Emulator.exe: CXX_EXECUTABLE_LINKER__Spect_Device_Emulator_Debug CMakeFiles/Spect_Device_Emulator.dir/Spect_Device_Emulator_autogen/mocs_compilation.cpp.obj CMakeFiles/Spect_Device_Emulator.dir/main.cpp.obj CMakeFiles/Spect_Device_Emulator.dir/mainwindow.cpp.obj CMakeFiles/Spect_Device_Emulator.dir/settingsdialog.cpp.obj CMakeFiles/Spect_Device_Emulator.dir/spectremulator.cpp.obj CMakeFiles/Spect_Device_Emulator.dir/spectrabstract.cpp.obj CMakeFiles/Spect_Device_Emulator.dir/spectrmaster.cpp.obj CMakeFiles/Spect_Device_Emulator.dir/spectrdevice.cpp.obj CMakeFiles/Spect_Device_Emulator.dir/command.cpp.obj CMakeFiles/Spect_Device_Emulator.dir/trackmanager.cpp.obj CMakeFiles/Spect_Device_Emulator.dir/track.cpp.obj | D$:/Programs/Programming/Qt/6.3.1/mingw_64/lib/libQt6Widgets.a D$:/Programs/Programming/Qt/6.3.1/mingw_64/lib/libQt6Multimedia.a D$:/Programs/Programming/Qt/6.3.1/mingw_64/lib/libQt6Gui.a D$:/Programs/Programming/Qt/6.3.1/mingw_64/lib/libQt6Network.a D$:/Programs/Programming/Qt/6.3.1/mingw_64/lib/libQt6Core.a D$:/Programs/Programming/Qt/6.3.1/mingw_64/lib/libQt6EntryPoint.a || Spect_Device_Emulator_autogen Spect_Device_Emulator_autogen_timestamp_deps
+build Spect_Device_Emulator.exe: CXX_EXECUTABLE_LINKER__Spect_Device_Emulator_Debug CMakeFiles/Spect_Device_Emulator.dir/Spect_Device_Emulator_autogen/mocs_compilation.cpp.obj CMakeFiles/Spect_Device_Emulator.dir/main.cpp.obj CMakeFiles/Spect_Device_Emulator.dir/mainwindow.cpp.obj CMakeFiles/Spect_Device_Emulator.dir/settingsdialog.cpp.obj CMakeFiles/Spect_Device_Emulator.dir/spectrabstract.cpp.obj CMakeFiles/Spect_Device_Emulator.dir/spectrslave.cpp.obj CMakeFiles/Spect_Device_Emulator.dir/spectrmaster.cpp.obj CMakeFiles/Spect_Device_Emulator.dir/spectremulator.cpp.obj CMakeFiles/Spect_Device_Emulator.dir/spectrnetworkmanager.cpp.obj CMakeFiles/Spect_Device_Emulator.dir/command.cpp.obj CMakeFiles/Spect_Device_Emulator.dir/trackmanager.cpp.obj CMakeFiles/Spect_Device_Emulator.dir/track.cpp.obj | D$:/Programs/Programming/Qt/6.3.1/mingw_64/lib/libQt6Widgets.a D$:/Programs/Programming/Qt/6.3.1/mingw_64/lib/libQt6Multimedia.a D$:/Programs/Programming/Qt/6.3.1/mingw_64/lib/libQt6Gui.a D$:/Programs/Programming/Qt/6.3.1/mingw_64/lib/libQt6Network.a D$:/Programs/Programming/Qt/6.3.1/mingw_64/lib/libQt6Core.a D$:/Programs/Programming/Qt/6.3.1/mingw_64/lib/libQt6EntryPoint.a || Spect_Device_Emulator_autogen Spect_Device_Emulator_autogen_timestamp_deps
   FLAGS = -g
   LINK_FLAGS = -mwindows
   LINK_LIBRARIES = D:/Programs/Programming/Qt/6.3.1/mingw_64/lib/libQt6Widgets.a  D:/Programs/Programming/Qt/6.3.1/mingw_64/lib/libQt6Multimedia.a  D:/Programs/Programming/Qt/6.3.1/mingw_64/lib/libQt6Gui.a  -ld3d11  -ldxgi  -ldxguid  D:/Programs/Programming/Qt/6.3.1/mingw_64/lib/libQt6Network.a  D:/Programs/Programming/Qt/6.3.1/mingw_64/lib/libQt6Core.a  -lmpr  -luserenv  -lmingw32  D:/Programs/Programming/Qt/6.3.1/mingw_64/lib/libQt6EntryPoint.a  -lshell32  -lws2_32  -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
@@ -248,7 +256,7 @@ build Spect_Device_Emulator_autogen/timestamp Spect_Device_Emulator_autogen/mocs
 #############################################
 # Phony custom command for CMakeFiles\Spect_Device_Emulator_autogen_timestamp_deps
 
-build CMakeFiles/Spect_Device_Emulator_autogen_timestamp_deps | ${cmake_ninja_workdir}CMakeFiles/Spect_Device_Emulator_autogen_timestamp_deps: phony D$:/Programs/Programming/Qt/6.3.1/mingw_64/lib/libQt6Core.a D$:/Programs/Programming/Qt/6.3.1/mingw_64/./bin/uic.exe D$:/Programs/Programming/Qt/6.3.1/mingw_64/./bin/moc.exe D$:/Programs/Programming/Qt/6.3.1/mingw_64/lib/libQt6Gui.a D$:/Programs/Programming/Qt/6.3.1/mingw_64/lib/libQt6Network.a D$:/Programs/Programming/Qt/6.3.1/mingw_64/lib/libQt6Widgets.a D$:/Programs/Programming/Qt/6.3.1/mingw_64/lib/libQt6Multimedia.a
+build CMakeFiles/Spect_Device_Emulator_autogen_timestamp_deps | ${cmake_ninja_workdir}CMakeFiles/Spect_Device_Emulator_autogen_timestamp_deps: phony D$:/Programs/Programming/Qt/6.3.1/mingw_64/lib/libQt6Core.a D$:/Programs/Programming/Qt/6.3.1/mingw_64/./bin/moc.exe D$:/Programs/Programming/Qt/6.3.1/mingw_64/./bin/uic.exe D$:/Programs/Programming/Qt/6.3.1/mingw_64/lib/libQt6Network.a D$:/Programs/Programming/Qt/6.3.1/mingw_64/lib/libQt6Multimedia.a D$:/Programs/Programming/Qt/6.3.1/mingw_64/lib/libQt6Gui.a D$:/Programs/Programming/Qt/6.3.1/mingw_64/lib/libQt6Widgets.a
 
 
 #############################################

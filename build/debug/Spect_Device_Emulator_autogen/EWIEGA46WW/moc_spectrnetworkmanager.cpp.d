@@ -1,12 +1,19 @@
-D:/Repositories/Spectr-Emulator/build/debug/Spect_Device_Emulator_autogen/EWIEGA46WW/moc_spectrdevice.cpp: D:/Repositories/Spectr-Emulator/source/spectrdevice.h \
+D:/Repositories/Spectr-Emulator/build/debug/Spect_Device_Emulator_autogen/EWIEGA46WW/moc_spectrnetworkmanager.cpp: D:/Repositories/Spectr-Emulator/source/spectrnetworkmanager.h \
   D:/Repositories/Spectr-Emulator/build/debug/Spect_Device_Emulator_autogen/moc_predefs.h \
-  D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtCore/QDateTime \
-  D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtCore/QDebug \
   D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtCore/QDir \
   D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtCore/QFile \
+  D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtCore/QFlags \
+  D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtCore/QIODevice \
+  D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtCore/QList \
+  D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtCore/QMetaType \
   D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtCore/QObject \
-  D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtCore/QQueue \
-  D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtCore/QSharedPointer \
+  D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtCore/QSharedDataPointer \
+  D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtCore/QString \
+  D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtCore/QTextStream \
+  D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtCore/QTimer \
+  D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtCore/QUrl \
+  D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtCore/QUrlQuery \
+  D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtCore/QVariant \
   D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtCore/qalgorithms.h \
   D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtCore/qanystringview.h \
   D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtCore/qarraydata.h \
@@ -15,6 +22,7 @@ D:/Repositories/Spectr-Emulator/build/debug/Spect_Device_Emulator_autogen/EWIEGA
   D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtCore/qatomic.h \
   D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtCore/qatomic_cxx11.h \
   D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtCore/qbasicatomic.h \
+  D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtCore/qbasictimer.h \
   D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtCore/qbindingstorage.h \
   D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtCore/qbytearray.h \
   D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtCore/qbytearrayalgorithms.h \
@@ -30,6 +38,7 @@ D:/Repositories/Spectr-Emulator/build/debug/Spect_Device_Emulator_autogen/EWIEGA
   D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtCore/qcontainerinfo.h \
   D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtCore/qcontainertools_impl.h \
   D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtCore/qcontiguouscache.h \
+  D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtCore/qcryptographichash.h \
   D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtCore/qdatastream.h \
   D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtCore/qdatetime.h \
   D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtCore/qdebug.h \
@@ -63,7 +72,6 @@ D:/Repositories/Spectr-Emulator/build/debug/Spect_Device_Emulator_autogen/EWIEGA
   D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtCore/qobjectdefs_impl.h \
   D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtCore/qpair.h \
   D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtCore/qprocessordetection.h \
-  D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtCore/qqueue.h \
   D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtCore/qrefcount.h \
   D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtCore/qscopedpointer.h \
   D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtCore/qscopeguard.h \
@@ -86,9 +94,11 @@ D:/Repositories/Spectr-Emulator/build/debug/Spect_Device_Emulator_autogen/EWIEGA
   D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtCore/qtcore-config.h \
   D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtCore/qtcoreexports.h \
   D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtCore/qtextstream.h \
+  D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtCore/qtimer.h \
   D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtCore/qtmetamacros.h \
   D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtCore/qtypeinfo.h \
   D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtCore/qurl.h \
+  D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtCore/qurlquery.h \
   D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtCore/qutf8stringview.h \
   D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtCore/qvariant.h \
   D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtCore/qvarlengtharray.h \
@@ -105,6 +115,26 @@ D:/Repositories/Spectr-Emulator/build/debug/Spect_Device_Emulator_autogen/EWIEGA
   D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtMultimedia/qtmultimedia-config.h \
   D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtMultimedia/qtmultimediaexports.h \
   D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtMultimedia/qtmultimediaglobal.h \
+  D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtNetwork/QNetworkAccessManager \
+  D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtNetwork/QNetworkReply \
+  D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtNetwork/QNetworkRequest \
+  D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtNetwork/QSslConfiguration \
+  D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtNetwork/QSslPreSharedKeyAuthenticator \
+  D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtNetwork/qabstractsocket.h \
+  D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtNetwork/qhostaddress.h \
+  D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtNetwork/qnetworkaccessmanager.h \
+  D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtNetwork/qnetworkreply.h \
+  D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtNetwork/qnetworkrequest.h \
+  D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtNetwork/qssl.h \
+  D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtNetwork/qsslcertificate.h \
+  D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtNetwork/qsslconfiguration.h \
+  D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtNetwork/qsslerror.h \
+  D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtNetwork/qsslpresharedkeyauthenticator.h \
+  D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtNetwork/qsslsocket.h \
+  D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtNetwork/qtcpsocket.h \
+  D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtNetwork/qtnetwork-config.h \
+  D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtNetwork/qtnetworkexports.h \
+  D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtNetwork/qtnetworkglobal.h \
   D:/Programs/Programming/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include-fixed/limits.h \
   D:/Programs/Programming/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include-fixed/syslimits.h \
   D:/Programs/Programming/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/algorithm \
@@ -336,6 +366,4 @@ D:/Repositories/Spectr-Emulator/build/debug/Spect_Device_Emulator_autogen/EWIEGA
   D:/Programs/Programming/Qt/Tools/mingw1120_64/x86_64-w64-mingw32/include/vadefs.h \
   D:/Programs/Programming/Qt/Tools/mingw1120_64/x86_64-w64-mingw32/include/wchar.h \
   D:/Programs/Programming/Qt/Tools/mingw1120_64/x86_64-w64-mingw32/include/wctype.h \
-  D:/Repositories/Spectr-Emulator/source/spectrabstract.h \
-  D:/Repositories/Spectr-Emulator/source/track.h \
-  D:/Repositories/Spectr-Emulator/source/trackmanager.h
+  D:/Repositories/Spectr-Emulator/source/DirAndFileNames.h

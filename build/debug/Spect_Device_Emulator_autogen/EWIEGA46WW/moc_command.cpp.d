@@ -1,6 +1,8 @@
 D:/Repositories/Spectr-Emulator/build/debug/Spect_Device_Emulator_autogen/EWIEGA46WW/moc_command.cpp: D:/Repositories/Spectr-Emulator/source/command.h \
   D:/Repositories/Spectr-Emulator/build/debug/Spect_Device_Emulator_autogen/moc_predefs.h \
   D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtCore/QObject \
+  D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtCore/QRegularExpression \
+  D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtCore/QUrlQuery \
   D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtCore/qalgorithms.h \
   D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtCore/qanystringview.h \
   D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtCore/qarraydata.h \
@@ -22,17 +24,21 @@ D:/Repositories/Spectr-Emulator/build/debug/Spect_Device_Emulator_autogen/EWIEGA
   D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtCore/qcontainerfwd.h \
   D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtCore/qcontainerinfo.h \
   D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtCore/qcontainertools_impl.h \
+  D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtCore/qcontiguouscache.h \
   D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtCore/qdatastream.h \
+  D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtCore/qdebug.h \
   D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtCore/qflags.h \
   D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtCore/qgenericatomic.h \
   D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtCore/qglobal.h \
   D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtCore/qglobalstatic.h \
+  D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtCore/qhash.h \
   D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtCore/qhashfunctions.h \
   D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtCore/qiodevicebase.h \
   D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtCore/qiterable.h \
   D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtCore/qiterator.h \
   D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtCore/qlist.h \
   D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtCore/qlogging.h \
+  D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtCore/qmap.h \
   D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtCore/qmath.h \
   D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtCore/qmetacontainer.h \
   D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtCore/qmetatype.h \
@@ -45,10 +51,17 @@ D:/Repositories/Spectr-Emulator/build/debug/Spect_Device_Emulator_autogen/EWIEGA
   D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtCore/qpair.h \
   D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtCore/qprocessordetection.h \
   D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtCore/qrefcount.h \
+  D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtCore/qregularexpression.h \
   D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtCore/qscopedpointer.h \
   D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtCore/qscopeguard.h \
+  D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtCore/qset.h \
+  D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtCore/qshareddata.h \
+  D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtCore/qshareddata_impl.h \
+  D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtCore/qsharedpointer.h \
+  D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtCore/qsharedpointer_impl.h \
   D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtCore/qstring.h \
   D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtCore/qstringalgorithms.h \
+  D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtCore/qstringconverter.h \
   D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtCore/qstringlist.h \
   D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtCore/qstringliteral.h \
   D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtCore/qstringmatcher.h \
@@ -59,9 +72,13 @@ D:/Repositories/Spectr-Emulator/build/debug/Spect_Device_Emulator_autogen/EWIEGA
   D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtCore/qtaggedpointer.h \
   D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtCore/qtcore-config.h \
   D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtCore/qtcoreexports.h \
+  D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtCore/qtextstream.h \
   D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtCore/qtmetamacros.h \
   D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtCore/qtypeinfo.h \
+  D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtCore/qurl.h \
+  D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtCore/qurlquery.h \
   D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtCore/qutf8stringview.h \
+  D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtCore/qvariant.h \
   D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtCore/qvarlengtharray.h \
   D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtCore/qversiontagging.h \
   D:/Programs/Programming/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include-fixed/limits.h \

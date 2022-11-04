@@ -22,8 +22,8 @@ QT_BEGIN_MOC_NAMESPACE
 QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_TrackManager_t {
-    const uint offsetsAndSize[28];
-    char stringdata0[140];
+    const uint offsetsAndSize[30];
+    char stringdata0[160];
 };
 #define QT_MOC_LITERAL(ofs, len) \
     uint(offsetof(qt_meta_stringdata_TrackManager_t, stringdata0) + ofs), len 
@@ -41,14 +41,16 @@ QT_MOC_LITERAL(76, 12), // "lastModified"
 QT_MOC_LITERAL(89, 9), // "playTrack"
 QT_MOC_LITERAL(99, 11), // "QStringView"
 QT_MOC_LITERAL(111, 8), // "trackNum"
-QT_MOC_LITERAL(120, 14), // "calculateCrc32"
-QT_MOC_LITERAL(135, 4) // "data"
+QT_MOC_LITERAL(120, 19), // "calculateCrc32Track"
+QT_MOC_LITERAL(140, 14), // "calculateCrc32"
+QT_MOC_LITERAL(155, 4) // "data"
 
     },
     "TrackManager\0errorMessage\0\0message\0"
     "newMessage\0saveTrack\0trackName\0trackData\0"
     "lastModified\0playTrack\0QStringView\0"
-    "trackNum\0calculateCrc32\0data"
+    "trackNum\0calculateCrc32Track\0"
+    "calculateCrc32\0data"
 };
 #undef QT_MOC_LITERAL
 
@@ -75,7 +77,7 @@ static const uint qt_meta_data_TrackManager[] = {
        9,    1,   78,    2, 0x0a,   11 /* Public */,
       12,    1,   81,    2, 0x0a,   13 /* Public */,
       12,    1,   84,    2, 0x0a,   15 /* Public */,
-      12,    1,   87,    2, 0x08,   17 /* Private */,
+      13,    1,   87,    2, 0x08,   17 /* Private */,
 
  // signals: parameters
     QMetaType::Void, QMetaType::QString,    3,
@@ -87,7 +89,7 @@ static const uint qt_meta_data_TrackManager[] = {
     QMetaType::Bool, QMetaType::Int,   11,
     QMetaType::QByteArray, QMetaType::QString,    6,
     QMetaType::QByteArray, QMetaType::Int,   11,
-    QMetaType::UInt, QMetaType::QByteArray,   13,
+    QMetaType::UInt, QMetaType::QByteArray,   14,
 
        0        // eod
 };
@@ -106,9 +108,9 @@ void TrackManager::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id
             if (_a[0]) *reinterpret_cast< bool*>(_a[0]) = std::move(_r); }  break;
         case 4: { bool _r = _t->playTrack((*reinterpret_cast< std::add_pointer_t<int>>(_a[1])));
             if (_a[0]) *reinterpret_cast< bool*>(_a[0]) = std::move(_r); }  break;
-        case 5: { QByteArray _r = _t->calculateCrc32((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1])));
+        case 5: { QByteArray _r = _t->calculateCrc32Track((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1])));
             if (_a[0]) *reinterpret_cast< QByteArray*>(_a[0]) = std::move(_r); }  break;
-        case 6: { QByteArray _r = _t->calculateCrc32((*reinterpret_cast< std::add_pointer_t<int>>(_a[1])));
+        case 6: { QByteArray _r = _t->calculateCrc32Track((*reinterpret_cast< std::add_pointer_t<int>>(_a[1])));
             if (_a[0]) *reinterpret_cast< QByteArray*>(_a[0]) = std::move(_r); }  break;
         case 7: { quint32 _r = _t->calculateCrc32((*reinterpret_cast< std::add_pointer_t<QByteArray>>(_a[1])));
             if (_a[0]) *reinterpret_cast< quint32*>(_a[0]) = std::move(_r); }  break;

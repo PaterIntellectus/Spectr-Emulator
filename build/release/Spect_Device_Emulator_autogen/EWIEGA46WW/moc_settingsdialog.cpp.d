@@ -1,6 +1,7 @@
 D:/Repositories/Spectr-Emulator/build/release/Spect_Device_Emulator_autogen/EWIEGA46WW/moc_settingsdialog.cpp: D:/Repositories/Spectr-Emulator/source/settingsdialog.h \
   D:/Repositories/Spectr-Emulator/build/release/Spect_Device_Emulator_autogen/moc_predefs.h \
   D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtCore/QFile \
+  D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtCore/QString \
   D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtCore/qalgorithms.h \
   D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtCore/qanystringview.h \
   D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtCore/qarraydata.h \
@@ -378,4 +379,5 @@ D:/Repositories/Spectr-Emulator/build/release/Spect_Device_Emulator_autogen/EWIE
   D:/Programs/Programming/Qt/Tools/mingw1120_64/x86_64-w64-mingw32/include/time.h \
   D:/Programs/Programming/Qt/Tools/mingw1120_64/x86_64-w64-mingw32/include/vadefs.h \
   D:/Programs/Programming/Qt/Tools/mingw1120_64/x86_64-w64-mingw32/include/wchar.h \
-  D:/Programs/Programming/Qt/Tools/mingw1120_64/x86_64-w64-mingw32/include/wctype.h
+  D:/Programs/Programming/Qt/Tools/mingw1120_64/x86_64-w64-mingw32/include/wctype.h \
+  D:/Repositories/Spectr-Emulator/source/DirAndFileNames.h

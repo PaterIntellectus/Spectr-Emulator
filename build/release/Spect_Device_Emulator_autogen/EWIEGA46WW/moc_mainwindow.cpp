@@ -24,8 +24,8 @@ QT_BEGIN_MOC_NAMESPACE
 QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_MainWindow_t {
-    const uint offsetsAndSize[12];
-    char stringdata0[52];
+    const uint offsetsAndSize[22];
+    char stringdata0[126];
 };
 #define QT_MOC_LITERAL(ofs, len) \
     uint(offsetof(qt_meta_stringdata_MainWindow_t, stringdata0) + ofs), len 
@@ -36,11 +36,18 @@ QT_MOC_LITERAL(11, 11), // "createQuery"
 QT_MOC_LITERAL(23, 9), // "QUrlQuery"
 QT_MOC_LITERAL(33, 0), // ""
 QT_MOC_LITERAL(34, 12), // "logWriteLine"
-QT_MOC_LITERAL(47, 4) // "line"
+QT_MOC_LITERAL(47, 11), // "QStringView"
+QT_MOC_LITERAL(59, 9), // "strv_line"
+QT_MOC_LITERAL(69, 13), // "logWriteError"
+QT_MOC_LITERAL(83, 10), // "strv_error"
+QT_MOC_LITERAL(94, 23), // "onEmulationModeSwitched"
+QT_MOC_LITERAL(118, 7) // "checked"
 
     },
     "MainWindow\0createQuery\0QUrlQuery\0\0"
-    "logWriteLine\0line"
+    "logWriteLine\0QStringView\0strv_line\0"
+    "logWriteError\0strv_error\0"
+    "onEmulationModeSwitched\0checked"
 };
 #undef QT_MOC_LITERAL
 
@@ -50,7 +57,7 @@ static const uint qt_meta_data_MainWindow[] = {
       10,       // revision
        0,       // classname
        0,    0, // classinfo
-       2,   14, // methods
+       4,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -58,12 +65,16 @@ static const uint qt_meta_data_MainWindow[] = {
        0,       // signalCount
 
  // slots: name, argc, parameters, tag, flags, initial metatype offsets
-       1,    0,   26,    3, 0x08,    1 /* Private */,
-       4,    1,   27,    3, 0x08,    2 /* Private */,
+       1,    0,   38,    3, 0x08,    1 /* Private */,
+       4,    1,   39,    3, 0x08,    2 /* Private */,
+       7,    1,   42,    3, 0x08,    4 /* Private */,
+       9,    1,   45,    3, 0x08,    6 /* Private */,
 
  // slots: parameters
     0x80000000 | 2,
-    QMetaType::Void, QMetaType::QString,    5,
+    QMetaType::Void, 0x80000000 | 5,    6,
+    QMetaType::Void, 0x80000000 | 5,    8,
+    QMetaType::Void, QMetaType::Bool,   10,
 
        0        // eod
 };
@@ -76,7 +87,9 @@ void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         switch (_id) {
         case 0: { QUrlQuery _r = _t->createQuery();
             if (_a[0]) *reinterpret_cast< QUrlQuery*>(_a[0]) = std::move(_r); }  break;
-        case 1: _t->logWriteLine((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1]))); break;
+        case 1: _t->logWriteLine((*reinterpret_cast< std::add_pointer_t<QStringView>>(_a[1]))); break;
+        case 2: _t->logWriteError((*reinterpret_cast< std::add_pointer_t<QStringView>>(_a[1]))); break;
+        case 3: _t->onEmulationModeSwitched((*reinterpret_cast< std::add_pointer_t<bool>>(_a[1]))); break;
         default: ;
         }
     }
@@ -90,7 +103,7 @@ const QMetaObject MainWindow::staticMetaObject = { {
     nullptr,
 qt_incomplete_metaTypeArray<qt_meta_stringdata_MainWindow_t
 , QtPrivate::TypeAndForceComplete<MainWindow, std::true_type>
-, QtPrivate::TypeAndForceComplete<const QUrlQuery, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<const QString &, std::false_type>
+, QtPrivate::TypeAndForceComplete<const QUrlQuery, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<QStringView, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<QStringView, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<bool, std::false_type>
 
 
 >,
@@ -117,13 +130,13 @@ int MainWindow::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 2)
+        if (_id < 4)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 2;
+        _id -= 4;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 2)
+        if (_id < 4)
             *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType();
-        _id -= 2;
+        _id -= 4;
     }
     return _id;
 }

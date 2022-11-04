@@ -12,9 +12,7 @@
 
 #include <QFile>
 
-static const QString settingsFolder{ "settings/" };
-static const QString connectionSettingsPath{ settingsFolder + "connectionSettings.txt" };
-static const QString masterSettingsPath{ settingsFolder + "masterSettings.txt" };
+#include "DirAndFileNames.h"
 
 namespace Ui {
 class SettingsDialog;
@@ -28,14 +26,19 @@ public:
     explicit SettingsDialog(QWidget *parent = nullptr);
     ~SettingsDialog();
 
+    const QString& masterName() { return mSettings.masterName; }
     const int masterId() { return mSettings.masterId.toInt(); }
     const auto connectionSettings() {
-        return QPair<QString, quint16>(mSettings.serverHost, mSettings.serverPort.toShort());
+        return std::move(QPair<QString, quint16>(mSettings.serverHost, mSettings.serverPort.toShort()));
     }
 
 signals:
-    void masterSettingsChanged(const int newId);
-    void connectionSettingsChanged(const QPair<QString, quint16> pair_hostPort);
+    void masterNameChanged(QStringView name);
+    void masterIdChanged(const int id);
+
+    void connectionSettingsChanged(QStringView host, quint16 port);
+    void serverHostUpdated(QStringView host);
+    void serverPortUpdated(quint16 port);
 
 private slots:
     // принятие / отмена изменений
@@ -64,6 +67,7 @@ private:
     QFile mFile_connectionSettings;
     QFile mFile_masterSettings;
     struct Settings {
+        QString masterName;
         QString masterId;
         QString serverHost;
         QString serverPort;
@@ -74,6 +78,8 @@ private:
     QGroupBox *mGroupBox_server{ nullptr };
 
     // поля настроек устройства
+    QLabel *mLabel_masterName{ nullptr };
+    QLineEdit *mLineEdit_masterName{ nullptr };
     QLabel *mLabel_masterId{ nullptr };
     QLineEdit *mLineEdit_masterId{ nullptr };
 

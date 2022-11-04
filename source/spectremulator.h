@@ -12,18 +12,21 @@
 
 #include <QMediaPlayer>
 #include <QAudioOutput>
+
 #include <QFile>
 #include <QDir>
 
+#include <QRegularExpression>
+
 #include <QTimer>
 
-using PairHostPort = QPair<QString, quint16>;
+#include "DirAndFileNames.h"
 
 class SpectrEmulator : public SpectrMaster
 {
     Q_OBJECT
 public:
-    explicit SpectrEmulator(const int id, PairHostPort pair_hostPort, QObject *parent = nullptr);
+    explicit SpectrEmulator(const int id, QObject *parent = nullptr);
 
     ~SpectrEmulator();
 
@@ -33,21 +36,22 @@ public:
         download = 4
     };
 
-//    struct ConnectionSettings {
-//        QString host;
-//        quint16 port;
-//    };
-
 private:
     virtual void initConnections();
 
+    void setRequestType(RequestType requestType) { m_requestType = requestType; }
+
 signals:
+
+    void finished(bool);
 
 
 public slots:
-    void setConnectionSettings(PairHostPort pair_hostPort);
+    void initConnectionSettings();
+    void updateHost(QStringView host) { if (host != mPair_hostPort.first) { mPair_hostPort.first = std::move(host.toString()); } }
+    void updatePort(const quint16 port) { if (port != mPair_hostPort.second) { mPair_hostPort.second = port; } }
 
-    void toggleEmulationMode(bool onOff);
+    void toggleAutomaticMode(bool onOff);
 
     void sendRequest(const RequestType requestType, QUrlQuery query = QUrlQuery());
 
@@ -55,24 +59,32 @@ private slots:
     const QUrlQuery createQuery();
     void processReply(QNetworkReply *reply);
 
-    void processGetcmdReply(const QString &replyData);
-    void processStcmdReply(const QString &replyData);
-    void processSlistReply(const QString &replyData);
+    void processGetcmdReply(const QByteArray &replyData);
+    void processStcmdReply(const QByteArray &replyData);
+    void processSlistReply(const QByteArray &replyData);
     void processFlistReply(const QNetworkReply *reply, const QByteArray &replyData);
     void processDownloadReply(const QNetworkReply *reply, const QByteArray &replyData);
 
+    void syncWithServer(const QByteArray &bArr_serverParameters);
+    void executeCmd(const Command &cmd);
+    void executePlayCmd(const Command &cmd);
+    void executeQuietCmd(const Command &cmd);
+    void executeStopCmd(const Command &cmd);
+    void executeGetFileCmd(const Command &cmd);
+    void executeOutCmd(const Command  &cmd);
+
 private:
-    PairHostPort mPair_hostPort;
+
+    QPair<QString, quint16> mPair_hostPort;
     QNetworkAccessManager *m_networkManager{ nullptr };
-
-
-    QTimer *m_emulationTimer{ nullptr };
-    bool m_emulationMode;
 
     QList<QString> mList_pages{
         "getcmd", "stcmd", "slist", "flist", "download"
     };
     RequestType m_requestType;
+
+    QTimer *m_emulationTimer{ nullptr };
+    bool mB_automaticMode;
 };
 
 #endif // SPECTREMULATOR_H

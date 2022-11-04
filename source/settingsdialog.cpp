@@ -4,8 +4,8 @@
 SettingsDialog::SettingsDialog(QWidget *parent)
     : QDialog(parent)
     , ui(new Ui::SettingsDialog)
-    , mFile_connectionSettings{ connectionSettingsPath }
-    , mFile_masterSettings{ masterSettingsPath }
+    , mFile_connectionSettings{ connectionSettingsFilePath }
+    , mFile_masterSettings{ masterSettingsFilePath }
 {
     qInfo() << "SettingsDialog construction...";
 
@@ -69,10 +69,14 @@ void SettingsDialog::createMasterGroupBox()
     // создание макета
     auto *layout{ new QFormLayout(mGroupBox_master) };
 
+    mLabel_masterName = new QLabel(tr("Имя:"), mGroupBox_master);
+    mLineEdit_masterName = new QLineEdit(mGroupBox_master);
+
     mLabel_masterId = new QLabel(tr("id:"), mGroupBox_master);
     mLineEdit_masterId = new QLineEdit(mGroupBox_master);
     mLineEdit_masterId->setMaxLength(5);
 
+    layout->addRow(mLabel_masterName, mLineEdit_masterName);
     layout->addRow(mLabel_masterId, mLineEdit_masterId);
 }
 
@@ -130,7 +134,8 @@ void SettingsDialog::acceptSettings()
 {
     qInfo() << "SettingsDialog::acceptSettings";
 
-    auto newDeviceId{ mLineEdit_masterId->text().trimmed() };
+    auto newMasterName{ mLineEdit_masterName->text().trimmed() };
+    auto newMasterId{ mLineEdit_masterId->text().trimmed() };
     auto newServerHost{ mLineEdit_serverAddress->text().trimmed() };
     auto newServerPort{ mLineEdit_serverPort->text().trimmed() };
 
@@ -140,23 +145,32 @@ void SettingsDialog::acceptSettings()
         mSettings.serverHost = newServerHost;
         mSettings.serverPort = newServerPort;
 
-        mFile_connectionSettings.open(QIODevice::WriteOnly);
-        QTextStream stream{ &mFile_connectionSettings };
-        stream << mSettings.serverHost << '\n' << mSettings.serverPort;
-        mFile_connectionSettings.close();
+        QFile connectionSettingsFile{ connectionSettingsFilePath };
+        connectionSettingsFile.open(QIODevice::WriteOnly);
 
-        emit connectionSettingsChanged(connectionSettings());
+        QTextStream stream{ &connectionSettingsFile};
+        stream << mSettings.serverHost << '\n' << mSettings.serverPort;
+
+        connectionSettingsFile.close();
+
+        emit connectionSettingsChanged(mSettings.serverHost, mSettings.serverPort.toUShort());
     }
 
-    if (mSettings.masterId != newDeviceId) {
-        mSettings.masterId = newDeviceId;
+    if (mSettings.masterName != newMasterName
+            || mSettings.masterId != newMasterId)
+    {
+        mSettings.masterName = newMasterName;
+        mSettings.masterId = newMasterId;
 
-        mFile_masterSettings.open(QIODevice::WriteOnly);
-        QTextStream stream{ &mFile_masterSettings };
-        stream << mSettings.masterId;
-        mFile_connectionSettings.close();
+        QFile masterSettingsFile{ masterSettingsFilePath };
+        masterSettingsFile.open(QIODevice::WriteOnly);
 
-        emit masterSettingsChanged(mSettings.masterId.toInt());
+        QTextStream stream{ &masterSettingsFile };
+        stream << mSettings.masterName << '\n' << mSettings.masterId;
+
+        masterSettingsFile.close();
+        emit masterNameChanged(mSettings.masterName);
+        emit masterIdChanged(mSettings.masterId.toInt());
     }
 }
 
@@ -174,10 +188,11 @@ void SettingsDialog::rejectSettings()
 
     mFile_masterSettings.open(QIODevice::ReadOnly);
     stream.setDevice(&mFile_masterSettings);
-    stream >> mSettings.masterId;
+    stream >> mSettings.masterName >> mSettings.masterId;
     mFile_masterSettings.close();
 
     // обновление полей ввода
+    mLineEdit_masterId->setText(mSettings.masterName);
     mLineEdit_masterId->setText(mSettings.masterId);
     mLineEdit_serverAddress->setText(mSettings.serverHost);
     mLineEdit_serverPort->setText(mSettings.serverPort);

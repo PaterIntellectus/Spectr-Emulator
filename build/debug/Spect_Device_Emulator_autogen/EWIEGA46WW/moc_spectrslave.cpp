@@ -1,5 +1,5 @@
 /****************************************************************************
-** Meta object code from reading C++ file 'spectrdevice.h'
+** Meta object code from reading C++ file 'spectrslave.h'
 **
 ** Created by: The Qt Meta Object Compiler version 68 (Qt 6.3.1)
 **
@@ -7,11 +7,11 @@
 *****************************************************************************/
 
 #include <memory>
-#include "../../../../source/spectrdevice.h"
+#include "../../../../source/spectrslave.h"
 #include <QtCore/qbytearray.h>
 #include <QtCore/qmetatype.h>
 #if !defined(Q_MOC_OUTPUT_REVISION)
-#error "The header file 'spectrdevice.h' doesn't include <QObject>."
+#error "The header file 'spectrslave.h' doesn't include <QObject>."
 #elif Q_MOC_OUTPUT_REVISION != 68
 #error "This file was generated using the moc from 6.3.1. It"
 #error "cannot be used with the include files from this version of Qt."
@@ -21,27 +21,27 @@
 QT_BEGIN_MOC_NAMESPACE
 QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
-struct qt_meta_stringdata_SpectrDevice_t {
+struct qt_meta_stringdata_SpectrSlave_t {
     const uint offsetsAndSize[10];
-    char stringdata0[44];
+    char stringdata0[43];
 };
 #define QT_MOC_LITERAL(ofs, len) \
-    uint(offsetof(qt_meta_stringdata_SpectrDevice_t, stringdata0) + ofs), len 
-static const qt_meta_stringdata_SpectrDevice_t qt_meta_stringdata_SpectrDevice = {
+    uint(offsetof(qt_meta_stringdata_SpectrSlave_t, stringdata0) + ofs), len 
+static const qt_meta_stringdata_SpectrSlave_t qt_meta_stringdata_SpectrSlave = {
     {
-QT_MOC_LITERAL(0, 12), // "SpectrDevice"
-QT_MOC_LITERAL(13, 9), // "setStatus"
-QT_MOC_LITERAL(23, 0), // ""
-QT_MOC_LITERAL(24, 12), // "DeviceStatus"
-QT_MOC_LITERAL(37, 6) // "status"
+QT_MOC_LITERAL(0, 11), // "SpectrSlave"
+QT_MOC_LITERAL(12, 9), // "setStatus"
+QT_MOC_LITERAL(22, 0), // ""
+QT_MOC_LITERAL(23, 12), // "DeviceStatus"
+QT_MOC_LITERAL(36, 6) // "status"
 
     },
-    "SpectrDevice\0setStatus\0\0DeviceStatus\0"
+    "SpectrSlave\0setStatus\0\0DeviceStatus\0"
     "status"
 };
 #undef QT_MOC_LITERAL
 
-static const uint qt_meta_data_SpectrDevice[] = {
+static const uint qt_meta_data_SpectrSlave[] = {
 
  // content:
       10,       // revision
@@ -63,10 +63,10 @@ static const uint qt_meta_data_SpectrDevice[] = {
        0        // eod
 };
 
-void SpectrDevice::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)
+void SpectrSlave::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)
 {
     if (_c == QMetaObject::InvokeMetaMethod) {
-        auto *_t = static_cast<SpectrDevice *>(_o);
+        auto *_t = static_cast<SpectrSlave *>(_o);
         (void)_t;
         switch (_id) {
         case 0: _t->setStatus((*reinterpret_cast< std::add_pointer_t<DeviceStatus>>(_a[1]))); break;
@@ -75,14 +75,14 @@ void SpectrDevice::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id
     }
 }
 
-const QMetaObject SpectrDevice::staticMetaObject = { {
+const QMetaObject SpectrSlave::staticMetaObject = { {
     QMetaObject::SuperData::link<SpectrAbstract::staticMetaObject>(),
-    qt_meta_stringdata_SpectrDevice.offsetsAndSize,
-    qt_meta_data_SpectrDevice,
+    qt_meta_stringdata_SpectrSlave.offsetsAndSize,
+    qt_meta_data_SpectrSlave,
     qt_static_metacall,
     nullptr,
-qt_incomplete_metaTypeArray<qt_meta_stringdata_SpectrDevice_t
-, QtPrivate::TypeAndForceComplete<SpectrDevice, std::true_type>
+qt_incomplete_metaTypeArray<qt_meta_stringdata_SpectrSlave_t
+, QtPrivate::TypeAndForceComplete<SpectrSlave, std::true_type>
 , QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<const DeviceStatus, std::false_type>
 
 
@@ -91,20 +91,20 @@ qt_incomplete_metaTypeArray<qt_meta_stringdata_SpectrDevice_t
 } };
 
 
-const QMetaObject *SpectrDevice::metaObject() const
+const QMetaObject *SpectrSlave::metaObject() const
 {
     return QObject::d_ptr->metaObject ? QObject::d_ptr->dynamicMetaObject() : &staticMetaObject;
 }
 
-void *SpectrDevice::qt_metacast(const char *_clname)
+void *SpectrSlave::qt_metacast(const char *_clname)
 {
     if (!_clname) return nullptr;
-    if (!strcmp(_clname, qt_meta_stringdata_SpectrDevice.stringdata0))
+    if (!strcmp(_clname, qt_meta_stringdata_SpectrSlave.stringdata0))
         return static_cast<void*>(this);
     return SpectrAbstract::qt_metacast(_clname);
 }
 
-int SpectrDevice::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
+int SpectrSlave::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
 {
     _id = SpectrAbstract::qt_metacall(_c, _id, _a);
     if (_id < 0)

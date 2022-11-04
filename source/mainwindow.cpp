@@ -9,7 +9,7 @@ MainWindow::MainWindow(
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
     , m_settingsDialog{ new SettingsDialog(this) }
-    , m_emulator{ new SpectrEmulator(m_settingsDialog->masterId(), m_settingsDialog->connectionSettings(), this) }
+    , m_emulator{ new SpectrEmulator(m_settingsDialog->masterId(), this) }
     , mFile_requestNames{ requestsNamesFilePath }
     , mFile_requestQueries{ requestsQueriesFilePath }
 {
@@ -48,8 +48,8 @@ void MainWindow::initCentralWidget()
     if (centralWidget()->layout()) { delete centralWidget()->layout(); }
     auto layout{ new QHBoxLayout(centralWidget()) };
 
+    initRequestGroupBox();
     initLogGroupBox();
-    initReplyGroupBox();
 
     // добавление ранее сгенерированных виджетов
     layout->addWidget(mGroupBox_request);
@@ -69,39 +69,44 @@ void MainWindow::initConnections()
             mStackedWidget_requestParameters, &QStackedWidget::setCurrentIndex);
 
     // изменение настроек
-    connect(m_settingsDialog, &SettingsDialog::masterSettingsChanged, m_emulator, &SpectrEmulator::setId);
-    connect(m_settingsDialog, &SettingsDialog::connectionSettingsChanged,
-            m_emulator, &SpectrEmulator::setConnectionSettings);
+    connect(m_settingsDialog, &SettingsDialog::masterNameChanged, [this](QStringView name) {
+        setWindowTitle(tr("Эмулятор устройства Spectr (%1)").arg(name));
+    });
+    connect(m_settingsDialog, &SettingsDialog::masterIdChanged, m_emulator, &SpectrEmulator::setId);
+    connect(m_settingsDialog, &SettingsDialog::serverHostUpdated, m_emulator, &SpectrEmulator::updateHost);
+    connect(m_settingsDialog, &SettingsDialog::serverPortUpdated, m_emulator, &SpectrEmulator::updatePort);
 
     // сигналы мастера
-    connect(m_emulator, &SpectrEmulator::errorMessage, statusBar(), [this](const QString &message){
-        statusBar()->showMessage(message);
-    });
     connect(m_emulator, &SpectrEmulator::newMessage, this, &MainWindow::logWriteLine);
-    connect(m_emulator, &SpectrEmulator::errorMessage, this, &MainWindow::logWriteLine);
+    connect(m_emulator, &SpectrEmulator::errorMessage, this, &MainWindow::logWriteError);
+    connect(m_emulator, &SpectrEmulator::errorMessage, [this](QStringView message){
+        statusBar()->showMessage(QStringLiteral("%1").arg(message));
+    });
+
+    connect(mPushButton_sendRequest, &QPushButton::clicked, &QPushButton::setDisabled);
+    connect(m_emulator,  &SpectrEmulator::finished, mPushButton_sendRequest, &QPushButton::setEnabled);
+
+    // смена значения поля id команды, в запросе - Подтверждение команды,
+    connect(m_emulator, &SpectrEmulator::cmdReceived, [this](const int idcmd) {
+        mListListPair_requestRows.at(1).at(1).second->setText(QString::number(idcmd));
+    });
+    // смена значения поля 'st'(статус устройства)
+    connect(m_emulator, &SpectrEmulator::statusChanged, [this](const int st) {
+        mListListPair_requestRows.at(0).at(2).second->setText(QString::number(st));
+    });
 
     // отправка запроса
     connect(mPushButton_sendRequest, &QPushButton::clicked, [this](){
         m_emulator->sendRequest(
                     static_cast<SpectrEmulator::RequestType>(mComboBox_requestNames->currentIndex())
-                    , createQuery());
+                    , createQuery()
+                    );
     });
 
-    // включение и отключение режима эмуляции
-    connect(mPushButton_emulationSwitcher, &QPushButton::toggled, [this](bool checked) {
-        // смена стиля кнопки
-        QString buttonText = checked ? "Прекратить эмуляцию" : "Начать эмуляцию";
-        mPushButton_emulationSwitcher->setText(buttonText);
-
-        // отключение виджетов
-        mAction_openSettings->setDisabled(checked);
-        mComboBox_requestNames->setDisabled(checked);
-        mStackedWidget_requestParameters->setDisabled(checked);
-        mPushButton_sendRequest->setDisabled(checked);
-
-        // переключение эмуляции
-        m_emulator->toggleEmulationMode(checked);
-    });
+    // блокировка интерфейса
+    connect(mPushButton_emulationSwitcher, &QPushButton::toggled, this, &MainWindow::onEmulationModeSwitched);
+    // включение эмуляции
+    connect(mPushButton_emulationSwitcher, &QPushButton::toggled, m_emulator, &SpectrEmulator::toggleAutomaticMode);
 }
 
 
@@ -116,12 +121,12 @@ void MainWindow::initMenuWidget()
 }
 
 // создание группы с запросом
-void MainWindow::initLogGroupBox()
+void MainWindow::initRequestGroupBox()
 {
     qInfo() << "MainWindow::initLogGroupBox";
 
     if (mGroupBox_request) { delete mGroupBox_request; }
-    mGroupBox_request = new QGroupBox(tr("Лог:"), this);
+    mGroupBox_request = new QGroupBox(tr("Запрос:"), this);
 
     auto layout{ new QGridLayout(mGroupBox_request) };
 
@@ -136,12 +141,12 @@ void MainWindow::initLogGroupBox()
 }
 
 // создание группы с ответом от сервера
-void MainWindow::initReplyGroupBox()
+void MainWindow::initLogGroupBox()
 {
     qInfo() << "MainWindow::initReplyGroupBox";
 
     if (mGroupBox_log) { delete mGroupBox_log; }
-    mGroupBox_log = new QGroupBox(tr("Ответ:"), this);
+    mGroupBox_log = new QGroupBox(tr("Лог:"), this);
 
     auto layout{ new QVBoxLayout(mGroupBox_log) };
 
@@ -159,7 +164,7 @@ void MainWindow::initRequestComboBox()
     if (mComboBox_requestNames) { delete mComboBox_requestNames; }
     mComboBox_requestNames = new QComboBox(this);
 
-    for (auto &requestName : mList_requestNames) {
+    for (const auto &requestName : mList_requestNames) {
         mComboBox_requestNames->addItem(requestName);
     }
 }
@@ -183,7 +188,7 @@ void MainWindow::initRequestStackedWidget()
 
         if (i < queries_count) {
             mListListPair_requestRows.append(QList<PairLabelLineedit>());
-            for (auto &pair_parameter : mList_requestQueries.at(i).queryItems()) {
+            for (const auto &pair_parameter : mList_requestQueries.at(i).queryItems()) {
                 auto newLabel{ new QLabel(pair_parameter.first, newWidget) };
                 auto newLineEdit{ new QLineEdit(pair_parameter.second, newWidget) };
 
@@ -199,10 +204,10 @@ void MainWindow::initRequestButtons()
 {
     qInfo() << "MainWindow::initRequestButtons";
 
-    mPushButton_sendRequest = new QPushButton("Отправить запрос", this);
+    mPushButton_sendRequest = new QPushButton(tr("Отправить запрос"), this);
 
     mPushButton_emulationSwitcher = new QPushButton(mGroupBox_request);
-    mPushButton_emulationSwitcher->setText("Включить эмуляцию");
+    mPushButton_emulationSwitcher->setText(tr("Включить эмуляцию"));
     mPushButton_emulationSwitcher->setCheckable(true);
 }
 
@@ -245,7 +250,7 @@ void MainWindow::updateQueriesFile()
     mFile_requestQueries.open(QIODevice::WriteOnly);
     QTextStream stream{ &mFile_requestQueries };
 
-    for (auto &query : mList_requestQueries) {
+    for (const auto &query : mList_requestQueries) {
         stream << query.query() << '\n';
     }
     mFile_requestQueries.close();
@@ -254,6 +259,7 @@ void MainWindow::updateQueriesFile()
 const QUrlQuery MainWindow::createQuery()
 {
     qInfo() << "SpectrMaster::createQuery";
+
     auto requestIndex{ mStackedWidget_requestParameters->currentIndex() };
 
     auto labels{ mStackedWidget_requestParameters->widget(requestIndex)->findChildren<QLabel *>() };
@@ -276,10 +282,30 @@ const QUrlQuery MainWindow::createQuery()
     return query;
 }
 
-void MainWindow::logWriteLine(const QString &line)
+void MainWindow::logWriteLine(QStringView line)
 {
-    qInfo() << "Log:" << line;
+    qInfo() << line;
 
     mTextBrowser_log->moveCursor(QTextCursor::End);
-    mTextBrowser_log->insertPlainText(line + '\n');
+    mTextBrowser_log->insertPlainText(QStringLiteral("%1\n").arg(line));
+}
+
+void MainWindow::logWriteError(QStringView strv_error)
+{
+    logWriteLine(QStringLiteral("Error: %1").arg(strv_error));
+}
+
+// блокировка интерфейса при включении режима эмуляции
+void MainWindow::onEmulationModeSwitched(bool checked)
+{
+    // смена стиля кнопки
+    mPushButton_emulationSwitcher->setText(
+                checked ? QStringLiteral("Прекратить эмуляцию") : QStringLiteral("Начать эмуляцию")
+                          );
+
+    // отключение виджетов
+    mAction_openSettings->setDisabled(checked);
+    mComboBox_requestNames->setDisabled(checked);
+    mStackedWidget_requestParameters->setDisabled(checked);
+    mPushButton_sendRequest->setDisabled(checked);
 }

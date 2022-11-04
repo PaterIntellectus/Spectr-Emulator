@@ -14,64 +14,58 @@
 
 #include "track.h"
 
-static const QString tracksDirectory{ "tracks/" };
+static const QString defaultTracksDirectory{ "tracks/" };
 static const QString trackListFileName{ "trackList.txt" };
-
-static const QString lastModifiedDateFormal{ "yyyy.MM.dd hh:mm:ss" };
-static const QString trackDateFormat{ "yyyy.MM.dd" };
-static const QString trackTimeFormat{ "hh:mm:ss" };
 
 
 class TrackManager : public QObject
 {
     Q_OBJECT
 public:
+    TrackManager(const QString &tracksDirPath, QObject *parent = nullptr);
     explicit TrackManager(QObject *parent = nullptr);
-    TrackManager(const QList<int> list_trackNum, QObject *parent = nullptr);
     ~TrackManager();
-
-    const QString createTrackName(const int trackNum) const {
-        return QStringLiteral("track%1.mp3").arg(trackNum, 2, 10, QChar('0'));
-    }
-    const QString getTrackRelativePath(const int trackNum) {
-        return getTrackRelativePath(createTrackName(trackNum));
-    }
-    const QString getTrackRelativePath(QStringView trackName) {
-        return tracksDirectory + trackName.toString();
-    }
 
 private:
     void initConnections();
 
-    void initTracks();
+    void initTrackList();
 
-    void appendTrackList(const QString &name, const QString &lastModified);
+    void appendTrackList(const Track &newTrack);
 
-    void saveTracksList();
-
-    QSharedPointer<Track> getTrackPtr(QStringView trackName);
-    QSharedPointer<Track> getTrackPtr(const int trackNum);
+    void saveTrackList() const;
 
 signals:
-    void errorMessage(const QString &message);
-    void newMessage(const QString &message);
+    void errorMessage(QStringView str_error) const;
+    void newMessage(QStringView message) const;
+
+    void stopPlaying();
 
 public slots:
-    bool saveTrack(const QString &trackName, const QByteArray &trackData, const QString &lastModified);
+    void rememberTrackNum(int trackNum);
+    int remindTrackNum() { return m_trackNum; }
 
-    bool playTrack(QStringView trackName);
-    bool playTrack(const int trackNum);
 
-    const QByteArray calculateCrc32(const QString &trackName);
-    const QByteArray calculateCrc32(const int trackNum);
+    bool createNewTrack(const Track &newTrack, const QByteArray &trackData);
+    const std::optional<Track> findTrack(const QString &trackName) const;
+    bool playTrack(const QString &trackName, const float volume = 0.8);
+    bool playTrack(const int trackNum, const float volume = 0.8);
+
+    const quint32 calculateCrc32Track(const QString &trackName) const;
+    const quint32 calculateCrc32Track(const int trackNum) const;
+
+    const quint32 calculateCrc32OfAllTracks() const;
 
 private slots:
-    const quint32 calculateCrc32(const QByteArray data);
+    const quint32 calculateCrc32Track(const Track &track) const;
+    const quint32 calculateCrc32(const QByteArray &data) const;
 
 private:
-    QList<QSharedPointer<Track>> mList_tracks;
+    const QDir tracksDir;
 
-    quint32 allTracksCrc;
+    QList<Track> mList_tracks;
+
+    int m_trackNum;
 
     QMediaPlayer *mMediaPlayer{ nullptr };
     QAudioOutput *mAudioOutput{ nullptr };

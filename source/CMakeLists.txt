@@ -26,17 +26,20 @@ set(PROJECT_SOURCES
         settingsdialog.cpp
         settingsdialog.ui
 
-        spectremulator.h
-        spectremulator.cpp
-
         spectrabstract.h
         spectrabstract.cpp
+
+        spectrslave.h
+        spectrslave.cpp
 
         spectrmaster.h
         spectrmaster.cpp
 
-        spectrdevice.h
-        spectrdevice.cpp
+        spectremulator.h
+        spectremulator.cpp
+
+        spectrnetworkmanager.h
+        spectrnetworkmanager.cpp
 
         command.h
         command.cpp
@@ -46,6 +49,8 @@ set(PROJECT_SOURCES
 
         track.h
         track.cpp
+
+        DirAndFileNames.h
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)

@@ -383,6 +383,12 @@
 	"HEADERS" : 
 	[
 		[
+			"D:/Repositories/Spectr-Emulator/source/DirAndFileNames.h",
+			"MU",
+			"EWIEGA46WW/moc_DirAndFileNames.cpp",
+			null
+		],
+		[
 			"D:/Repositories/Spectr-Emulator/source/command.h",
 			"MU",
 			"EWIEGA46WW/moc_command.cpp",
@@ -407,12 +413,6 @@
 			null
 		],
 		[
-			"D:/Repositories/Spectr-Emulator/source/spectrdevice.h",
-			"MU",
-			"EWIEGA46WW/moc_spectrdevice.cpp",
-			null
-		],
-		[
 			"D:/Repositories/Spectr-Emulator/source/spectremulator.h",
 			"MU",
 			"EWIEGA46WW/moc_spectremulator.cpp",
@@ -422,6 +422,18 @@
 			"D:/Repositories/Spectr-Emulator/source/spectrmaster.h",
 			"MU",
 			"EWIEGA46WW/moc_spectrmaster.cpp",
+			null
+		],
+		[
+			"D:/Repositories/Spectr-Emulator/source/spectrnetworkmanager.h",
+			"MU",
+			"EWIEGA46WW/moc_spectrnetworkmanager.cpp",
+			null
+		],
+		[
+			"D:/Repositories/Spectr-Emulator/source/spectrslave.h",
+			"MU",
+			"EWIEGA46WW/moc_spectrslave.cpp",
 			null
 		],
 		[
@@ -526,13 +538,18 @@
 			"MU",
 			null
 		],
-		[ "D:/Repositories/Spectr-Emulator/source/spectrdevice.cpp", "MU", null ],
 		[
 			"D:/Repositories/Spectr-Emulator/source/spectremulator.cpp",
 			"MU",
 			null
 		],
 		[ "D:/Repositories/Spectr-Emulator/source/spectrmaster.cpp", "MU", null ],
+		[
+			"D:/Repositories/Spectr-Emulator/source/spectrnetworkmanager.cpp",
+			"MU",
+			null
+		],
+		[ "D:/Repositories/Spectr-Emulator/source/spectrslave.cpp", "MU", null ],
 		[ "D:/Repositories/Spectr-Emulator/source/track.cpp", "MU", null ],
 		[ "D:/Repositories/Spectr-Emulator/source/trackmanager.cpp", "MU", null ]
 	],

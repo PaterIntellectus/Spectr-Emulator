@@ -3,6 +3,7 @@
 SpectrMaster::SpectrMaster(const int id, const DeviceStatus status, QObject *parent)
     : SpectrAbstract{ id, status, parent }
     , m_cmd{ new Command(this) }
+    , mFile_slaves{ slaveListFileName }
 {
     qInfo() << "SpectrMaster construction...";
 
@@ -23,14 +24,14 @@ SpectrMaster::~SpectrMaster()
 {
     qInfo() << "~SpectrMaster";
 
-    if (!mList_slaves.empty()){
-        for (auto &slave : mList_slaves) { delete slave; }
-    }
 }
 
 void SpectrMaster::initConnections()
 {
     qInfo() << "SpectrMaster::initConnections";
+
+    connect(this, &SpectrMaster::cmdReceived, m_cmd, &Command::setId);
+
 }
 
 void SpectrMaster::setStatus(const DeviceStatus status)
@@ -41,7 +42,7 @@ void SpectrMaster::setStatus(const DeviceStatus status)
     {
     case DeviceStatus::Pending:
     case DeviceStatus::PlayingAudio:
-    case DeviceStatus::AccidentOccured:
+    case DeviceStatus::AccidentOccurred:
     case DeviceStatus::FirstRequest:
     // master only
     case DeviceStatus::DownloadingFile:
@@ -58,11 +59,62 @@ void SpectrMaster::setStatus(const DeviceStatus status)
     }
 }
 
-const QList<int> SpectrMaster::getSlaveIdList()
+void SpectrMaster::initSlaveList(QList<int> list_slaveId)
 {
-    QList<int> list_slaveId;
+    qInfo() << "SpectrMaster::initSlaveList";
+
+    // removing extra slaves
     for (const auto &slave : mList_slaves) {
-        list_slaveId.append(slave->getId());
+        if (list_slaveId.contains(slave.getId())) {
+            continue;
+        }
+        removeSlave(slave.getId());
     }
-    return list_slaveId;
+    // adding slaves
+    for (const auto slaveId : list_slaveId) {
+        addSlave(slaveId);
+    }
+}
+
+void SpectrMaster::addSlave(const int id, const DeviceStatus status)
+{
+    qInfo() << "SpectrMaster::addSlave";
+
+    if (findSlave(id).has_value()) {
+        emit newMessage(tr("Устройство #%1 уже является slave устройством").arg(id));
+        return;
+    }
+//    mList_slaves.append(SpectrSlave(id, status, this));
+    emit newMessage(tr("Добавлено уcтройство #%1").arg(id));
+}
+
+void SpectrMaster::removeSlave(const int id)
+{
+    qInfo() << "SpectrMaster::removeSlave";
+
+    auto opt_slave{ findSlave(id) };
+
+    if (!opt_slave.has_value()) {
+        emit errorMessage(tr("Невозможно удалить не подключенное slave устройство"));
+        return;
+    }
+    mList_slaves.removeOne(opt_slave.value());
+    mList_slaves.squeeze();
+    emit newMessage(tr("Устройство #%2(%1) удалено")
+                    .arg(opt_slave->getName().size() ? opt_slave->getName() : QStringLiteral("no name"))
+                    .arg(opt_slave->getId())
+                    );
+}
+
+const std::optional<SpectrSlave> SpectrMaster::findSlave(const int id) const
+{
+    qInfo() << "SpectrMaster::findSlave";
+
+    for (const auto &slave : mList_slaves) {
+        if (slave.getId() == id) {
+            return std::optional<const SpectrSlave>(std::in_place, slave);
+        }
+    }
+    emit newMessage(tr("Устройство #%1 не найдено").arg(id));
+    return std::nullopt;
 }

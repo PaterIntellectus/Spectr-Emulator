@@ -23,29 +23,35 @@ QT_BEGIN_MOC_NAMESPACE
 QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_SettingsDialog_t {
-    const uint offsetsAndSize[22];
-    char stringdata0[155];
+    const uint offsetsAndSize[32];
+    char stringdata0[186];
 };
 #define QT_MOC_LITERAL(ofs, len) \
     uint(offsetof(qt_meta_stringdata_SettingsDialog_t, stringdata0) + ofs), len 
 static const qt_meta_stringdata_SettingsDialog_t qt_meta_stringdata_SettingsDialog = {
     {
 QT_MOC_LITERAL(0, 14), // "SettingsDialog"
-QT_MOC_LITERAL(15, 21), // "masterSettingsChanged"
-QT_MOC_LITERAL(37, 0), // ""
-QT_MOC_LITERAL(38, 5), // "newId"
-QT_MOC_LITERAL(44, 25), // "connectionSettingsChanged"
-QT_MOC_LITERAL(70, 26), // "std::pair<QString,quint16>"
-QT_MOC_LITERAL(97, 13), // "pair_hostPort"
-QT_MOC_LITERAL(111, 6), // "accept"
-QT_MOC_LITERAL(118, 6), // "reject"
-QT_MOC_LITERAL(125, 14), // "acceptSettings"
-QT_MOC_LITERAL(140, 14) // "rejectSettings"
+QT_MOC_LITERAL(15, 17), // "masterNameChanged"
+QT_MOC_LITERAL(33, 0), // ""
+QT_MOC_LITERAL(34, 11), // "QStringView"
+QT_MOC_LITERAL(46, 4), // "name"
+QT_MOC_LITERAL(51, 15), // "masterIdChanged"
+QT_MOC_LITERAL(67, 2), // "id"
+QT_MOC_LITERAL(70, 25), // "connectionSettingsChanged"
+QT_MOC_LITERAL(96, 4), // "host"
+QT_MOC_LITERAL(101, 4), // "port"
+QT_MOC_LITERAL(106, 17), // "serverHostUpdated"
+QT_MOC_LITERAL(124, 17), // "serverPortUpdated"
+QT_MOC_LITERAL(142, 6), // "accept"
+QT_MOC_LITERAL(149, 6), // "reject"
+QT_MOC_LITERAL(156, 14), // "acceptSettings"
+QT_MOC_LITERAL(171, 14) // "rejectSettings"
 
     },
-    "SettingsDialog\0masterSettingsChanged\0"
-    "\0newId\0connectionSettingsChanged\0"
-    "std::pair<QString,quint16>\0pair_hostPort\0"
+    "SettingsDialog\0masterNameChanged\0\0"
+    "QStringView\0name\0masterIdChanged\0id\0"
+    "connectionSettingsChanged\0host\0port\0"
+    "serverHostUpdated\0serverPortUpdated\0"
     "accept\0reject\0acceptSettings\0"
     "rejectSettings"
 };
@@ -57,26 +63,32 @@ static const uint qt_meta_data_SettingsDialog[] = {
       10,       // revision
        0,       // classname
        0,    0, // classinfo
-       6,   14, // methods
+       9,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
        0,       // flags
-       2,       // signalCount
+       5,       // signalCount
 
  // signals: name, argc, parameters, tag, flags, initial metatype offsets
-       1,    1,   50,    2, 0x06,    1 /* Public */,
-       4,    1,   53,    2, 0x06,    3 /* Public */,
+       1,    1,   68,    2, 0x06,    1 /* Public */,
+       5,    1,   71,    2, 0x06,    3 /* Public */,
+       7,    2,   74,    2, 0x06,    5 /* Public */,
+      10,    1,   79,    2, 0x06,    8 /* Public */,
+      11,    1,   82,    2, 0x06,   10 /* Public */,
 
  // slots: name, argc, parameters, tag, flags, initial metatype offsets
-       7,    0,   56,    2, 0x08,    5 /* Private */,
-       8,    0,   57,    2, 0x08,    6 /* Private */,
-       9,    0,   58,    2, 0x08,    7 /* Private */,
-      10,    0,   59,    2, 0x08,    8 /* Private */,
+      12,    0,   85,    2, 0x08,   12 /* Private */,
+      13,    0,   86,    2, 0x08,   13 /* Private */,
+      14,    0,   87,    2, 0x08,   14 /* Private */,
+      15,    0,   88,    2, 0x08,   15 /* Private */,
 
  // signals: parameters
-    QMetaType::Void, QMetaType::Int,    3,
-    QMetaType::Void, 0x80000000 | 5,    6,
+    QMetaType::Void, 0x80000000 | 3,    4,
+    QMetaType::Void, QMetaType::Int,    6,
+    QMetaType::Void, 0x80000000 | 3, QMetaType::UShort,    8,    9,
+    QMetaType::Void, 0x80000000 | 3,    8,
+    QMetaType::Void, QMetaType::UShort,    9,
 
  // slots: parameters
     QMetaType::Void,
@@ -93,27 +105,51 @@ void SettingsDialog::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _
         auto *_t = static_cast<SettingsDialog *>(_o);
         (void)_t;
         switch (_id) {
-        case 0: _t->masterSettingsChanged((*reinterpret_cast< std::add_pointer_t<int>>(_a[1]))); break;
-        case 1: _t->connectionSettingsChanged((*reinterpret_cast< std::add_pointer_t<std::pair<QString,quint16>>>(_a[1]))); break;
-        case 2: _t->accept(); break;
-        case 3: _t->reject(); break;
-        case 4: _t->acceptSettings(); break;
-        case 5: _t->rejectSettings(); break;
+        case 0: _t->masterNameChanged((*reinterpret_cast< std::add_pointer_t<QStringView>>(_a[1]))); break;
+        case 1: _t->masterIdChanged((*reinterpret_cast< std::add_pointer_t<int>>(_a[1]))); break;
+        case 2: _t->connectionSettingsChanged((*reinterpret_cast< std::add_pointer_t<QStringView>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<quint16>>(_a[2]))); break;
+        case 3: _t->serverHostUpdated((*reinterpret_cast< std::add_pointer_t<QStringView>>(_a[1]))); break;
+        case 4: _t->serverPortUpdated((*reinterpret_cast< std::add_pointer_t<quint16>>(_a[1]))); break;
+        case 5: _t->accept(); break;
+        case 6: _t->reject(); break;
+        case 7: _t->acceptSettings(); break;
+        case 8: _t->rejectSettings(); break;
         default: ;
         }
     } else if (_c == QMetaObject::IndexOfMethod) {
         int *result = reinterpret_cast<int *>(_a[0]);
         {
-            using _t = void (SettingsDialog::*)(const int );
-            if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&SettingsDialog::masterSettingsChanged)) {
+            using _t = void (SettingsDialog::*)(QStringView );
+            if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&SettingsDialog::masterNameChanged)) {
                 *result = 0;
                 return;
             }
         }
         {
-            using _t = void (SettingsDialog::*)(const QPair<QString,quint16> );
-            if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&SettingsDialog::connectionSettingsChanged)) {
+            using _t = void (SettingsDialog::*)(const int );
+            if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&SettingsDialog::masterIdChanged)) {
                 *result = 1;
+                return;
+            }
+        }
+        {
+            using _t = void (SettingsDialog::*)(QStringView , quint16 );
+            if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&SettingsDialog::connectionSettingsChanged)) {
+                *result = 2;
+                return;
+            }
+        }
+        {
+            using _t = void (SettingsDialog::*)(QStringView );
+            if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&SettingsDialog::serverHostUpdated)) {
+                *result = 3;
+                return;
+            }
+        }
+        {
+            using _t = void (SettingsDialog::*)(quint16 );
+            if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&SettingsDialog::serverPortUpdated)) {
+                *result = 4;
                 return;
             }
         }
@@ -127,7 +163,7 @@ const QMetaObject SettingsDialog::staticMetaObject = { {
     qt_static_metacall,
     nullptr,
 qt_incomplete_metaTypeArray<qt_meta_stringdata_SettingsDialog_t
-, QtPrivate::TypeAndForceComplete<SettingsDialog, std::true_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<const int, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<const QPair<QString,quint16>, std::false_type>
+, QtPrivate::TypeAndForceComplete<SettingsDialog, std::true_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<QStringView, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<const int, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<QStringView, std::false_type>, QtPrivate::TypeAndForceComplete<quint16, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<QStringView, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<quint16, std::false_type>
 , QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>
 
 
@@ -155,29 +191,50 @@ int SettingsDialog::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 6)
+        if (_id < 9)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 6;
+        _id -= 9;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 6)
+        if (_id < 9)
             *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType();
-        _id -= 6;
+        _id -= 9;
     }
     return _id;
 }
 
 // SIGNAL 0
-void SettingsDialog::masterSettingsChanged(const int _t1)
+void SettingsDialog::masterNameChanged(QStringView _t1)
 {
     void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t1))) };
     QMetaObject::activate(this, &staticMetaObject, 0, _a);
 }
 
 // SIGNAL 1
-void SettingsDialog::connectionSettingsChanged(const QPair<QString,quint16> _t1)
+void SettingsDialog::masterIdChanged(const int _t1)
 {
     void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t1))) };
     QMetaObject::activate(this, &staticMetaObject, 1, _a);
+}
+
+// SIGNAL 2
+void SettingsDialog::connectionSettingsChanged(QStringView _t1, quint16 _t2)
+{
+    void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t1))), const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t2))) };
+    QMetaObject::activate(this, &staticMetaObject, 2, _a);
+}
+
+// SIGNAL 3
+void SettingsDialog::serverHostUpdated(QStringView _t1)
+{
+    void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t1))) };
+    QMetaObject::activate(this, &staticMetaObject, 3, _a);
+}
+
+// SIGNAL 4
+void SettingsDialog::serverPortUpdated(quint16 _t1)
+{
+    void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t1))) };
+    QMetaObject::activate(this, &staticMetaObject, 4, _a);
 }
 QT_WARNING_POP
 QT_END_MOC_NAMESPACE

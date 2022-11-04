@@ -1,6 +1,6 @@
-#include "spectrdevice.h"
+#include "spectrslave.h"
 
-SpectrDevice::SpectrDevice(const int id, const DeviceStatus status, QObject *parent)
+SpectrSlave::SpectrSlave(const int id, const DeviceStatus status, QObject *parent)
     : SpectrAbstract{ id, status, parent }
 {
     qInfo() << "SpectrDevice construction...";
@@ -10,24 +10,24 @@ SpectrDevice::SpectrDevice(const int id, const DeviceStatus status, QObject *par
     qInfo() << "/SpectrDevice constructed";
 }
 
-SpectrDevice::SpectrDevice(const SpectrDevice &spectrDevice)
-    : SpectrDevice{ spectrDevice.getId(), spectrDevice.getStatus(), spectrDevice.parent() }
+SpectrSlave::SpectrSlave(const SpectrSlave &spectrDevice)
+    : SpectrSlave{ spectrDevice.getId(), spectrDevice.getStatus(), spectrDevice.parent() }
 {}
 
-SpectrDevice::SpectrDevice(const SpectrDevice &&spectrDevice)
+SpectrSlave::SpectrSlave(const SpectrSlave &&spectrDevice)
     : SpectrAbstract(std::move(spectrDevice))
 {}
 
-SpectrDevice::SpectrDevice(QObject *parent)
-    : SpectrDevice{ 0, DeviceStatus::FirstRequest, parent }
+SpectrSlave::SpectrSlave(QObject *parent)
+    : SpectrSlave{ 0, DeviceStatus::FirstRequest, parent }
 {}
 
-SpectrDevice::~SpectrDevice()
+SpectrSlave::~SpectrSlave()
 {
     qInfo() << "~SpectrDevice";
 }
 
-SpectrDevice &SpectrDevice::operator=(const SpectrDevice &spectrDevice)
+SpectrSlave &SpectrSlave::operator=(const SpectrSlave &spectrDevice)
 {
     qInfo() << "anotherDevice id:" << spectrDevice.getId();
     if (this != &spectrDevice) {
@@ -36,12 +36,12 @@ SpectrDevice &SpectrDevice::operator=(const SpectrDevice &spectrDevice)
     return *this;
 }
 
-void SpectrDevice::initConnections()
+void SpectrSlave::initConnections()
 {
     qInfo() << "SpectrDevice::initConnections";
 }
 
-void SpectrDevice::setStatus(const DeviceStatus status)
+void SpectrSlave::setStatus(const DeviceStatus status)
 {
     qInfo() << "SpectrDevice::setStatus";
 
@@ -49,14 +49,14 @@ void SpectrDevice::setStatus(const DeviceStatus status)
     {
     case DeviceStatus::Pending:
     case DeviceStatus::PlayingAudio:
-    case DeviceStatus::AccidentOccured:
+    case DeviceStatus::AccidentOccurred:
     case DeviceStatus::FirstRequest:
     // slave only
     case DeviceStatus::ReceivingFile:
         SpectrAbstract::setStatus(status);
         break;
     default:
-        emit errorMessage("Wrong device status!!!");
+        emit errorMessage(tr("Не верный статус устройства!!!"));
         break;
     }
 }

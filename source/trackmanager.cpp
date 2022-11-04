@@ -1,172 +1,176 @@
 #include "trackmanager.h"
 
-TrackManager::TrackManager(QObject *parent)
+TrackManager::TrackManager(const QString &tracksDirPath, QObject *parent)
     : QObject{ parent }
+    , tracksDir{ tracksDirPath }
     , mMediaPlayer{ new QMediaPlayer(this) }
     , mAudioOutput{ new QAudioOutput(this) }
 {
     qInfo() << "TrackManager construction...";
 
     mMediaPlayer->setAudioOutput(mAudioOutput);
-    mAudioOutput->setVolume(50);
 
     // создание директории с треками
-    QDir::current().mkdir(tracksDirectory);
+    if (!tracksDir.exists()) {
+        QDir::current().mkdir(tracksDir.path());
+    }
+    // поиск треков
+    initTrackList();
 
-//    // поиск всех треков в папке и запись информации в список
-    initTracks();
+    initConnections();
 
     qInfo() << "/TrackManager constructed";
+}
+
+TrackManager::TrackManager(QObject *parent)
+    : TrackManager{ defaultTracksDirectory, parent }
+{
 }
 
 TrackManager::~TrackManager()
 {
     qInfo() << "~TrackManager";
 
-    saveTracksList();
+    saveTrackList();
 }
 
 void TrackManager::initConnections()
 {
     qInfo() << "TrackManager::initConnections";
 
-
+    connect(this, &TrackManager::stopPlaying, mMediaPlayer, &QMediaPlayer::stop);
 }
 
-void TrackManager::initTracks()
+void TrackManager::initTrackList()
 {
     qInfo() << "TrackManager::initTracks";
 
-    QFile file_tracksData{ tracksDirectory + trackListFileName };
-
-    if (file_tracksData.open(QIODevice::ReadOnly)) {
-        while (!file_tracksData.atEnd()) {
-//            format: "trackName;lastModified";
-            auto trackData{ QString(file_tracksData.readLine()).split(';', Qt::SkipEmptyParts) };
-            if (QFile::exists(getTrackRelativePath(trackData.at(0)))) {
-                appendTrackList(trackData.at(0), trackData.at(1));
+    QFile file_trackList{ tracksDir.filePath(trackListFileName) };
+    if (file_trackList.open(QIODevice::ReadOnly)) {
+        while (!file_trackList.atEnd()) {
+            auto trackData{ QString(file_trackList.readLine()).split(';', Qt::SkipEmptyParts) };
+            if (tracksDir.exists(trackData.at(0))) {
+                appendTrackList({ trackData.at(0), trackData.at(1) });
             }
         }
-        file_tracksData.close();
+        file_trackList.close();
     } else {
-        emit errorMessage(tr("Не вышло открыть файл с данными о треках!!!"));
+        emit newMessage(tr("Не удалось открыть файл с данными о треках"));
         return;
     }
 }
 
-void TrackManager::appendTrackList(const QString &trackName, const QString &lastModified)
+void TrackManager::appendTrackList(const Track &newTrack)
 {
-    qInfo() << "TrackManager::addTrack";
+    qInfo() << "TrackManager::appendTrackList";
 
-    auto ptr_newTrack{ QSharedPointer<Track>::create(trackName, lastModified) };
-
-//     если трек с таким именем уже имеется в списке,
-//     то он будет заменён
-    if (auto track{ getTrackPtr(trackName) }; track) {
-        track.swap(ptr_newTrack);
-        ptr_newTrack.reset();
-        emit newMessage(tr("Трек %1 перезаписан").arg(trackName));
+    if (auto opt_track{ findTrack(newTrack.fileName()) }; opt_track) {
+        mList_tracks.replace(mList_tracks.indexOf(opt_track.value()), newTrack);
+        emit newMessage(tr("Трек заменён"));
     } else {
-        mList_tracks.append(ptr_newTrack);
-        emit newMessage(tr("Добавлен новый трек: %1").arg(trackName));
+        mList_tracks.append(newTrack);
+        emit newMessage(tr("Трек закачан"));
     }
 }
 
-void TrackManager::saveTracksList()
+void TrackManager::saveTrackList() const
 {
     qInfo() << "TrackManager::saveTracksList";
 
-    QFile file_trackList{ tracksDirectory + trackListFileName };
+    QFile file_trackList{ tracksDir.filePath(trackListFileName) };
 
     if (file_trackList.open(QIODevice::WriteOnly)) {
         QTextStream stream{ &file_trackList };
-        for (const auto ptr_track : mList_tracks) {
+        for (const auto &track : mList_tracks) {
             stream
-                    << ptr_track->name() << ';'
-                    << ptr_track->lastModified().toString(lastModifiedDateFormal) << ';'
+                    << track.fileName() << ';'
+                    << track.lastModified().toString(lastModifiedDateFormal) << ';'
                     << '\n';
         }
         file_trackList.close();
     } else {
-        emit errorMessage(tr("Невозможно сохранить данные о треках!"));
+        emit errorMessage(tr("Не удалось открыть файл для записи."));
+        return;
     }
 }
 
-bool TrackManager::saveTrack(const QString &trackName, const QByteArray &trackData, const QString &lastModified)
+void TrackManager::rememberTrackNum(int trackNum)
 {
-    qInfo() << "TrackManager::saveTrack";
+    m_trackNum = trackNum;
+}
 
-    QFile file_track{ tracksDirectory + trackName };
+bool TrackManager::createNewTrack(const Track &track, const QByteArray &trackData)
+{
+    qInfo() << "TrackManager::createNewTrack";
+
+    QFile file_track{ tracksDir.filePath(track.fileName()) };
     if (file_track.open(QIODevice::WriteOnly)) {
         file_track.write(trackData);
         file_track.close();
+
+        appendTrackList(track);
     } else {
-        emit errorMessage("Не удалось открыть файл для сохранения трека!!!");
+        emit errorMessage(tr("Не удалось сохранить трек"));
         return false;
     }
-    appendTrackList(trackName, lastModified);
     return true;
 }
 
-QSharedPointer<Track> TrackManager::getTrackPtr(QStringView trackName)
+const std::optional<Track> TrackManager::findTrack(const QString &trackName) const
 {
-    qInfo() << "TrackManager::getTrackPtr";
+    qInfo() << "TrackManager::findTrack";
 
+    if (!tracksDir.exists(trackName)) {
+        emit errorMessage(tr("Трек '%1' не найден по пути '%2'")
+                          .arg(trackName).arg(tracksDir.absolutePath()));
+        return std::nullopt;
+    }
     for (const auto &track : mList_tracks) {
-        if (track->name() == trackName) {
-            return track;
+        if (track.fileName() == trackName) {
+            return std::optional<const Track>(std::in_place, track);
         }
     }
-    return nullptr;
+    emit errorMessage(tr("Трек '%1' не найден в списке").arg(trackName));
+    return std::nullopt;
 }
 
-QSharedPointer<Track> TrackManager::getTrackPtr(const int trackNum)
+bool TrackManager::playTrack(const QString &trackName, const float volume)
 {
-    return getTrackPtr(createTrackName(trackNum));
-}
+    qInfo() << "TrackManager::playTrack" << trackName;
 
-bool TrackManager::playTrack(QStringView trackName)
-{
-    qInfo() << "TrackManager::playTrack";
-
-    const auto &pathToTrack{ getTrackRelativePath(trackName) };
-
-    if (!QFile(pathToTrack).exists()) {
-        emit errorMessage(tr("Не найден файл для воспроизведения!"));
+    if (!findTrack(trackName).has_value()) {
         return false;
     }
-    mMediaPlayer->setSource(pathToTrack);
-    mMediaPlayer->play();
+    if (mMediaPlayer->source().toString() != tracksDir.filePath(trackName)) {
+        mAudioOutput->setVolume(volume);
+        mMediaPlayer->setSource(tracksDir.filePath(trackName));
+        mMediaPlayer->setLoops(QMediaPlayer::Infinite);
+        mMediaPlayer->play();
+        emit newMessage(tr("Проигрывается трек: '%1'").arg(trackName));
+    }
 
-    emit newMessage(tr("Проигрывается трек: '%1'").arg(trackName));
     return true;
 }
 
-bool TrackManager::playTrack(const int trackNum)
+bool TrackManager::playTrack(const int trackNum, const float volume)
 {
-    return playTrack(createTrackName(trackNum));
+    return playTrack(Track::createTrackNameByNumber(trackNum), volume);
 }
 
-const QByteArray TrackManager::calculateCrc32(const QString &trackName)
+const quint32 TrackManager::calculateCrc32Track(const Track &track) const
 {
-    qInfo() << "TrackManager::calculateCrc32";
+    qInfo() << "TrackManager::calculateCrc32Track";
 
     QByteArray data;
 
-    // поиск файла в списке
-    auto track{ getTrackPtr(trackName) };
-    if (!track) {
-        emit errorMessage(tr("Трек '%1' не найден в списке, перекачайте трек").arg(trackName));
-        return 0;
-    }
-
     // получение массива байтов из файла
-    if (QFile file_track{ getTrackRelativePath(trackName) }; file_track.exists()) {
+    if (tracksDir.exists(track.fileName())) {
+        QFile file_track{ tracksDir.filePath(track.fileName()) };
         file_track.open(QIODevice::ReadOnly);
         data.append(file_track.readAll());
         file_track.close();
     } else {
-        emit errorMessage(tr("Трек '%1' не найден в папке, перекачайте трек").arg(trackName));
+        emit errorMessage(tr("Файл '%1' не найден").arg(track.fileName()));
         return 0;
     }
 
@@ -178,15 +182,15 @@ const QByteArray TrackManager::calculateCrc32(const QString &trackName)
         }
     }
 
-    // дополнение массива данными о дате последней мовификации
-    if (!track->lastModified().isNull()) {
+    // дополнение массива данными о дате последней модификации
+    if (const auto &lastModified{ track.lastModified() }; lastModified.isValid()) {
         // ужимание даты и времени в формат Filinfo из бибилиотеки FatFs
-        int time{ track->lastModified().time().hour() * 2048 };
-        time |= track->lastModified().time().minute() * 32;
-        time |= track->lastModified().time().second() / 2;
-        int date{ (track->lastModified().date().year() - 1980) * 512 };
-        date |= track->lastModified().date().month() * 32;
-        date |= track->lastModified().date().day();
+        int time{ lastModified.time().hour() * 2048 };
+        time |= lastModified.time().minute() * 32;
+        time |= lastModified.time().second() / 2;
+        int date{ (lastModified.date().year() - 1980) * 512 };
+        date |= lastModified.date().month() * 32;
+        date |= lastModified.date().day();
 
         // ужимание даты в 4 байта
         QQueue<int> qI_lastModifiedBytes;
@@ -200,31 +204,44 @@ const QByteArray TrackManager::calculateCrc32(const QString &trackName)
             data.append(qI_lastModifiedBytes.dequeue());
         }
     }
-
-    return QByteArray::number // не видно старшие байты массива, если они = 0
-            (calculateCrc32(data), 16) // подсчёт crc32 и cast в 16-бит
-            .rightJustified(8, '0'); // fix: заполняет старшие байты массива нулями
+    return calculateCrc32(data);
 }
 
-const QByteArray TrackManager::calculateCrc32(const int trackNum)
+const quint32 TrackManager::calculateCrc32Track(const QString &trackName) const
 {
-    return calculateCrc32(createTrackName(trackNum));
+    return calculateCrc32Track(findTrack(trackName).value());
 }
 
-const quint32 TrackManager::calculateCrc32(const QByteArray data)
+const quint32 TrackManager::calculateCrc32Track(const int trackNum) const
 {
-    qInfo() << "TrackManager::calculateCrc32";
+    return calculateCrc32Track(Track::createTrackNameByNumber(trackNum));
+}
 
-    quint32 crc{ 0xFFFFFFFFUL };
+const quint32 TrackManager::calculateCrc32OfAllTracks() const
+{
+    qInfo() << "TrackManager::calculateCrc32OfAllTracks";
+
+    quint32 crc{};
+    for (const auto &track : mList_tracks) {
+        QFile file_track{ tracksDir.filePath(track.fileName()) };
+        file_track.open(QIODevice::ReadOnly);
+        crc += calculateCrc32Track(track);
+        file_track.close();
+    }
+    return crc &= 0xFFFFFFFF;
+}
+
+const quint32 TrackManager::calculateCrc32(const QByteArray &data) const
+{
+    quint32 crc{ 0xFFFFFFFF };
     quint32 poly{ 0x04c11db7 };
-
     for (qint64 i{}, len{ data.size() }; i < len; ++i) {
-        crc = (crc ^ (data.at(i) << 24));
+        crc ^= data.at(i) << 24;
         for (int j{}; j < 8; ++j) {
             int msb = (crc >> 31) & 1;
-            crc = crc << 1;
-            if (msb) { crc = crc ^ poly; }
+            crc <<= 1;
+            if (msb) { crc ^= poly; }
         }
     }
-    return crc & 0xFFFFFFFFUL;
+    return crc & 0xFFFFFFFF;
 }

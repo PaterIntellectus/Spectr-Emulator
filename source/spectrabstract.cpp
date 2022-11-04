@@ -2,18 +2,16 @@
 
 SpectrAbstract::SpectrAbstract(const int id, const DeviceStatus status, QObject *parent)
     : QObject{ parent }
-    , mTrackManager{ new TrackManager(this) }
+    , m_trackManager{ new TrackManager(this) }
 {
     qInfo() << "SpectrAbstract construction...";
 
     setId(id);
     setStatus(status);
-    for (int i{}; i < sizeof(mArr_inputs); ++i) {
-        mArr_inputs[i] = false;
+    for (int i{}; i < sizeof(mArr_relays); ++i) {
+        mArr_relays[i] = false;
     }
-
-    connect(mTrackManager, &TrackManager::newMessage, this, &SpectrAbstract::newMessage);
-    connect(mTrackManager, &TrackManager::errorMessage, this, &SpectrAbstract::errorMessage);
+    initConnections();
 
     qInfo() << "/SpectrAbstract constructed";
 }
@@ -27,11 +25,13 @@ SpectrAbstract::SpectrAbstract(const SpectrAbstract &&spectrDevice)
     qInfo() << "SpectrAbstract moving...";
 
     m_id = std::move(spectrDevice.m_id);
-    m_statusCode = std::move(spectrDevice.m_statusCode);
-    for (int i{}; i < sizeof(mArr_inputs); ++i) {
-        mArr_inputs[i] = spectrDevice.mArr_inputs[i];
+    m_status = std::move(spectrDevice.m_status);
+    for (int i{}; i < sizeof(mArr_relays); ++i) {
+        mArr_relays[i] = std::move(spectrDevice.mArr_relays[i]);
     }
-    setParent(spectrDevice.parent());
+    setParent(std::move(spectrDevice.parent()));
+
+    initConnections();
 
     qInfo() << "/SpectrAbstract moved";
 }
@@ -40,81 +40,89 @@ SpectrAbstract::SpectrAbstract(QObject *parent)
     : SpectrAbstract{ 0, DeviceStatus::FirstRequest, parent }
 {}
 
+SpectrAbstract::~SpectrAbstract()
+{
+}
+
 const SpectrAbstract &SpectrAbstract::operator=(const SpectrAbstract &anotherDevice)
 {
+    qInfo() << "SpectrAbstract::operator=";
+
     if (this != &anotherDevice) {
         setId(anotherDevice.getId());
         qInfo() << getId();
         setStatus(anotherDevice.getStatus());
-        for (int i{}; i < sizeof(mArr_inputs); ++i) { mArr_inputs[i] = anotherDevice.mArr_inputs[i]; }
+        for (int i{}; i < sizeof(mArr_relays); ++i) { mArr_relays[i] = anotherDevice.mArr_relays[i]; }
     }
     return *this;
 }
 
-const int SpectrAbstract::getInputsValInt() const
+const int SpectrAbstract::getRelaysVal() const
 {
-    qInfo() << "SpectrDevice::getInputsValInt";
+    qInfo() << "SpectrAbstract::inputsVal";
 
     // преобразование массива бинарников в int
     int val = 0;
-    auto arrSize{ std::size(mArr_inputs) };
+    auto arrSize{ std::size(mArr_relays) };
     for (size_t i = 0; i < arrSize; ++i) {
-        val |= mArr_inputs[i] << (arrSize - i - 1);
+        val |= mArr_relays[i] << (arrSize - i - 1);
     }
     return val;
 }
 
+void SpectrAbstract::initConnections()
+{
+    qInfo() << "SpectrAbstract::initConnections";
 
-void SpectrAbstract::setId(const int id)
+    connect(m_trackManager, &TrackManager::newMessage, this, &SpectrAbstract::newMessage);
+    connect(m_trackManager, &TrackManager::errorMessage, this, &SpectrAbstract::errorMessage);
+}
+
+void SpectrAbstract::setId(const int newId)
 {
     qInfo() << "SpectrAbstract::setId";
 
-    if (id < 0 || 255 < id) {
-        emit errorMessage(tr("Не верное id устройства:") + QString::number(id));
-        return;
-    }
-
-    if (m_id != id) {
-        m_id = id;
-//        qInfo() << "device id:" << getId();
+    if (m_id != newId) {
+        m_id = newId;
         emit idChanged(getId());
     }
 }
 
-void SpectrAbstract::setStatus(const DeviceStatus status)
+void SpectrAbstract::setStatus(const DeviceStatus newStatus)
 {
-    qInfo() << "SpectrDevice::setStatus";
+    qInfo() << "SpectrAbstract::setStatus";
 
-    if (m_statusCode != status) {
-        m_statusCode = status;
-//        qInfo() << "device-status:" << getStatusInt();
-        emit statusChanged(getStatusInt());
+    if (m_status != newStatus) {
+        m_status = newStatus;
+        emit statusChanged(statusInt());
     }
 }
 
-void SpectrAbstract::toggleInput(const int inputNum, bool onOff)
+bool SpectrAbstract::toggleRelay(const int relayNum, bool onOff)
 {
-    qInfo() << "SpectrAbstract::toggleInput";
+    qInfo() << "SpectrAbstract::toggleRelay";
 
-    if (0 <= inputNum && inputNum < inputsMax) {
-        if (mArr_inputs[inputNum] != onOff) {
-            mArr_inputs[inputNum] = onOff;
-            emit inputValChanged(getInputsValInt());
-            emit newMessage(tr(
-                                "Вход под номером '%1' был переключен в состояние '%2'"
-                                ).arg(inputNum).arg(onOff ? "Включено" : "Выключено")
-                            );
-        } else {
-            emit newMessage(tr(
-                                "Вход под номером '%1' уже находится в состоянии '%2'"
-                                ).arg(inputNum).arg(onOff ? "Включено" : "Выключено")
-                            );
-        }
-    } else {
+    if (relayNum < relaysMin && relaysMax < relayNum) {
         emit errorMessage(tr(
                               "Попытка получить доступ ко входу, за диапазоном\n"
                               "%1 << %2 << %3\n"
-                              ).arg(0).arg(inputNum).arg(inputsMax)
-                          );
+                              ).arg(relaysMin).arg(relayNum).arg(relaysMax));
+        return false;
     }
+
+    QString str_onOff = { onOff ? "Включено" : "Выключено" };
+
+    if (mArr_relays[relayNum] == onOff) {
+        emit newMessage(tr(
+                            "Вход под номером '%1' уже находится в состоянии '%2'"
+                            ).arg(relayNum).arg(str_onOff));
+        return true;
+    }
+
+    mArr_relays[relayNum] = onOff;
+    emit relayValChanged(getRelaysVal());
+    emit newMessage(tr(
+                        "Вход под номером '%1' был переключен в состояние '%2'"
+                        ).arg(relayNum).arg(str_onOff));
+    return true;
 }

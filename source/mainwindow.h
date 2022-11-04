@@ -48,11 +48,12 @@ private:
     // UI initialization ===
     void initMenuWidget();
     void initCentralWidget();
-    void initLogGroupBox();
 
-    void initReplyGroupBox();
+    void initRequestGroupBox();
     void initRequestComboBox();
     void initRequestStackedWidget();
+
+    void initLogGroupBox();
 
     void initRequestButtons();
     // ===
@@ -74,8 +75,10 @@ private slots:
 
 //    void processCommand(const QMap<QString, QString> &map_cmdData);
 
-    void logWriteLine(const QString &line);
+    void logWriteLine(QStringView strv_line);
+    void logWriteError(QStringView strv_error);
 
+    void onEmulationModeSwitched(bool checked);
 
 private:
     // UI objects ===
@@ -95,6 +98,7 @@ private:
     QAction *mAction_openSettings{ nullptr };
 
     // ===
+
     SettingsDialog *m_settingsDialog{ nullptr };
 
     SpectrEmulator *m_emulator{ nullptr };
@@ -104,6 +108,5 @@ private:
 
     QFile mFile_requestQueries;
     QList<QUrlQuery> mList_requestQueries;
-
 };
 #endif // MAINWINDOW_H
