@@ -9,9 +9,11 @@ Spect_Device_Emulator_autogen/timestamp: \
   D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtCore/QMetaType \
   D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtCore/QObject \
   D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtCore/QQueue \
+  D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtCore/QRegularExpression \
   D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtCore/QSharedDataPointer \
   D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtCore/QSharedPointer \
   D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtCore/QString \
+  D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtCore/QTextStream \
   D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtCore/QTimer \
   D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtCore/QUrl \
   D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtCore/QUrlQuery \
@@ -594,6 +596,7 @@ Spect_Device_Emulator_autogen/timestamp: \
   CMakeFiles/3.23.2/CMakeSystem.cmake \
   Spect_Device_Emulator_autogen/moc_predefs.h \
   D:/Repositories/Spectr-Emulator/source/CMakeLists.txt \
+  D:/Repositories/Spectr-Emulator/source/DirAndFileNames.h \
   D:/Repositories/Spectr-Emulator/source/command.cpp \
   D:/Repositories/Spectr-Emulator/source/command.h \
   D:/Repositories/Spectr-Emulator/source/main.cpp \
@@ -603,12 +606,14 @@ Spect_Device_Emulator_autogen/timestamp: \
   D:/Repositories/Spectr-Emulator/source/settingsdialog.h \
   D:/Repositories/Spectr-Emulator/source/spectrabstract.cpp \
   D:/Repositories/Spectr-Emulator/source/spectrabstract.h \
-  D:/Repositories/Spectr-Emulator/source/spectrdevice.cpp \
-  D:/Repositories/Spectr-Emulator/source/spectrdevice.h \
   D:/Repositories/Spectr-Emulator/source/spectremulator.cpp \
   D:/Repositories/Spectr-Emulator/source/spectremulator.h \
   D:/Repositories/Spectr-Emulator/source/spectrmaster.cpp \
   D:/Repositories/Spectr-Emulator/source/spectrmaster.h \
+  D:/Repositories/Spectr-Emulator/source/spectrnetworkmanager.cpp \
+  D:/Repositories/Spectr-Emulator/source/spectrnetworkmanager.h \
+  D:/Repositories/Spectr-Emulator/source/spectrslave.cpp \
+  D:/Repositories/Spectr-Emulator/source/spectrslave.h \
   D:/Repositories/Spectr-Emulator/source/track.cpp \
   D:/Repositories/Spectr-Emulator/source/track.h \
   D:/Repositories/Spectr-Emulator/source/trackmanager.cpp \

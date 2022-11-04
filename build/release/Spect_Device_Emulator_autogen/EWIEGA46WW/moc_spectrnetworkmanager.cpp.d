@@ -1,7 +1,5 @@
-D:/Repositories/Spectr-Emulator/build/release/Spect_Device_Emulator_autogen/EWIEGA46WW/moc_spectrmaster.cpp: D:/Repositories/Spectr-Emulator/source/spectrmaster.h \
+D:/Repositories/Spectr-Emulator/build/release/Spect_Device_Emulator_autogen/EWIEGA46WW/moc_spectrnetworkmanager.cpp: D:/Repositories/Spectr-Emulator/source/spectrnetworkmanager.h \
   D:/Repositories/Spectr-Emulator/build/release/Spect_Device_Emulator_autogen/moc_predefs.h \
-  D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtCore/QDateTime \
-  D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtCore/QDebug \
   D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtCore/QDir \
   D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtCore/QFile \
   D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtCore/QFlags \
@@ -9,10 +7,7 @@ D:/Repositories/Spectr-Emulator/build/release/Spect_Device_Emulator_autogen/EWIE
   D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtCore/QList \
   D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtCore/QMetaType \
   D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtCore/QObject \
-  D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtCore/QQueue \
-  D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtCore/QRegularExpression \
   D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtCore/QSharedDataPointer \
-  D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtCore/QSharedPointer \
   D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtCore/QString \
   D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtCore/QTextStream \
   D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtCore/QTimer \
@@ -77,9 +72,7 @@ D:/Repositories/Spectr-Emulator/build/release/Spect_Device_Emulator_autogen/EWIE
   D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtCore/qobjectdefs_impl.h \
   D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtCore/qpair.h \
   D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtCore/qprocessordetection.h \
-  D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtCore/qqueue.h \
   D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtCore/qrefcount.h \
-  D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtCore/qregularexpression.h \
   D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtCore/qscopedpointer.h \
   D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtCore/qscopeguard.h \
   D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtCore/qset.h \
@@ -373,10 +366,4 @@ D:/Repositories/Spectr-Emulator/build/release/Spect_Device_Emulator_autogen/EWIE
   D:/Programs/Programming/Qt/Tools/mingw1120_64/x86_64-w64-mingw32/include/vadefs.h \
   D:/Programs/Programming/Qt/Tools/mingw1120_64/x86_64-w64-mingw32/include/wchar.h \
   D:/Programs/Programming/Qt/Tools/mingw1120_64/x86_64-w64-mingw32/include/wctype.h \
-  D:/Repositories/Spectr-Emulator/source/DirAndFileNames.h \
-  D:/Repositories/Spectr-Emulator/source/command.h \
-  D:/Repositories/Spectr-Emulator/source/spectrabstract.h \
-  D:/Repositories/Spectr-Emulator/source/spectrnetworkmanager.h \
-  D:/Repositories/Spectr-Emulator/source/spectrslave.h \
-  D:/Repositories/Spectr-Emulator/source/track.h \
-  D:/Repositories/Spectr-Emulator/source/trackmanager.h
+  D:/Repositories/Spectr-Emulator/source/DirAndFileNames.h

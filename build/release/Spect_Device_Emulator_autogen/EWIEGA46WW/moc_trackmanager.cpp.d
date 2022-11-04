@@ -1,6 +1,7 @@
 D:/Repositories/Spectr-Emulator/build/release/Spect_Device_Emulator_autogen/EWIEGA46WW/moc_trackmanager.cpp: D:/Repositories/Spectr-Emulator/source/trackmanager.h \
   D:/Repositories/Spectr-Emulator/build/release/Spect_Device_Emulator_autogen/moc_predefs.h \
   D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtCore/QDateTime \
+  D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtCore/QDebug \
   D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtCore/QDir \
   D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtCore/QFile \
   D:/Programs/Programming/Qt/6.3.1/mingw_64/include/QtCore/QObject \
